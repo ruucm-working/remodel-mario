@@ -81,6 +81,14 @@ public class FlowerState implements ICoinBlockViewState {
 			return false;
 		}
 
+		@Override
+		public void OnEvolve(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+
 	}
 
 	private class FlowerAnimation implements IAnimatable {
@@ -100,4 +108,12 @@ public class FlowerState implements ICoinBlockViewState {
 			}
 		}
 	}
+
+	@Override
+	public void OnEvolve(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

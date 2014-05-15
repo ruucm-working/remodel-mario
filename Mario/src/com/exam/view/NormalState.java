@@ -1,6 +1,8 @@
 package com.exam.view;
 
+import android.content.*;
 import android.graphics.*;
+import android.util.*;
 
 import com.exam.*;
 
@@ -13,13 +15,32 @@ class NormalState implements ICoinBlockViewState {
 
 	public void OnClick(CoinBlockView viewContext) {
 		long chance = System.currentTimeMillis() % 8;
-		if (chance < 3)
+		if (chance < 3){
 			viewContext.setState(new MushroomState(viewContext));
+		}
 		else if (chance < 6)
 			viewContext.setState(new FlowerState(viewContext));
 		else
 			viewContext.setState(new CoinState(viewContext));
+		
+		Log.d(coinBlockWidgetProvider.TAG,"OnClickif (chance < 3){");
+
+		
 	}
+	
+	
+	
+	
+	public void OnEvolve(CoinBlockView viewContext) {
+		
+			viewContext.setState(new MushroomState(viewContext));
+			Log.d(coinBlockWidgetProvider.TAG,"OnEvolve");
+
+			
+		
+	}
+	
+	
 
 	public boolean NeedRedraw() {
 		return false;

@@ -12,6 +12,8 @@ import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.exam.view.*;
+
 
 
 
@@ -28,7 +30,7 @@ public class Setting extends Activity {
 	static long count = 0;
 	static TextView time;	
 	ThreadTime thread;	
-	static long second = 0;
+	public static long second = 0;
 	
 	
 	//프레퍼런스 값들
@@ -321,20 +323,38 @@ public class Setting extends Activity {
 
     static Handler mHandler = new Handler(){
     	
+    	
+    	Context context = CoinBlockView.getContext();
+    	
+    	int id;
+    	
 		public void handleMessage(Message msg){
-			Log.v("StopWatch", "Handler" + count);
+			
 			count ++;
 			second = getSecond(count);
 			time.setText( second + "초 " + count%10 );
+			
+			
+			
+			
+			if (second == 10)
+				((CoinBlockWidgetApp) context.getApplicationContext()).GetView(0).OnEvolve();   
+				
+			
 		}		
 		
 	};
+	
 	
 	public static long getSecond(long milli){
 		long secondValue = 0;
 		secondValue = milli / 10;
 		return secondValue;
 	}
+	
+	
+	
+	
     
     
     
@@ -345,7 +365,7 @@ public class Setting extends Activity {
 		public void run(){
 			while(true){
 				if(sns){
-					Log.v("StopWatch", "ThreadTime");
+					
 					mHandler.sendEmptyMessage(0);
 					try{
 						Thread.sleep(100);

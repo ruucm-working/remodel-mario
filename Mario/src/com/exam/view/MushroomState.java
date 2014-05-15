@@ -39,4 +39,10 @@ class MushroomState implements ICoinBlockViewState{
 	public boolean NeedRedraw() {
 		return true;
 	}
+
+	@Override
+	public void OnEvolve(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
 }

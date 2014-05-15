@@ -11,6 +11,10 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 public class coinBlockWidgetProvider extends AppWidgetProvider {
+	
+	public static final String TAG = "block";
+
+	
         @Override
         public void onDeleted(Context context, int[] appWidgetIds) {
                 super.onDeleted(context, appWidgetIds);
@@ -26,6 +30,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                 for (int i=0; i<appWidgetIds.length; i++)
                 {
                         ((CoinBlockWidgetApp) context.getApplicationContext()).UpdateWidget(appWidgetIds[i]);
+                        Log.d(TAG,"onUpdate"+appWidgetIds.length);
                 }
         }
 
@@ -35,23 +40,18 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                 if (intent.getAction().startsWith("com.gueei")) {
                         int id = intent.getIntExtra("widgetId", 0);
                         ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnClick();
+                        Log.d(TAG,"com.gueei");
+                        
                 }
                 else if (intent.getAction().startsWith("com.often")){
                 	
                 }
-                else if (intent.getAction().startsWith("com.evolve")){
+                else if (intent.getAction().startsWith("com.evolve")){ 
                 	int id = intent.getIntExtra("widgetId", 0);
-                    ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnClick();                	
+                    ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnEvolve();         
+                    
+                    Log.d(TAG,"com.evolve");
                 }
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 
                 

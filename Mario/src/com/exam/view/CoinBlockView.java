@@ -25,7 +25,7 @@ public class CoinBlockView {
 
 	private long lastRedrawMillis = 0;
 	private int mWidgetId;
-	private ICoinBlockViewState state;
+	private static ICoinBlockViewState state;
 
 	public CoinBlockView(Context context, int widgetId) {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -55,7 +55,7 @@ public class CoinBlockView {
 		Children.add(new CoinAnimation(density));
 	}
 
-	public Context getContext() {
+	public static Context getContext() {
 		return (CoinBlockWidgetApp.getApplication());
 	}
 
@@ -69,6 +69,10 @@ public class CoinBlockView {
 
 	public void OnClick() {
 		state.OnClick(this);
+	}
+	
+	public void OnEvolve() {
+		state.OnEvolve(this);
 	}
 
 	public void Redraw(Context context) {
@@ -87,7 +91,9 @@ public class CoinBlockView {
 		rviews.setImageViewBitmap(R.id.block, canvas);
 		updateClickIntent(rviews);
 		updateOftenIntent(rviews);
-		//updateEvolveIntent(rviews);
+		updateEvolveIntent(rviews, context);
+		Log.d(coinBlockWidgetProvider.TAG,"updateClickIntent(rviews);");
+		
 		AppWidgetManager.getInstance(context).updateAppWidget(mWidgetId, rviews);
 
 		lastRedrawMillis = SystemClock.uptimeMillis();
@@ -137,20 +143,18 @@ public class CoinBlockView {
 		// TODO Auto-generated method stub
 		
 	}
-	/*
-	private void updateEvolveIntent(RemoteViews rviews) {
+	
+	private void updateEvolveIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
-		intent.setClass(getContext(), coinBlockWidgetProvider.class);
-		intent.putExtra("widgetId", mWidgetId);
-		PendingIntent pi = PendingIntent.getBroadcast(getContext(), 0, intent,
-						PendingIntent.FLAG_UPDATE_CURRENT);
-		rviews.setOnClickPendingIntent(R.id.widget, pi);
+		
+		Log.d(coinBlockWidgetProvider.TAG," updateEvolveIntent(Remo(rviews);");
+		
+
 		
 		if(Setting.second  >= 10)
-			context.sendBroadcast(new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
+			context.sendBroadcast(new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId)));
 		
 	}
-	*/
+	
 	
 }
