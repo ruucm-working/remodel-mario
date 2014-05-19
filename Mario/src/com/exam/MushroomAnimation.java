@@ -11,13 +11,13 @@ public class MushroomAnimation implements IAnimatable {
         public MushroomAnimation(float Density)
         {
                 upstep = 10;
-                movestep = 10;
+                movestep = 5;
                 density = Density;
         }
 
         public boolean AnimationFinished()
         {
-                return movestep<=0;
+                return movestep<=10;
         }
         
         public void Draw(Bitmap canvas)
@@ -29,9 +29,9 @@ public class MushroomAnimation implements IAnimatable {
                 
                 boolean direction = true;
                 // Two stage
-                if (upstep > 0){		// 버섯 올라와
+                if (upstep < 10){		// 버섯 올라와
                 // Draw sprite
-                        upstep--;
+                        upstep++;
                 }
                 else{		// 다 올라왔으면 오른쪽으로
                 	if(movestep == 5)

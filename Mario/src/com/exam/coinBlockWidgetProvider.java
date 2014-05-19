@@ -1,19 +1,24 @@
 package com.exam;
 
 
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
-import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.widget.RemoteViews;
+import java.sql.*;
+
+import android.app.*;
+import android.appwidget.*;
+import android.content.*;
+import android.os.*;
+import android.util.*;
+import android.widget.*;
 
 public class coinBlockWidgetProvider extends AppWidgetProvider {
 	
 	public static final String TAG = "block";
+	
+	
 
+	
+	
+	
 	
         @Override
         public void onDeleted(Context context, int[] appWidgetIds) {
@@ -30,26 +35,40 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                 for (int i=0; i<appWidgetIds.length; i++)
                 {
                         ((CoinBlockWidgetApp) context.getApplicationContext()).UpdateWidget(appWidgetIds[i]);
-                        Log.d(TAG,"onUpdate"+appWidgetIds.length);
+                        Log.d(TAG,"onUpdate"+appWidgetIds);
                 }
+                
+     
+                
+                
+                Log.d(coinBlockWidgetProvider.TAG,"onUpdate;");
+                
+                
+                
+                
+                
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
                 super.onReceive(context, intent);
+                
+                Log.d(TAG,"onReceive");
+                
+                
                 if (intent.getAction().startsWith("com.gueei")) {
                         int id = intent.getIntExtra("widgetId", 0);
                         ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnClick();
                         Log.d(TAG,"com.gueei");
                         
                 }
-                else if (intent.getAction().startsWith("com.often")){
-                	
+                else if (intent.getAction().startsWith("com.exam.view.INTENT_OFTEN_FORMAT")){
+                	int id = intent.getIntExtra("widgetId2", 0);
+                    ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnOften();         
+                                    	
                 }
-                else if (intent.getAction().startsWith("com.evolve")){ 
-                	int id = intent.getIntExtra("widgetId", 0);
-                    ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnEvolve();         
-                    
+                else if (intent.getAction().startsWith("com.exam.view.INTENT_EVOLVE_FORMAT")){ 
+                	
                     Log.d(TAG,"com.evolve");
                 }
                 
@@ -58,4 +77,12 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                 
                 
         }
+        
+        
+        
+
+   	
+        
+        
+        
 }
