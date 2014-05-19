@@ -11,4 +11,6 @@ interface ICoinBlockViewState {
 
 	public void OnEvolve(CoinBlockView viewContext);
 
+	public void OnOften(CoinBlockView coinBlockView);
+
 }

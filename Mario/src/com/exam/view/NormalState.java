@@ -47,4 +47,15 @@ class NormalState implements ICoinBlockViewState {
 	public boolean NeedRedraw() {
 		return false;
 	}
+
+	@Override
+	public void OnOften(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+		viewContext.setState(new MushroomState(viewContext));
+	
+
+		
+		
+	}
 }

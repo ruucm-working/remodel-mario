@@ -71,4 +71,10 @@ class CoinState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
 }

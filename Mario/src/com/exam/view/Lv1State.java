@@ -7,14 +7,14 @@ import android.os.*;
 
 import com.exam.*;
 
-class DisabledState implements ICoinBlockViewState {
+class Lv1State implements ICoinBlockViewState {
 	public static final int DISABLE_PERIOD = 5000;
 
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_bump);
 	CoinBlockView mViewContext;
 	
-	public DisabledState(CoinBlockView viewContext) {
+	public Lv1State(CoinBlockView viewContext) {
 		this.mViewContext = viewContext;
 		// Will return to normal state
 		(new Handler()).postDelayed(new Runnable() {
