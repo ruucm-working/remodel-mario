@@ -75,12 +75,13 @@ public class CoinBlockView {
 		state.OnEvolve(this);
 	}
 
-	public void Redraw(Context context) {
+	public void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
 		RemoteViews rviews = new RemoteViews(context.getPackageName(), R.layout.coin_block_widget);
 		Bitmap canvas = Bitmap.createBitmap(cwidth, cheight, Bitmap.Config.ARGB_8888);
 
 		IAnimatable[] child = new IAnimatable[Children.size()];
 		Children.toArray(child);
+		
 		for (int i = 0; i < child.length; i++) {
 			child[i].Draw(canvas);
 			if (child[i].AnimationFinished())
