@@ -31,7 +31,7 @@ class NormalState implements ICoinBlockViewState {
 	}
 	
 	
-	
+	 
 	
 	public void OnEvolve(CoinBlockView viewContext) {
 		

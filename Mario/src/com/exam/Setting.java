@@ -88,6 +88,9 @@ public class Setting extends Activity {
         thread.onStart();
         
         
+        
+        
+        
                
         
         Log.d(TAG, "time01");
@@ -337,8 +340,8 @@ public class Setting extends Activity {
 			
 			
 			
-			if (second == 10)
-				((CoinBlockWidgetApp) context.getApplicationContext()).GetView(0).OnEvolve();   
+			//if (second == 10)
+				//((CoinBlockWidgetApp) context.getApplicationContext()).GetView(0).OnEvolve();   
 				
 			
 		}		
@@ -389,6 +392,9 @@ public class Setting extends Activity {
 		}		
 		
 	}
+    
+    
+    
         
         
     
