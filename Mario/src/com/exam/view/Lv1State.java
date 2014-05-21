@@ -10,18 +10,13 @@ import com.exam.*;
 class Lv1State implements ICoinBlockViewState {
 	public static final int DISABLE_PERIOD = 5000;
 
-	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_bump);
 	CoinBlockView mViewContext;
 	
 	public Lv1State(CoinBlockView viewContext) {
 		this.mViewContext = viewContext;
-		// Will return to normal state
-		(new Handler()).postDelayed(new Runnable() {
-			public void run() {
-				mViewContext.setState(new NormalState());
-			}
-		}, DISABLE_PERIOD); // After 5 second, reutrn to normal
+		
 	}
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -29,7 +24,7 @@ class Lv1State implements ICoinBlockViewState {
 		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
 	}
 
-	public void OnClick(CoinBlockView viewContext) {
+	public void OnClick(CoinBlockView viewContext) { 
 		if (snd.isPlaying()) return;
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {

@@ -31,6 +31,7 @@ public final class R {
         public static final int money_sprites_4=0x7f020009;
         public static final int mushroom=0x7f02000a;
         public static final int reset=0x7f02000b;
+        public static final int samsung_sample=0x7f02000c;
     }
     public static final class id {
         public static final int block=0x7f090001;

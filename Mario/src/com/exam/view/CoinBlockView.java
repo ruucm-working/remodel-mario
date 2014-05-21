@@ -12,7 +12,6 @@ import android.view.*;
 import android.widget.*;
 
 import com.exam.*;
-import com.exam.Setting.*;
 
 public class CoinBlockView {
 	public static String INTENT_ON_CLICK_FORMAT = "com.gueei.mario.coinBlock.id.%d.click";
@@ -102,7 +101,7 @@ public class CoinBlockView {
     	    	
 		public void handleMessage(Message msg){
 			
-			updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
+			//updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
 			updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 		
 			
@@ -152,7 +151,7 @@ public class CoinBlockView {
 		state.OnEvolve(this);
 	}
 
-	public void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
+	public  void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
 		RemoteViews rviews = new RemoteViews(context.getPackageName(), R.layout.coin_block_widget);
 		Bitmap canvas = Bitmap.createBitmap(cwidth, cheight, Bitmap.Config.ARGB_8888);
 
@@ -181,14 +180,14 @@ public class CoinBlockView {
 
 	
 
-	private void scheduleRedraw() {
+	private  void scheduleRedraw() {
 		long nextRedraw = lastRedrawMillis + REFRESH_RATE;
 		nextRedraw = nextRedraw > SystemClock.uptimeMillis() ? nextRedraw :
 			SystemClock.uptimeMillis() + REFRESH_RATE;
 		scheduleRedrawAt(nextRedraw);
 	}
 
-	private void scheduleRedrawAt(long timeMillis) {
+	private  void scheduleRedrawAt(long timeMillis) {
 		(new Handler()).postAtTime(new Runnable() {
 			public void run() {
 				Redraw(CoinBlockWidgetApp.getApplication());
@@ -196,7 +195,7 @@ public class CoinBlockView {
 		}, timeMillis);
 	}
 
-	public void setState(ICoinBlockViewState newState) {
+	public  void setState(ICoinBlockViewState newState) {
 		state = newState;
 		scheduleRedraw();
 	}
@@ -235,11 +234,14 @@ public class CoinBlockView {
 		// TODO Auto-generated method stub				
 		
 		
+	
+		
+		
 		Intent intent = new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
 		intent.putExtra("widgetId10", mWidgetId);				
 		
 		
-		if(Setting.second >= 20)
+		if(Setting.second >= 10)
 		context.sendBroadcast(intent);
 		
 		

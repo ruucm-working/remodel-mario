@@ -1,14 +1,9 @@
 package com.exam;
 
 
-import java.sql.*;
-
-import android.app.*;
 import android.appwidget.*;
 import android.content.*;
-import android.os.*;
 import android.util.*;
-import android.widget.*;
 
 public class coinBlockWidgetProvider extends AppWidgetProvider {
 	
@@ -68,6 +63,9 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                                     	
                 }
                 else if (intent.getAction().startsWith("com.exam.view.INTENT_EVOLVE_FORMAT")){ 
+                	int id = intent.getIntExtra("widgetId10", 0);
+                    ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnEvolve();
+                	
                 	
                     Log.d(TAG,"com.evolve");
                 }

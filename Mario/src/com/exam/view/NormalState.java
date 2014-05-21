@@ -30,23 +30,10 @@ class NormalState implements ICoinBlockViewState {
 		
 	}
 	
-	
 	 
 	
-	public void OnEvolve(CoinBlockView viewContext) {
-		
-			viewContext.setState(new MushroomState(viewContext));
-			Log.d(coinBlockWidgetProvider.TAG,"OnEvolve");
 
-			
-		
-	}
-	
-	
 
-	public boolean NeedRedraw() {
-		return false;
-	}
 
 	@Override
 	public void OnOften(CoinBlockView viewContext) {
@@ -58,4 +45,23 @@ class NormalState implements ICoinBlockViewState {
 		
 		
 	}
+	
+	public void OnEvolve(CoinBlockView viewContext) {
+		
+		viewContext.setState(new Lv1State(viewContext));
+		Log.d(coinBlockWidgetProvider.TAG,"OnEvolve");
+
+		
+	
+}
+
+
+	
+	
+	public boolean NeedRedraw() {
+		return false;
+	}
+
+	
+	
 }
