@@ -7,25 +7,14 @@ import android.os.*;
 
 import com.exam.*;
 
-class Lv1State implements ICoinBlockViewState {
-	public static final int DISABLE_PERIOD = 5000;
-
+class Lv1State implements ICoinBlockViewState{
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
-	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_bump);
-	CoinBlockView mViewContext;
-	
+	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
+	private int animStage = 0;
+	private int[] heightModifier = { 12, 8, 4, 2 };
+
 	public Lv1State(CoinBlockView viewContext) {
-		this.mViewContext = viewContext;
-		
-	}
-
-	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
-		// Draw the brick at bottom
-		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
-	}
-
-	public void OnClick(CoinBlockView viewContext) { 
-		if (snd.isPlaying()) return;
+		viewContext.addAnimatable(new Lv1Animation(viewContext.getDensity()));
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
@@ -33,9 +22,22 @@ class Lv1State implements ICoinBlockViewState {
 			}
 		});
 	}
- 
+
+	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
+		// Draw the brick at bottom
+		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
+						- (int)(heightModifier[animStage] * viewContext.getDensity()));
+		animStage++;
+		if (animStage >= heightModifier.length) {
+			viewContext.setState(new DisabledState(viewContext));
+		}
+	}
+
+	public void OnClick(CoinBlockView viewContext) {
+	}
+
 	public boolean NeedRedraw() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -49,6 +51,4 @@ class Lv1State implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
-
