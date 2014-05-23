@@ -9,10 +9,11 @@ import android.util.*;
 import com.exam.*;
 
 public class Lv1State implements ICoinBlockViewState {
-	Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+	
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
-	private int[] heightModifier = { 12, 8, 4, 2 };
+	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
 	Lv1Animation lv1Anim;
 	CoinBlockView context;
 
@@ -30,8 +31,12 @@ public class Lv1State implements ICoinBlockViewState {
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		// Draw the brick at bottom
-		SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
-						-(int) (heightModifier[animStage] * viewContext.getDensity()));
+		Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		//진동할때의 하단드로블
+		SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,0,
+				-(int)(heightModifier[animStage] * viewContext.getDensity()));
+		
+	
 		animStage++;
 		if (animStage >= heightModifier.length)
 			viewContext.setState(new FlowerWaitState(viewContext));
@@ -42,11 +47,12 @@ public class Lv1State implements ICoinBlockViewState {
 	}
 
 	public void OnClick(CoinBlockView viewContext) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 	}
 
 	private class FlowerWaitState implements ICoinBlockViewState {
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		//진동후의, 하단 드로블
 		MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup);
 		CoinBlockView mViewContext;
 
@@ -59,12 +65,11 @@ public class Lv1State implements ICoinBlockViewState {
 					if (mViewContext.getState().getClass() == FlowerWaitState.class)
 					{
 						//mViewContext.addAnimatable(lv1Anim);
-						mViewContext.setState(new OftenState(mViewContext, sp1));
+				
+						mViewContext.setState(new OftenState(mViewContext, flowerSprite)); 
 						
 						//lv1Anim.Draw2(Bitmap.createBitmap(mViewContext.cwidth, mViewContext.cheight, Bitmap.Config.ARGB_8888));
 						//mViewContext.scheduleRedraw();
-						
-						
 						
 					}
 				}
@@ -109,7 +114,9 @@ public class Lv1State implements ICoinBlockViewState {
 	}
 
 	private class Lv1Animation implements IAnimatable {
-		Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
+		
+		//진동할때 올라오고, 상단에 남는 드로블
+		
 		private int flowerRaise = 4;
 		private int flowerRaise2 = 4;
 

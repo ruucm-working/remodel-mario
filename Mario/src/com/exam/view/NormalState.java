@@ -1,6 +1,7 @@
 package com.exam.view;
 
 import android.graphics.*;
+import android.util.*;
 
 import com.exam.*;
 
@@ -29,7 +30,16 @@ class NormalState implements ICoinBlockViewState {
 	public void OnEvolve(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
-		viewContext.setState(new Lv1State(viewContext));
+		Log.v("tag2", "state-onevolve");
+		
+		long second = Setting.second; 
+		Log.v("tag2", "state-second"+Long.toString(second));
+		
+		if (second >=10 && second < 20 ){
+			viewContext.setState(new Lv0State(viewContext));
+			Log.v("tag2", "lv0");
+		}
+		
 		
 	}
 

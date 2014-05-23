@@ -149,6 +149,7 @@ public class CoinBlockView {
 	
 	public void OnEvolve() {
 		state.OnEvolve(this);
+	
 	}
 
 	public  void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
@@ -232,8 +233,10 @@ public class CoinBlockView {
 	
 	private static void updateEvolveIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub				
-		
-		
+	
+		Log.v("tag2", Long.toString(Setting.second));
+		if(Setting.second >= 10)
+		{
 	
 		
 		
@@ -241,10 +244,9 @@ public class CoinBlockView {
 		intent.putExtra("widgetId10", mWidgetId);				
 		
 		
-		if(Setting.second >= 10)
+			
 		context.sendBroadcast(intent);
-		
-		
+		}
 		
 		
 		Log.d(coinBlockWidgetProvider.TAG," updateEvolveIntent(Remo(rviews);");

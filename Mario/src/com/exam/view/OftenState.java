@@ -9,9 +9,9 @@ import android.util.*;
 import com.exam.*;
 
 public class OftenState implements ICoinBlockViewState {
-	Sprite sp1 ;
+	private Sprite sp1 = null ;
 	private int animStage = 0;
-	private int[] heightModifier = { 12, 8, 4, 2 };
+	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
 	Lv1Animation lv1Anim;
 	CoinBlockView context;
 
@@ -19,9 +19,10 @@ public class OftenState implements ICoinBlockViewState {
 		context = viewContext;
 		lv1Anim = new Lv1Animation();
 		
-		sp1 = sprite; 
+		sp1 = sprite;
+	
 		
-		viewContext.addAnimatable(lv1Anim);	
+		viewContext.addAnimatable(lv1Anim);	 
 			
 		
 	}
@@ -29,8 +30,12 @@ public class OftenState implements ICoinBlockViewState {
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		// Draw the brick at bottom
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
-		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
-						-(int) (heightModifier[animStage] * viewContext.getDensity()));
+		
+		
+		
+		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter,
+				-(int)(heightModifier[animStage] * viewContext.getDensity()), 0);
+	
 		animStage++;
 		if (animStage >= heightModifier.length)
 			viewContext.setState(new FlowerWaitState(viewContext));
@@ -45,7 +50,8 @@ public class OftenState implements ICoinBlockViewState {
 	}
 
 	private class FlowerWaitState implements ICoinBlockViewState {
-		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_question);
+		
 		MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup);
 		CoinBlockView mViewContext;
 
@@ -89,6 +95,14 @@ public class OftenState implements ICoinBlockViewState {
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
 			
+			
+			if (Setting.second >= 20 && Setting.second <25)	{
+				coinBlockView.setState(new Lv1State(coinBlockView));
+				Log.v("tag2", "waitstate- onevolve");
+			}
+		
+			
+			
 		}
 
 		@Override
@@ -102,7 +116,8 @@ public class OftenState implements ICoinBlockViewState {
 	}
 
 	private class Lv1Animation implements IAnimatable {
-		Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);;
+		Sprite flowerSprite = null;
+		
 		private int flowerRaise = 4;
 		private int flowerRaise2 = 4;
 
@@ -111,7 +126,7 @@ public class OftenState implements ICoinBlockViewState {
 		}
 
 		public void Draw(Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
+			SpriteHelper.DrawSprite(canvas, sp1, sp1.NextFrame(),
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
 	
@@ -147,6 +162,14 @@ public class OftenState implements ICoinBlockViewState {
 	@Override
 	public void OnEvolve(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
+
+		Log.v("tag2", "often- OnEvolve");
+		if (Setting.second >= 20)	{
+			coinBlockView.setState(new Lv1State(coinBlockView));
+			Log.v("tag2", "lv1");
+		}
+	
+		
 		
 	}
 

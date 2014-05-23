@@ -68,7 +68,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                     ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnEvolve();
                 	
                 	
-                    Log.d(TAG,"com.evolve");
+                    Log.d("tag2","provider - onenvolve");
                 }
                 
                 
