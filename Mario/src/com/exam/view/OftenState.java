@@ -28,7 +28,8 @@ public class OftenState implements ICoinBlockViewState {
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		// Draw the brick at bottom
-		SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
+		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
 						-(int) (heightModifier[animStage] * viewContext.getDensity()));
 		animStage++;
 		if (animStage >= heightModifier.length)
@@ -101,7 +102,7 @@ public class OftenState implements ICoinBlockViewState {
 	}
 
 	private class Lv1Animation implements IAnimatable {
-		Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
+		Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);;
 		private int flowerRaise = 4;
 		private int flowerRaise2 = 4;
 

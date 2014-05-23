@@ -67,7 +67,7 @@ class CoinState implements ICoinBlockViewState {
 	}
 
 	@Override
-	public void OnEvolve(CoinBlockView coinBlockView) {
+	public void OnEvolve(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -77,4 +77,6 @@ class CoinState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }
