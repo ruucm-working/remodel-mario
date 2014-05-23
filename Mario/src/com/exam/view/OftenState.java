@@ -8,24 +8,22 @@ import android.util.*;
 
 import com.exam.*;
 
-public class Lv1State implements ICoinBlockViewState {
-	Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
-	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
+public class OftenState implements ICoinBlockViewState {
+	Sprite sp1 ;
 	private int animStage = 0;
 	private int[] heightModifier = { 12, 8, 4, 2 };
 	Lv1Animation lv1Anim;
 	CoinBlockView context;
 
-	public Lv1State(CoinBlockView viewContext) {
+	public OftenState(CoinBlockView viewContext, Sprite sprite) {
 		context = viewContext;
 		lv1Anim = new Lv1Animation();
-		viewContext.addAnimatable(lv1Anim);
-		snd.seekTo(0);
-		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
-			public void onSeekComplete(MediaPlayer mp) {
-				snd.start();
-			}
-		});
+		
+		sp1 = sprite; 
+		
+		viewContext.addAnimatable(lv1Anim);	
+			
+		
 	}
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -58,13 +56,7 @@ public class Lv1State implements ICoinBlockViewState {
 				public void run() {
 					if (mViewContext.getState().getClass() == FlowerWaitState.class)
 					{
-						//mViewContext.addAnimatable(lv1Anim);
 						mViewContext.setState(new OftenState(mViewContext, sp1));
-						
-						//lv1Anim.Draw2(Bitmap.createBitmap(mViewContext.cwidth, mViewContext.cheight, Bitmap.Config.ARGB_8888));
-						//mViewContext.scheduleRedraw();
-						
-						
 						
 					}
 				}
@@ -130,11 +122,23 @@ public class Lv1State implements ICoinBlockViewState {
 			
 		}
 		
-
+		
+		public void Draw2(Bitmap canvas) {
+			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
+							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise2 * 4 * context.getDensity()));
+			
+			Log.d(coinBlockWidgetProvider.TAG2,"SpriteHelper(rviews);");
+			
+			// Draw the flower
+			if (flowerRaise2 < 8) {
+				flowerRaise2++;
+			}
+			
+			Log.d(coinBlockWidgetProvider.TAG2,"flowerRaise(rviews);");
+		}
 		
 		
 	}
-	
 	
 
 	

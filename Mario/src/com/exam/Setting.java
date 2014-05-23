@@ -9,6 +9,7 @@ import android.content.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
+import android.view.View.*;
 import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -489,6 +490,16 @@ public class Setting extends Activity {
 			spin2.setSelection(0);
 			Spinner spin3 = (Spinner)findViewById(R.id.myspinner3);
 			spin3.setSelection(0);
+			break;
+			
+			
+		case R.id.reset0:
+			//정지 버튼						
+			
+					thread.onStop();									
+					time.setText("");
+					count = 0; //시간값 초기화		
+					
 			break;
 			
 			

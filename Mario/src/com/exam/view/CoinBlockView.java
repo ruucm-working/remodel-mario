@@ -18,9 +18,9 @@ public class CoinBlockView {
 	public static String INTENT_OFTEN_FORMAT = "com.exam.view.INTENT_OFTEN_FORMAT";
 	public static String INTENT_EVOLVE_FORMAT = "com.exam.view.INTENT_EVOLVE_FORMAT";
 	private static final int REFRESH_RATE = 40;
-	private int cheight;
+	int cheight;
 	private volatile Set<IAnimatable> Children;
-	private int cwidth;
+	int cwidth;
 	private float density;
 
 	private long lastRedrawMillis = 0;
@@ -180,7 +180,7 @@ public class CoinBlockView {
 
 	
 
-	private  void scheduleRedraw() {
+	void scheduleRedraw() {
 		long nextRedraw = lastRedrawMillis + REFRESH_RATE;
 		nextRedraw = nextRedraw > SystemClock.uptimeMillis() ? nextRedraw :
 			SystemClock.uptimeMillis() + REFRESH_RATE;
@@ -241,7 +241,7 @@ public class CoinBlockView {
 		intent.putExtra("widgetId10", mWidgetId);				
 		
 		
-		if(Setting.second >= 10)
+		if(Setting.second >= 20)
 		context.sendBroadcast(intent);
 		
 		

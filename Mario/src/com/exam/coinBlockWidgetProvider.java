@@ -8,6 +8,7 @@ import android.util.*;
 public class coinBlockWidgetProvider extends AppWidgetProvider {
 	
 	public static final String TAG = "block";
+	public static final String TAG2 = "anim";
 	
 	
 
