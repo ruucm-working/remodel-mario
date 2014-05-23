@@ -241,7 +241,7 @@ public class CoinBlockView {
 		intent.putExtra("widgetId10", mWidgetId);				
 		
 		
-		if(Setting.second >= 20)
+		if(Setting.second >= 10)
 		context.sendBroadcast(intent);
 		
 		
