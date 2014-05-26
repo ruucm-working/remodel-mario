@@ -102,7 +102,7 @@ public class Setting extends Activity {
         
         
         
-        
+        Log.d("tag3", "time01");
         
         
         //프레퍼런스 읽어오기        
@@ -110,17 +110,27 @@ public class Setting extends Activity {
         
         
         
-        File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "mnt/sdcard/SsdamSsdam/textpref/SsdamSsdam"); // dir : 생성하고자 하는 경로
-        if(!saveDir.exists()) saveDir.mkdirs();
+        File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
+        if(!saveDir.exists()) 
+        	{saveDir.mkdirs();
+        	
+        	Log.d("tag3", "time00");
+        	}
         
+        Log.d("tag3", "time02");
         
         
         
         try {
 			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+			 Log.d("tag3", "time05");
+			
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}       
+        
+        Log.d("tag3", "time04");
+        
         mPref.Ready();    
         
         
