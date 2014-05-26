@@ -12,17 +12,17 @@ public class OftenState implements ICoinBlockViewState {
 	private Sprite sp1 = null ;
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
-	Lv1Animation lv1Anim;
+	OftenAnimation oftenAnim;
 	CoinBlockView context;
 
 	public OftenState(CoinBlockView viewContext, Sprite sprite) {
 		context = viewContext;
-		lv1Anim = new Lv1Animation();
+		oftenAnim = new OftenAnimation();
 		
 		sp1 = sprite;
 	
 		
-		viewContext.addAnimatable(lv1Anim);	 
+		viewContext.addAnimatable(oftenAnim);	 
 			
 		
 	}
@@ -46,11 +46,12 @@ public class OftenState implements ICoinBlockViewState {
 	}
 
 	public void OnClick(CoinBlockView viewContext) {
-		// TODO Auto-generated method stub
+		
+		// TODO Auto-generated method stub  
 	}
 
 	private class FlowerWaitState implements ICoinBlockViewState {
-		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_question);
+		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		
 		MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup);
 		CoinBlockView mViewContext;
@@ -63,17 +64,22 @@ public class OftenState implements ICoinBlockViewState {
 				public void run() {
 					if (mViewContext.getState().getClass() == FlowerWaitState.class)
 					{
-						mViewContext.setState(new OftenState(mViewContext, sp1));
+						if (Setting.second >= 20 && Setting.second <25)	{
+							mViewContext.removeAnimatable(oftenAnim);
+							mViewContext.setState(new DisabledState(mViewContext));
+						}
+						
+						//mViewContext.setState(new OftenState(mViewContext, sp1));
 						
 					}
 				}
 			}, 5000);
-			
+			 
 			
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
-			viewContext.removeAnimatable(lv1Anim);
+			viewContext.removeAnimatable(oftenAnim);
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
@@ -93,15 +99,20 @@ public class OftenState implements ICoinBlockViewState {
 
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub			
+			Log.v("tag2", "waitstate- OnEvolve");
 			
+			Log.v("tag2", "waitstate- removeAnimatable");
 			
+			/*
 			if (Setting.second >= 20 && Setting.second <25)	{
-				coinBlockView.setState(new Lv1State(coinBlockView));
+				coinBlockView.removeAnimatable(oftenAnim);
+				coinBlockView.setState(new DisabledState(coinBlockView));
+				//coinBlockView.setState(new Lv1State(coinBlockView));
 				Log.v("tag2", "waitstate- onevolve");
 			}
 		
-			
+			*/
 			
 		}
 
@@ -115,15 +126,15 @@ public class OftenState implements ICoinBlockViewState {
 
 	}
 
-	private class Lv1Animation implements IAnimatable {
-		Sprite flowerSprite = null;
+	private class OftenAnimation implements IAnimatable {
+		
 		
 		private int flowerRaise = 4;
 		private int flowerRaise2 = 4;
 
 		public boolean AnimationFinished() {
 			return false;
-		}
+		} 
 
 		public void Draw(Bitmap canvas) {
 			SpriteHelper.DrawSprite(canvas, sp1, sp1.NextFrame(),
@@ -139,20 +150,7 @@ public class OftenState implements ICoinBlockViewState {
 		}
 		
 		
-		public void Draw2(Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
-							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise2 * 4 * context.getDensity()));
-			
-			Log.d(coinBlockWidgetProvider.TAG2,"SpriteHelper(rviews);");
-			
-			// Draw the flower
-			if (flowerRaise2 < 8) {
-				flowerRaise2++;
-			}
-			
-			Log.d(coinBlockWidgetProvider.TAG2,"flowerRaise(rviews);");
-		}
-		
+	
 		
 	}
 	
@@ -164,8 +162,10 @@ public class OftenState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 
 		Log.v("tag2", "often- OnEvolve");
-		if (Setting.second >= 20)	{
-			coinBlockView.setState(new Lv1State(coinBlockView));
+		if (Setting.second >= 20 && Setting.second <25)	{
+				// added
+			
+			//coinBlockView.setState(new Lv1State(coinBlockView));
 			Log.v("tag2", "lv1");
 		}
 	

@@ -15,13 +15,18 @@ public class Lv0State implements ICoinBlockViewState {
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
-	Lv1Animation lv1Anim;
+	static Lv0Animation lv0Anim;
+	boolean fuck = false;
 	CoinBlockView context;
 
 	public Lv0State(CoinBlockView viewContext) {
 		context = viewContext;
-		lv1Anim = new Lv1Animation();
-		viewContext.addAnimatable(lv1Anim);
+		lv0Anim = new Lv0Animation();
+		if(fuck == false)
+		{
+			fuck = true;
+			viewContext.addAnimatable(lv0Anim);
+		}
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
@@ -65,24 +70,27 @@ public class Lv0State implements ICoinBlockViewState {
 				public void run() {
 					if (mViewContext.getState().getClass() == FlowerWaitState.class)
 					{
-						//mViewContext.addAnimatable(lv1Anim);
+						//mViewContext.addAnimatable(lv0Anim);
 				
-						Log.v("tag2", "lv0-if");
+						Log.v("tag2", "lv0-run");
+						
 						mViewContext.setState(new OftenState(mViewContext, flowerSprite)); 
 						
 						
-						//lv1Anim.Draw2(Bitmap.createBitmap(mViewContext.cwidth, mViewContext.cheight, Bitmap.Config.ARGB_8888));
+						//lv0Anim.Draw2(Bitmap.createBitmap(mViewContext.cwidth, mViewContext.cheight, Bitmap.Config.ARGB_8888));
 						//mViewContext.scheduleRedraw();
 						
 					}
 				}
-			}, 5000);
+			}, 3000);
 			
 			
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
-			viewContext.removeAnimatable(lv1Anim);
+			viewContext.removeAnimatable(lv0Anim);
+			
+			Log.v("tag2", "lv0-OnClick");
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
@@ -96,7 +104,7 @@ public class Lv0State implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
 		}
 
-		public boolean NeedRedraw() {
+		public boolean NeedRedraw() { 
 			return false;
 		}
 
@@ -116,7 +124,7 @@ public class Lv0State implements ICoinBlockViewState {
 
 	}
 
-	private class Lv1Animation implements IAnimatable {
+	class Lv0Animation implements IAnimatable {
 		
 		//진동할때 올라오고, 상단에 남는 드로블
 		
@@ -131,7 +139,6 @@ public class Lv0State implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
-	
 			// Draw the flower
 			if (flowerRaise < 8) {
 				flowerRaise++;

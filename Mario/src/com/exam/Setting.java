@@ -110,7 +110,7 @@ public class Setting extends Activity {
         
         
         
-        File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
+        File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "mnt/sdcard/SsdamSsdam/textpref/SsdamSsdam"); // dir : 생성하고자 하는 경로
         if(!saveDir.exists()) saveDir.mkdirs();
         
         

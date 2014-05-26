@@ -6,6 +6,8 @@ import android.util.*;
 import com.exam.*;
 
 class NormalState implements ICoinBlockViewState {
+	boolean isMushroomCreated = false;
+	
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_question);
 		// Draw the brick at bottom
@@ -26,7 +28,7 @@ class NormalState implements ICoinBlockViewState {
 		return false;
 	}
 
-	@Override
+	@Override 
 	public void OnEvolve(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
@@ -35,9 +37,10 @@ class NormalState implements ICoinBlockViewState {
 		long second = Setting.second; 
 		Log.v("tag2", "state-second"+Long.toString(second));
 		
-		if (second >=10 && second < 20 ){
+		if (second >=10 && second < 20  && isMushroomCreated == false){
+			isMushroomCreated = true;
 			viewContext.setState(new Lv0State(viewContext));
-			Log.v("tag2", "lv0");
+			Log.v("tag2", "lv0");   
 		}
 		
 		
