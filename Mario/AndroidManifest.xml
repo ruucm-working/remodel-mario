@@ -13,10 +13,23 @@
 		<receiver android:name="coinBlockWidgetProvider">
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+				<action android:name="com.exam.view.INTENT_OFTEN_FORMAT" />
+				<action android:name="com.exam.view.INTENT_EVOLVE_FORMAT" />
+			
+				
 			</intent-filter>
+			
 			<meta-data android:name="android.appwidget.provider"
 				android:resource="@xml/coin_block_widgetprovider" />
 		</receiver>
+		
+		
+		 <service android:name=".UpdateService">
+     		<intent-filter>
+         	<action android:name="com.exam.updateservice"/>
+     		</intent-filter>
+  		 </service>
+		
 		
 		<activity
             android:name=".Setting"
@@ -25,5 +38,7 @@
 		
 	</application>
 	<uses-sdk android:minSdkVersion="13" android:targetSdkVersion="19"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+	
 </manifest> 

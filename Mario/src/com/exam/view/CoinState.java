@@ -65,4 +65,18 @@ class CoinState implements ICoinBlockViewState {
 			viewContext.setState(mState);
 		}
 	}
+
+	@Override
+	public void OnEvolve(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

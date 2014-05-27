@@ -9,4 +9,8 @@ interface ICoinBlockViewState {
 
 	public boolean NeedRedraw();
 
+	public void OnEvolve(CoinBlockView viewContext);
+
+	public void OnOften(CoinBlockView coinBlockView);
+
 }

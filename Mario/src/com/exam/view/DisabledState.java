@@ -38,9 +38,22 @@ class DisabledState implements ICoinBlockViewState {
 			}
 		});
 	}
-
+ 
 	public boolean NeedRedraw() {
 		return false;
 	}
+
+	@Override
+	public void OnEvolve(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
