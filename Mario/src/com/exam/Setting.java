@@ -29,7 +29,7 @@ public class Setting extends Activity {
 	
 	//Mesuring Time
 	static long count = 0;
-	static TextView time;	
+	static TextView time;	 
 	ThreadTime thread;	
 	public static long second = 0;
 	

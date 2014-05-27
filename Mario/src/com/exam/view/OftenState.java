@@ -7,6 +7,7 @@ import android.os.*;
 import android.util.*;
 
 import com.exam.*;
+import com.exam.view.Lv0State.Lv0WaitState;
 
 public class OftenState implements ICoinBlockViewState {
 	private Sprite sp1 = null ;
@@ -38,7 +39,7 @@ public class OftenState implements ICoinBlockViewState {
 	
 		animStage++;
 		if (animStage >= heightModifier.length)
-			viewContext.setState(new FlowerWaitState(viewContext));
+			viewContext.setState(new OftenWaitState(viewContext));
 	}
 
 	public boolean NeedRedraw() {
@@ -50,26 +51,32 @@ public class OftenState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub  
 	}
 
-	private class FlowerWaitState implements ICoinBlockViewState {
+	private class OftenWaitState implements ICoinBlockViewState {
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		
 		MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup);
 		CoinBlockView mViewContext;
 
-		public FlowerWaitState(CoinBlockView viewContext) {
+		public OftenWaitState(CoinBlockView viewContext) {
 			mViewContext = viewContext;
 			
 			
 			(new Handler()).postDelayed(new Runnable(){
 				public void run() {
-					if (mViewContext.getState().getClass() == FlowerWaitState.class)
+					if (mViewContext.getState().getClass() == OftenWaitState.class)
 					{
-						if (Setting.second >= 20 && Setting.second <25)	{
-							mViewContext.removeAnimatable(oftenAnim);
-							mViewContext.setState(new DisabledState(mViewContext));
+						if (Setting.second >= 20 && Setting.second <25)	{	
+							
+							//mViewContext.removeAnimatable(Lv0State.lv0Anim);
+							//mViewContext.removeAnimatable(oftenAnim);
+							mViewContext.setState(new Lv0State(mViewContext));
+							
+							
+							Log.v("tag3","Setting.second >= 20 && Setting.second <");
+							
 						}
 						
-						//mViewContext.setState(new OftenState(mViewContext, sp1));
+						mViewContext.setState(new OftenState(mViewContext, sp1));
 						
 					}
 				}
@@ -80,6 +87,7 @@ public class OftenState implements ICoinBlockViewState {
 
 		public void OnClick(CoinBlockView viewContext) {
 			viewContext.removeAnimatable(oftenAnim);
+			Log.v("tag3", "OnClick- removeAnimatable");
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
@@ -87,6 +95,9 @@ public class OftenState implements ICoinBlockViewState {
 				}
 			});
 			viewContext.setState(new DisabledState(viewContext));
+			
+			Log.v("tag3", "OnClick- OnEvolve");
+			
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -118,6 +129,12 @@ public class OftenState implements ICoinBlockViewState {
 
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void OnInit(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
 			
 		}
@@ -175,6 +192,12 @@ public class OftenState implements ICoinBlockViewState {
 
 	@Override
 	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnInit(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -8,7 +8,7 @@ import android.util.*;
 
 import com.exam.*;
 
-public class Lv1State implements ICoinBlockViewState {
+public class Lv2State implements ICoinBlockViewState {
 	
 	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
@@ -17,7 +17,7 @@ public class Lv1State implements ICoinBlockViewState {
 	Lv1Animation lv1Anim;
 	CoinBlockView context;
 
-	public Lv1State(CoinBlockView viewContext) {
+	public Lv2State(CoinBlockView viewContext) {
 		context = viewContext;
 		lv1Anim = new Lv1Animation();
 		viewContext.addAnimatable(lv1Anim);

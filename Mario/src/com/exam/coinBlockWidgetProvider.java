@@ -70,6 +70,13 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
                 	
                     Log.d("tag2","provider - onenvolve");
                 }
+                else if (intent.getAction().startsWith("com.exam.view.INTENT_INIT_FORMAT")){ 
+                	int id = intent.getIntExtra("widgetId11", 0);
+                    ((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnInit();
+                	
+                	
+                    Log.d("tag2","provider - onenvolve");
+                }
                 
                 
                 
