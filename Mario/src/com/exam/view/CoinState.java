@@ -77,6 +77,4 @@ class CoinState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }

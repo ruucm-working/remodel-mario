@@ -6,6 +6,7 @@ import android.util.*;
 import com.exam.*;
 
 class NormalState implements ICoinBlockViewState {
+	private static final String TAG = "Setting_TAG";
 	boolean isMushroomCreated = false;
 	
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -43,6 +44,12 @@ class NormalState implements ICoinBlockViewState {
 			isMushroomCreated = true;
 			viewContext.setState(new Lv0State(viewContext));
 			Log.v("tag2", "lv0");   
+			
+			// System services not available to activities before onCreate()
+			// 때문에 진행이 전혀 되지 않고있다...
+			Log.v(TAG, "1");
+			Notify n = Notify.getInstance();
+			n.MakeNotification("TopMessage", "yeah", "butcher anthem!");
 		}
 	}
 

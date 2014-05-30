@@ -27,12 +27,17 @@ public class CoinBlockView {
 	private static int mWidgetId;
 	private static ICoinBlockViewState state;
 
+<<<<<<< HEAD
+	//UpdateThread
+	UpdateThread thread;
+=======
 
 
 
 	//UpdateThread
 	UpdateThread thread;
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 
 	public CoinBlockView(Context context, int widgetId) {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -47,6 +52,43 @@ public class CoinBlockView {
 		mWidgetId = widgetId;
 		setState(new NormalState());
 
+<<<<<<< HEAD
+		thread = new UpdateThread(mHandler);
+		thread.start();
+		thread.onStart();
+	}
+
+	class UpdateThread extends Thread{
+		Handler mHandler;
+		boolean sns = false; //Thread를 통제하기 위한 boolean 값
+		public void run(){
+			while(true){
+				if(sns){
+
+					mHandler.sendEmptyMessage(0);
+					try{
+						Thread.sleep(5000);
+					}catch(InterruptedException e){
+					}
+				}
+			}
+		}
+
+		//생성자
+		public UpdateThread(Handler handler){
+			mHandler = handler;
+		}
+
+		public void onStart(){
+			sns = true;
+		}
+
+		public void onStop(){
+			sns = false;
+		}		
+	}
+
+=======
 
 
 
@@ -94,15 +136,24 @@ public class CoinBlockView {
 
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	static Handler mHandler = new Handler(){
 
 		RemoteViews rviews = new RemoteViews(CoinBlockWidgetApp.getApplication().getPackageName(), R.layout.coin_block_widget);
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 		public void handleMessage(Message msg){
 
 			//updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
 			updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+<<<<<<< HEAD
+		}
+	};
+
+=======
 
 
 		}		
@@ -112,6 +163,7 @@ public class CoinBlockView {
 
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	public synchronized void addAnimatable(IAnimatable child)
 	{
 		Children.add(child);
@@ -149,7 +201,10 @@ public class CoinBlockView {
 
 	public void OnEvolve() {
 		state.OnEvolve(this);
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	}
 
 	public  void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
@@ -169,8 +224,11 @@ public class CoinBlockView {
 		rviews.setImageViewBitmap(R.id.block, canvas);
 		updateClickIntent(rviews);
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 		AppWidgetManager.getInstance(context).updateAppWidget(mWidgetId, rviews);
 
 		lastRedrawMillis = SystemClock.uptimeMillis();
@@ -179,8 +237,11 @@ public class CoinBlockView {
 			scheduleRedraw();
 	}
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	void scheduleRedraw() {
 		long nextRedraw = lastRedrawMillis + REFRESH_RATE;
 		nextRedraw = nextRedraw > SystemClock.uptimeMillis() ? nextRedraw :
@@ -213,6 +274,19 @@ public class CoinBlockView {
 		PendingIntent pi = PendingIntent.getBroadcast(getContext(), 0, intent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 		rviews.setOnClickPendingIntent(R.id.widget, pi);
+<<<<<<< HEAD
+	}
+
+	private static void updateOftenIntent(RemoteViews rviews, Context context) {
+		// TODO Auto-generated method stub
+
+		Intent intent = new Intent(String.format(INTENT_OFTEN_FORMAT, mWidgetId));
+		intent.putExtra("widgetId2", mWidgetId);
+
+		context.sendBroadcast(intent);
+	}
+
+=======
 
 		
 	}
@@ -231,6 +305,7 @@ public class CoinBlockView {
 
 	}
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	private static void updateEvolveIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub				
 
@@ -238,6 +313,14 @@ public class CoinBlockView {
 		if(Setting.second >= 10)
 		{
 			Intent intent = new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
+<<<<<<< HEAD
+			intent.putExtra("widgetId10", mWidgetId);
+
+			context.sendBroadcast(intent);
+		}
+		Log.d(coinBlockWidgetProvider.TAG," updateEvolveIntent(Remo(rviews);");
+	}
+=======
 			intent.putExtra("widgetId10", mWidgetId);				
 
 
@@ -252,4 +335,5 @@ public class CoinBlockView {
 	}
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 }

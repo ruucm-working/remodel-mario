@@ -9,8 +9,8 @@ import android.util.*;
 import com.exam.*;
 
 public class Lv0State implements ICoinBlockViewState {
-
 	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+	
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
@@ -22,17 +22,19 @@ public class Lv0State implements ICoinBlockViewState {
 	public Lv0State(CoinBlockView viewContext) {
 		context = viewContext;
 		lv0Anim = new Lv0Animation();
+		
 		if(fuck == false)
 		{
 			fuck = true;
 			viewContext.addAnimatable(lv0Anim);
-		}
+		}		
+		
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
 				snd.start();
 			}
-		});
+		});		
 	}
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {

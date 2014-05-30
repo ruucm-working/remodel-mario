@@ -24,7 +24,7 @@ public class Setting extends Activity {
 	public static long second = 0;
 
 	//프레퍼런스 값들
-	TextPref mPref;			
+	TextPref mPref;
 	String stNum1;
 	String stNum2;
 
@@ -38,10 +38,13 @@ public class Setting extends Activity {
 	ArrayAdapter<CharSequence> adspin2;
 	ArrayAdapter<CharSequence> adspin3;
 	boolean mInitSpinner;
+<<<<<<< HEAD
+=======
 	
 	// Notification variables
 	private static NotificationManager mNotificationManager;
 	final private int NOTI_ID = 5517;
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,10 +68,13 @@ public class Setting extends Activity {
 		thread.start();
 		thread.onStart();
 		Log.d(TAG, "time01");
+<<<<<<< HEAD
+=======
 
 		MakeNotification();		// test code (delete this)
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 		Log.d("tag3", "time01");       
 
 		//프레퍼런스 읽어오기        
@@ -259,8 +265,12 @@ public class Setting extends Activity {
 		//스피너 초기값지정
 		spin3.setSelection(spTag3);
 	}
+<<<<<<< HEAD
+	
+=======
 
 
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	static Handler mHandler = new Handler(){
 		Context context = CoinBlockView.getContext();
 		int id;
@@ -427,6 +437,8 @@ public class Setting extends Activity {
 			break;
 		}
 	}
+<<<<<<< HEAD
+=======
 	
 	public void MakeNotification()
 	{
@@ -444,4 +456,5 @@ public class Setting extends Activity {
 		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); 
 		mNotificationManager.notify(NOTI_ID, notification);
 	}
+>>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 }

@@ -17,6 +17,13 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			((CoinBlockWidgetApp) context.getApplicationContext()).DeleteWidget(x);
 		}
 	}
+	
+	@Override
+	public void onEnabled(Context context)
+	{
+		Log.i(TAG, "======================= onEnabled() =======================");
+		super.onEnabled(context);
+	}
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
