@@ -107,11 +107,22 @@ public class CoinBlockView {
 			
 			Log.d("tag3", Long.toString(second));
 			
+			
+			if(second >= 12 && second <=20 )			
+				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());	
+			else if (second >= 25 && second <= 35)
+				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
+			else if (second >= 40 && second <= 50)
+				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
+			
+			
+			
+			
 			if(second >= 10 && second <= 12)			
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());	
-			else if (second >= 25 && second <= 30)
+			else if (second >= 25 && second <= 27)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 40 && second <= 50)
+			else if (second >= 40 && second <= 42)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 		
 		
@@ -155,6 +166,7 @@ public class CoinBlockView {
 
 	public void OnOften() {
 		state.OnOften(this);
+//		/scheduleRedraw();
 	}
 
 
@@ -188,6 +200,7 @@ public class CoinBlockView {
 		rviews.setImageViewBitmap(R.id.block, canvas);
 		updateClickIntent(rviews);
 
+		Log.d("draw", "Redraw");
 
 
 		AppWidgetManager.getInstance(context).updateAppWidget(mWidgetId, rviews);
@@ -204,6 +217,9 @@ public class CoinBlockView {
 		long nextRedraw = lastRedrawMillis + REFRESH_RATE;
 		nextRedraw = nextRedraw > SystemClock.uptimeMillis() ? nextRedraw :
 			SystemClock.uptimeMillis() + REFRESH_RATE;
+		
+		Log.d("draw", "scheduleRedraw"+Long.toString(nextRedraw));
+		
 		scheduleRedrawAt(nextRedraw);
 	}
 
@@ -213,6 +229,9 @@ public class CoinBlockView {
 				Redraw(CoinBlockWidgetApp.getApplication());
 			}
 		}, timeMillis);
+		
+		Log.d("draw", "scheduleRedrawAt");
+		
 	}
 
 	public  void setState(ICoinBlockViewState newState) {
