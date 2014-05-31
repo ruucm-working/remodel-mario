@@ -8,23 +8,24 @@ import android.content.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
+import android.view.View.*;
 import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.exam.view.*;
 
-public class Setting extends Activity {
+public class Setting extends Activity { 
 	private static final String TAG = "Setting_TAG";
-	private static final boolean DEVELOPER_MODE = true;	
+	private static final boolean DEVELOPER_MODE = true;
 
 	//Mesuring Time
 	static long count = 0;
-	static TextView time;	
+	static TextView time;	 
 	ThreadTime thread;	
 	public static long second = 0;
 
 	//프레퍼런스 값들
-	TextPref mPref;
+	TextPref mPref;			
 	String stNum1;
 	String stNum2;
 
@@ -32,19 +33,12 @@ public class Setting extends Activity {
 	int spTag2;
 	int spTag3;
 	Boolean checked[] = new Boolean[20];
-
+	
 	//스피너 변수들
 	ArrayAdapter<CharSequence> adspin1;
 	ArrayAdapter<CharSequence> adspin2;
 	ArrayAdapter<CharSequence> adspin3;
 	boolean mInitSpinner;
-<<<<<<< HEAD
-=======
-	
-	// Notification variables
-	private static NotificationManager mNotificationManager;
-	final private int NOTI_ID = 5517;
->>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,24 +54,17 @@ public class Setting extends Activity {
 		super.onCreate(savedInstanceState);        
 		setContentView(R.layout.settingpage);             
 		Log.d(TAG, "setting view");
-
 		time = (TextView)findViewById(R.id.time);
+
 		Log.d(TAG, "setting view");
 
 		thread = new ThreadTime(mHandler);
 		thread.start();
 		thread.onStart();
 		Log.d(TAG, "time01");
-<<<<<<< HEAD
-=======
+		Log.d("tag3", "time01");
 
-		MakeNotification();		// test code (delete this)
-
-
->>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
-		Log.d("tag3", "time01");       
-
-		//프레퍼런스 읽어오기        
+		//프레퍼런스 읽어오기   
 		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
 		if(!saveDir.exists()) 
 		{
@@ -97,10 +84,10 @@ public class Setting extends Activity {
 
 		Log.d("tag3", "time04");
 
-		mPref.Ready();    
+		mPref.Ready();
 
-		TextView Num1, Num2;
-
+		TextView Num1;
+		TextView Num2;
 		Num1 = (TextView)findViewById(R.id.input01);		
 		stNum1 = mPref.ReadString("stNum1","0");
 		Num1.setText(stNum1);
@@ -127,7 +114,6 @@ public class Setting extends Activity {
 		checked[13] = mPref.ReadBoolean("checked13", false);
 
 		Log.d(TAG,"checked[11]");
-
 		mPref.EndReady();
 
 		//체크박스 값에 따라 체크해주기
@@ -188,6 +174,7 @@ public class Setting extends Activity {
 			CheckBox bo = (CheckBox)findViewById(R.id.dry5);
 			bo.setChecked(true);
 		}
+
 		Spinner spin1 = (Spinner)findViewById(R.id.myspinner1);
 		spin1.setPrompt("안녕스피너");
 
@@ -215,6 +202,7 @@ public class Setting extends Activity {
 		});
 		//스피너 초기값지정
 		spin1.setSelection(spTag1);
+
 		Spinner spin2 = (Spinner)findViewById(R.id.myspinner2);
 		spin2.setPrompt("안녕스피너");
 
@@ -264,24 +252,22 @@ public class Setting extends Activity {
 		});
 		//스피너 초기값지정
 		spin3.setSelection(spTag3);
+
 	}
-<<<<<<< HEAD
-	
-=======
-
-
->>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 	static Handler mHandler = new Handler(){
+
+
 		Context context = CoinBlockView.getContext();
+
 		int id;
 
 		public void handleMessage(Message msg){
+
 			count ++;
 			second = getSecond(count);
 			time.setText( second + "초 " + count%10 );
-
 			//if (second == 10)
-			//((CoinBlockWidgetApp) context.getApplicationContext()).GetView(0).OnEvolve();
+			//((CoinBlockWidgetApp) context.getApplicationContext()).GetView(0).OnEvolve();   
 		}
 	};
 
@@ -301,8 +287,7 @@ public class Setting extends Activity {
 					mHandler.sendEmptyMessage(0);
 					try{
 						Thread.sleep(100);
-					} catch(InterruptedException e){
-
+					}catch(InterruptedException e){
 					}
 				}
 			}
@@ -319,7 +304,7 @@ public class Setting extends Activity {
 
 		public void onStop(){
 			sns = false;
-		}
+		}		
 	}
 
 	public void onPause() {
@@ -437,24 +422,4 @@ public class Setting extends Activity {
 			break;
 		}
 	}
-<<<<<<< HEAD
-=======
-	
-	public void MakeNotification()
-	{
-		Intent intent = new Intent(getApplicationContext(), coinBlockIntroActivity.class); 
-		PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT); 
-		Notification notification = new Notification();
-		
-		notification.flags = Notification.FLAG_AUTO_CANCEL;		// delete notification on click
-		notification.icon = R.drawable.flowers_sprites_4; 		// notification image
-		notification.when = System.currentTimeMillis();			// time on notification
-		notification.number = 10; 	// number of unidentified notifications??
-		
-		notification.tickerText = "Top bar text"; 
-		notification.setLatestEventInfo(getApplicationContext(), "contentTitle", "contentText", pendingIntent);
-		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); 
-		mNotificationManager.notify(NOTI_ID, notification);
-	}
->>>>>>> 9147dca9aac7fe231b3babd755101aae542dc418
 }

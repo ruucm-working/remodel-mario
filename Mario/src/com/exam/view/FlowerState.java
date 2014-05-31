@@ -93,6 +93,12 @@ public class FlowerState implements ICoinBlockViewState {
 			
 		}
 
+		@Override
+		public void OnInit(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
+
 
 
 	}
@@ -123,6 +129,12 @@ public class FlowerState implements ICoinBlockViewState {
 
 	@Override
 	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnInit(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 		
 	}

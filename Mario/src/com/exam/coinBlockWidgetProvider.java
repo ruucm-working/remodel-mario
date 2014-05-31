@@ -17,13 +17,6 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			((CoinBlockWidgetApp) context.getApplicationContext()).DeleteWidget(x);
 		}
 	}
-	
-	@Override
-	public void onEnabled(Context context)
-	{
-		Log.i(TAG, "======================= onEnabled() =======================");
-		super.onEnabled(context);
-	}
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -34,7 +27,6 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			((CoinBlockWidgetApp) context.getApplicationContext()).UpdateWidget(appWidgetIds[i]);
 			Log.d(TAG,"onUpdate"+appWidgetIds);
 		}
-		
 		Log.d(coinBlockWidgetProvider.TAG,"onUpdate;");
 	}
 
@@ -48,6 +40,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			int id = intent.getIntExtra("widgetId", 0);
 			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnClick();
 			Log.d(TAG,"com.gueei");
+
 		}
 		else if (intent.getAction().startsWith("com.exam.view.INTENT_OFTEN_FORMAT")){
 			int id = intent.getIntExtra("widgetId2", 0);
@@ -57,6 +50,14 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		else if (intent.getAction().startsWith("com.exam.view.INTENT_EVOLVE_FORMAT")){ 
 			int id = intent.getIntExtra("widgetId10", 0);
 			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnEvolve();
+
+
+			Log.d("tag2","provider - onenvolve");
+		}
+		else if (intent.getAction().startsWith("com.exam.view.INTENT_INIT_FORMAT")){ 
+			int id = intent.getIntExtra("widgetId11", 0);
+			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnInit();
+
 			Log.d("tag2","provider - onenvolve");
 		}
 	}

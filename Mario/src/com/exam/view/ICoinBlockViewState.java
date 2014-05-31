@@ -13,4 +13,6 @@ interface ICoinBlockViewState {
 
 	public void OnOften(CoinBlockView coinBlockView);
 
+	public void OnInit(CoinBlockView coinBlockView);
+
 }

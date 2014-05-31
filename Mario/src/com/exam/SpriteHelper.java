@@ -2,6 +2,7 @@ package com.exam;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.util.Log;
 
 public class SpriteHelper {
         public static enum DrawPosition {

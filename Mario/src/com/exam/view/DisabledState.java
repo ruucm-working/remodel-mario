@@ -47,10 +47,18 @@ class DisabledState implements ICoinBlockViewState {
 	public void OnEvolve(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 		
+	
+		
 	}
 
 	@Override
 	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnInit(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 		
 	}

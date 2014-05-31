@@ -1,5 +1,6 @@
 package com.exam;
 
+import android.*;
 import android.graphics.*;
 
 public class MushroomAnimation implements IAnimatable {
