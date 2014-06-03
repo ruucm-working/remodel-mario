@@ -8,7 +8,6 @@ import android.content.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
-import android.view.View.*;
 import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 

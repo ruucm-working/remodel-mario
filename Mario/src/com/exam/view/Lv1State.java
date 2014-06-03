@@ -4,8 +4,6 @@ import android.graphics.*;
 import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
-import android.util.*;
-
 import com.exam.*;
 
 public class Lv1State implements ICoinBlockViewState {
