@@ -25,7 +25,7 @@ public class Lv2State implements ICoinBlockViewState {
 				snd.start();
 			}
 		});
-	}
+	} 
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		// Draw the brick at bottom
