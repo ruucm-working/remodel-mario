@@ -4,14 +4,19 @@ import android.graphics.*;
 import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
+import android.util.*;
+
 import com.exam.*;
+import com.exam.view.Lv0State.*;
 
 public class Lv1State implements ICoinBlockViewState {
 	
 	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
-	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
+	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
+	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	Lv1OftenAnim lv1ofAnim;// here
 	Lv1Animation lv1Anim;
 	CoinBlockView context;
 
@@ -64,7 +69,7 @@ public class Lv1State implements ICoinBlockViewState {
 					{
 						//mViewContext.addAnimatable(lv1Anim);
 				
-						mViewContext.setState(new OftenState(mViewContext, flowerSprite)); 
+						//mViewContext.setState(new OftenState(mViewContext, flowerSprite)); 
 						
 						//lv1Anim.Draw2(Bitmap.createBitmap(mViewContext.cwidth, mViewContext.cheight, Bitmap.Config.ARGB_8888));
 						//mViewContext.scheduleRedraw();
@@ -91,26 +96,29 @@ public class Lv1State implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
 		}
 
-		public boolean NeedRedraw() {
+		public boolean NeedRedraw() { 
 			return false;
 		}
 
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+			coinBlockView.setState(new Lv2State(coinBlockView));
 			
 		}
 
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+			
+			coinBlockView.removeAnimatable(lv1ofAnim);
+			lv1ofAnim = new Lv1OftenAnim();			
+			coinBlockView.addAnimatable(lv1ofAnim);
+			
 			
 		}
 
 		@Override
 		public void OnInit(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
-			
+			coinBlockView.removeAnimatable(lv1Anim);			
 		}
 
 
@@ -165,6 +173,55 @@ public class Lv1State implements ICoinBlockViewState {
 	@Override
 	public void OnInit(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+		
+
+	
+	private class Lv1OftenAnim implements IAnimatable {
+		
+
+		private int blockVib = 0;
+		
+		
+		
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			
+			
+			// Draw the brick at bottom
+			Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+			//진동할때의 하단드로블
+			SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[blockVib] * context.getDensity()),0);
+			
+
+						if (blockVib < 7) { 
+							blockVib++;
+						}
+						
+			
+			Log.v("tag4", "blockVib"+Integer.toString(blockVib));
+			
+			/*
+			if (blockVib >= 7){
+				context.setState(new Lv0WaitState(context));
+				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+			}
+			
+			*/
+			
+			
+			
+			
+		}
+
 		
 	}
 	

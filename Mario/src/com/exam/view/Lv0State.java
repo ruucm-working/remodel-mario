@@ -14,20 +14,23 @@ public class Lv0State implements ICoinBlockViewState {
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
-	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
-	static Lv0Animation lv0Anim;
+	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
+	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	Lv0Animation lv0Anim;
+    Lv0OftenAnim lv0ofAnim;
+    Lv0ClickAnim lv0clAnim;
 	boolean fuck = false;
 	CoinBlockView context;
 
 	public Lv0State(CoinBlockView viewContext) {
 		context = viewContext;
 		lv0Anim = new Lv0Animation();
-		if(fuck == false)
-		{
-			fuck = true;
-			viewContext.addAnimatable(lv0Anim);
-			Log.d("tag3","addAnimatable(lv0Anim);");
-		}
+		lv0ofAnim = new Lv0OftenAnim();
+		
+		viewContext.addAnimatable(lv0Anim);
+		//viewContext.addAnimatable(lv0ofAnim);
+		
+		
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
@@ -59,6 +62,38 @@ public class Lv0State implements ICoinBlockViewState {
 	public void OnClick(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub 
 	}
+	
+
+
+	
+
+	@Override
+	public void OnOften(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	@Override
+	public void OnEvolve(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	
+		
+		
+	}
+	
+
+	@Override
+	public void OnInit(CoinBlockView coinBlockView) {
+		
+		coinBlockView.removeAnimatable(lv0Anim);
+		
+		
+	}
+	
+	
+	
 
 	class Lv0WaitState implements ICoinBlockViewState {
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
@@ -106,18 +141,25 @@ public class Lv0State implements ICoinBlockViewState {
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
-			viewContext.removeAnimatable(lv0Anim);
 			
-			Log.v("tag2", "lv0-OnClick");
+			
+			
+			viewContext.removeAnimatable(lv0clAnim);
+			
+			lv0clAnim = new Lv0ClickAnim();			
+			viewContext.addAnimatable(lv0clAnim);
+			
+			
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
 					snd.start();
 				}
 			});
-			viewContext.setState(new DisabledState(viewContext));
 			
-			Log.v("tag3", "lv0-OnClicknimatable");
+			
+			
+			
 			
 		}
 
@@ -132,7 +174,35 @@ public class Lv0State implements ICoinBlockViewState {
 		
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+			
+		
+			
+			
+			/*
+			
+			//애니매이션 1 - 성공 (버섯올라오기)
+			coinBlockView.removeAnimatable(lv0Anim);
+			
+			lv0Anim = new Lv0Animation();			
+			coinBlockView.addAnimatable(lv0Anim);
+			
+			*/
+			
+			
+			
+			//애니매이션 2 - 성공
+			
+			coinBlockView.removeAnimatable(lv0ofAnim);
+			lv0ofAnim = new Lv0OftenAnim();			
+			coinBlockView.addAnimatable(lv0ofAnim);
+			
+			 
+			
+			
+			 
+			
+
+
 			
 		}
 		@Override
@@ -153,11 +223,14 @@ public class Lv0State implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 			
 
-			coinBlockView.removeAnimatable(lv0Anim);							
+			coinBlockView.removeAnimatable(lv0Anim);	
+			coinBlockView.removeAnimatable(lv0ofAnim);
+			coinBlockView.removeAnimatable(lv0clAnim);
+			
 			//coinBlockView.setState(new DisabledState(coinBlockView));
 			
 			Log.d("tag3","OnInit");
-			
+			 
 			
 		}
 
@@ -165,12 +238,12 @@ public class Lv0State implements ICoinBlockViewState {
 
 	}
 
-	class Lv0Animation implements IAnimatable {
+	private class Lv0Animation implements IAnimatable {
 		
 		//진동할때 올라오고, 상단에 남는 드로블
 		
 		private int flowerRaise = 4;
-		private int flowerRaise2 = 4;
+
 
 		public boolean AnimationFinished() {
 			return false;
@@ -185,44 +258,104 @@ public class Lv0State implements ICoinBlockViewState {
 				flowerRaise++;
 			}
 			
+			Log.v("tag4", "flowerRaise "+Integer.toString(flowerRaise));
+			
 			
 		}
-		
 
 		
+	}
+	
+	private class Lv0OftenAnim implements IAnimatable {
+		
+
+		private int blockVib = 0;
+		
+		
+		
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			
+			
+			// Draw the brick at bottom
+			Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+			//진동할때의 하단드로블
+			SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[blockVib] * context.getDensity()),0);
+			
+
+						if (blockVib < 7) { 
+							blockVib++;
+						}
+						
+			
+			Log.v("tag4", "blockVib"+Integer.toString(blockVib));
+			
+			/*
+			if (blockVib >= 7){
+				context.setState(new Lv0WaitState(context));
+				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+			}
+			
+			*/
+			
+			
+			
+			
+		}
+
 		
 	}
 	
 	
 
-	
+	private class Lv0ClickAnim implements IAnimatable {
+		
 
-	
+		private int spriteVib = 0;
+		
+		
+		
+		public boolean AnimationFinished() {
+			return false;
+		}
 
-	@Override
-	public void OnOften(CoinBlockView coinBlockView) {
-		// TODO Auto-generated method stub
+		public void Draw(Bitmap canvas) {
+			
+			
+			// Draw the brick at bottom
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+			//진동할때의 하단드로블
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
+			
+
+						if (spriteVib < 7) { 
+							spriteVib++;
+						}
+						
+		
+			/*
+			if (blockVib >= 7){
+				context.setState(new Lv0WaitState(context));
+				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+			}
+			
+			*/
+			
+			
+			
+			
+		}
+
 		
 	}
 	
 	
-	@Override
-	public void OnEvolve(CoinBlockView coinBlockView) {
-		// TODO Auto-generated method stub
-		
-	
-		
-		
-	}
-	
 
-	@Override
-	public void OnInit(CoinBlockView coinBlockView) {
-		
-		
-		
-	}
-	
 	
 	
 
