@@ -2,6 +2,7 @@ package com.exam;
 
 import android.app.*;
 import android.content.*;
+import android.media.*;
 import android.os.*;
 import android.support.v4.app.*;
 import android.util.*;
@@ -69,11 +70,13 @@ public class Notify extends Service
 			{
 				if(Setting.second < 10)
 					mRunning = true;
+					
 				else
 					mRunning = false;
 				
 				while(mRunning)
 				{
+					// notificaation 10초마다 무한루프되는듯. 빠른 시일내에 수정예정
 					try
 					{
 						Thread.sleep(10000);
@@ -84,6 +87,13 @@ public class Notify extends Service
 						e.printStackTrace();
 					}
 					mHandler.sendEmptyMessage(0);		// call handleMessage
+					MediaPlayer music = MediaPlayer.create(getApplicationContext(), R.raw.notify_sound);	
+					music.setLooping(false);
+					music.start();		// play music for 5 sec
+					
+					Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					long[] pattern = { 0, 1000, 200, 1000 };	// vibrate pattern (0ms delay, 1000ms vibrate, 200ms rest, 1000ms vibrate...)
+					vibe.vibrate(pattern, -1);		// vibrate for 2 sec
 				}
 			}
 		}).start();

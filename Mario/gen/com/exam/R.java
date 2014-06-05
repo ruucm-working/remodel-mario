@@ -70,12 +70,13 @@ public final class R {
         public static final int settingpage=0x7f030003;
     }
     public static final class raw {
-        public static final int smb_1_up=0x7f050000;
-        public static final int smb_breakblock=0x7f050001;
-        public static final int smb_bump=0x7f050002;
-        public static final int smb_coin=0x7f050003;
-        public static final int smb_powerup=0x7f050004;
-        public static final int smb_powerup_appears=0x7f050005;
+        public static final int notify_sound=0x7f050000;
+        public static final int smb_1_up=0x7f050001;
+        public static final int smb_breakblock=0x7f050002;
+        public static final int smb_bump=0x7f050003;
+        public static final int smb_coin=0x7f050004;
+        public static final int smb_powerup=0x7f050005;
+        public static final int smb_powerup_appears=0x7f050006;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
