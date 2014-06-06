@@ -8,7 +8,7 @@ import android.util.Log;
 
 //?�스???�일???�정 ?�보�???��?�는 ?�래?? ?�드로이?�의 ?�레?�런?��? ?�무 ?�려 ?�로 만듬
 //Ready()�??�출?�여 ?�출??�?��?�고 기록???�는 CommitWrite, ?�기�??�을 ?�는 EndReady�??�출?�다.
-class TextPref {
+public class TextPref {
 	String mPath;
 	StringBuilder mBuf;
 	static final String HEADER = "__Text Preference File__\n";
@@ -81,8 +81,11 @@ class TextPref {
 	// name?�의 ?�치�?�?��?�여 = ?�음 ?�치�?리턴?�다. ?�으�?-1??리턴?�다.
 	// ?�연??중복 방�?�??�해 ???�름?�에 __�?붙인??
 	int FindIdx(String name) {
+		Log.v("tag5", "FindIdxingtriWriteIntn" + name);
 		String key = "__" + name + "=";
+		Log.v("tag5", "String key = gtriWriteIntn" + key);
 		int idx = mBuf.indexOf(key);
+		Log.v("tag5", "int idx = mBuf.indtriWriteIntn" + idx);
 		if (idx == -1) {
 			return -1;
 		} else {
@@ -92,10 +95,17 @@ class TextPref {
 
 	// 문자???��? 기록?�다. ?��? ?�으�???��?�다.
 	public void WriteString(String name, String value) {
+		
+		Log.v("tag5", "WriteStringtriWriteIntn" + name);
 		int idx = FindIdx(name);
+		 
+		Log.v("tag5", "FindIdx(name);StriWriteIntn");
+		Log.v("tag5", "int idx = FindIdx(ntn");
 		if (idx == -1) {
 			mBuf.append("__");
+			Log.v("tag5", "mBuf.append;Idx(ntn");
 			mBuf.append(name);
+			Log.v("tag5", "mBuf.append(name);Idx(ntn");
 			mBuf.append("=");
 			mBuf.append(value);
 			mBuf.append("\n");
@@ -119,7 +129,9 @@ class TextPref {
 
 	// ?�수�??�는?? ?�단 문자???�태�??��? ??�?��?�다.
 	public void WriteInt(String name, int value) {
+		Log.v("tag5", "WriteInt(StriWriteIntn");
 		WriteString(name, Integer.toString(value));
+		
 	}
 
 	// ?�수�?기록?�다. 문자???�태�?�?��?�여 기록?�다.

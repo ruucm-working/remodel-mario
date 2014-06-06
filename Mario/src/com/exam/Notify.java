@@ -79,7 +79,7 @@ public class Notify extends Service
 					// notificaation 10초마다 무한루프되는듯. 빠른 시일내에 수정예정
 					try
 					{
-						Thread.sleep(10000);
+						Thread.sleep(1000000); 
 					}
 					catch (InterruptedException e)
 					{

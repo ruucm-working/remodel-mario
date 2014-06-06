@@ -43,7 +43,27 @@
          
    
  	  </LinearLayout>    
+ 	  
+     <TextView    
+        android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text = "Click-Count"
+	    android:textSize = "11dip"
+	    android:textStyle = "bold"
+		android:textColor = "#ff282CB6"
+		android:layout_marginTop="20dip"
+		 />
+     
  	   
+     <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text = "Click-Count"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/clicount" /> 
+     
+     
   
    		 <TextView    
         android:layout_width="wrap_content"

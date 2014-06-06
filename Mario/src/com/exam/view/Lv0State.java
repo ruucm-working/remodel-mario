@@ -5,6 +5,7 @@ import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
 import android.util.*;
+import android.widget.*;
 
 import com.exam.*;
 
@@ -156,9 +157,23 @@ public class Lv0State implements ICoinBlockViewState {
 					snd.start();
 				}
 			});
+			Setting.CliCount++;
+			
+			int lv0_clicount = 0;
+			lv0_clicount += Setting.CliCount;
+			
+			Log.v("tag5", "Setting.CliCoun");
 			
 			
+			Setting.mPref.Ready();
 			
+			Setting.mPref.WriteInt("clicount0", lv0_clicount);
+			
+			Setting.mPref.CommitWrite();
+		
+			
+			
+			Log.v("tag5", "Setting.mPref.WriteIntn");
 			
 			
 		}
@@ -176,8 +191,8 @@ public class Lv0State implements ICoinBlockViewState {
 		public void OnOften(CoinBlockView coinBlockView) {
 			
 		
-			
-			
+			 
+			 
 			/*
 			
 			//애니매이션 1 - 성공 (버섯올라오기)

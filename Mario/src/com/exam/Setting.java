@@ -19,19 +19,23 @@ public class Setting extends Activity {
 
 	//Mesuring Time
 	static long count = 0;
-	static TextView time;	 
+	static TextView time;
+	TextView clicount;
 	ThreadTime thread;	
 	public static long second = 0;
 
 	//프레퍼런스 값들
-	TextPref mPref;			
+	 public static TextPref mPref;			
 	String stNum1;
 	String stNum2;
-
+	
 	int spTag1;
 	int spTag2;
 	int spTag3;
 	Boolean checked[] = new Boolean[20];
+	
+	public static int CliCount;
+	
 	
 	//스피너 변수들
 	ArrayAdapter<CharSequence> adspin1;
@@ -52,10 +56,13 @@ public class Setting extends Activity {
 		}		
 		super.onCreate(savedInstanceState);        
 		setContentView(R.layout.settingpage);             
-		Log.d(TAG, "setting view");
+		Log.d(TAG, "setting view"); 
 		time = (TextView)findViewById(R.id.time);
+		clicount = (TextView)findViewById(R.id.clicount);
+		
+		clicount.setText( CliCount + "번 ");
 
-		Log.d(TAG, "setting view");
+		  
 
 		thread = new ThreadTime(mHandler);
 		thread.start();
@@ -94,6 +101,7 @@ public class Setting extends Activity {
 		spTag1 = mPref.ReadInt("Tag1", 0);
 		spTag2 = mPref.ReadInt("Tag2", 0);
 		spTag3 = mPref.ReadInt("Tag3", 0);
+		CliCount = mPref.ReadInt("clicount0", 0);
 
 		Log.d(TAG,"spTag3");
 
@@ -337,6 +345,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("Tag1", spTag1);
 			mPref.WriteInt("Tag2", spTag2);
 			mPref.WriteInt("Tag3", spTag3);
+			mPref.WriteInt("clicount0", CliCount);
 
 			mPref.WriteBoolean("checked0", checked[0]);
 			mPref.WriteBoolean("checked1", checked[1]);
