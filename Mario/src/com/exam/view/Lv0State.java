@@ -157,23 +157,19 @@ public class Lv0State implements ICoinBlockViewState {
 					snd.start();
 				}
 			});
-			Setting.CliCount++;
-			
-			int lv0_clicount = 0;
-			lv0_clicount += Setting.CliCount;
-			
-			Log.v("tag5", "Setting.CliCoun");
 			
 			
-			Setting.mPref.Ready();
 			
-			Setting.mPref.WriteInt("clicount0", lv0_clicount);
+			 
+			Setting.CliCount0++;			
 			
+			Setting.mPref.Ready();			
+			Setting.mPref.WriteInt("clicount0", Setting.CliCount0);			
 			Setting.mPref.CommitWrite();
 		
 			
 			
-			Log.v("tag5", "Setting.mPref.WriteIntn");
+			Log.v("tag5", "Setting.mPref.WriteIntn"); 
 			
 			
 		}

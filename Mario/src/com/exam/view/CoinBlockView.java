@@ -112,10 +112,10 @@ public class CoinBlockView {
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());	
 			else if (second >= 25 && second <= 35)
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 40 && second <= 50)
+			else if (second >= 40 )
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
 			
-			
+			 
 			
 			
 			if(second >= 10 && second <= 12)			

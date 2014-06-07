@@ -55,13 +55,77 @@
 		 />
      
  	   
-     <TextView
+ 
+     
+     
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal"  >
+        
+ 	    <TextView
+ 	          android:layout_width="60dp"
+ 	          android:layout_height="50dp"
+ 	          android:gravity="center"
+ 	          android:text="Lv0Count"
+ 	          android:textSize="10dp" />
+     
+ 	    <TextView
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text = "Click-Count"
         android:textSize="10dp"
         android:gravity="center"
-        android:id="@+id/clicount" /> 
+        android:id="@+id/clicount0" />    
+         
+   
+ 	  </LinearLayout>    
+ 	  
+ 	  <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal"  >
+        
+ 	    <TextView
+ 	          android:layout_width="60dp"
+ 	          android:layout_height="50dp"
+ 	          android:gravity="center"
+ 	          android:text="Lv1Count"
+ 	          android:textSize="10dp" />
+     
+ 	    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text = "Click-Count"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/clicount1" />    
+         
+   
+ 	  </LinearLayout>    
+ 	  <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal"  >
+        
+ 	    <TextView
+ 	          android:layout_width="60dp"
+ 	          android:layout_height="50dp"
+ 	          android:gravity="center"
+ 	          android:text="Lv2Count"
+ 	          android:textSize="10dp" />
+     
+ 	    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text = "Click-Count"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/clicount2" />    
+         
+   
+ 	  </LinearLayout>    
+     
      
      
   

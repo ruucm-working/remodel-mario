@@ -68,18 +68,16 @@ public class Notify extends Service
 			@Override
 			public void run()
 			{
-				if(Setting.second < 10)
+				
 					mRunning = true;
 					
-				else
-					mRunning = false;
 				
 				while(mRunning)
 				{
 					// notificaation 10초마다 무한루프되는듯. 빠른 시일내에 수정예정
 					try
 					{
-						Thread.sleep(1000000); 
+						Thread.sleep(10000000); 
 					}
 					catch (InterruptedException e)
 					{

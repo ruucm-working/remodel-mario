@@ -82,14 +82,25 @@ public class Lv1State implements ICoinBlockViewState {
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
-			viewContext.removeAnimatable(lv1Anim);
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
 					snd.start();
 				}
 			});
-			viewContext.setState(new DisabledState(viewContext));
+			
+			
+			Setting.CliCount1++;			
+			
+			Setting.mPref.Ready();			
+			Setting.mPref.WriteInt("clicount1", Setting.CliCount1);			
+			Setting.mPref.CommitWrite();
+			
+			
+						
+			
+			
+			
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
