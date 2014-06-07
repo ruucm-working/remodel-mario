@@ -71,12 +71,19 @@
  	          android:textSize="10dp" />
      
  	    <TextView
-        android:layout_width="150dp"
+        android:layout_width="90dp"
         android:layout_height="50dp"
         android:text = "Click-Count"
         android:textSize="10dp"
         android:gravity="center"
         android:id="@+id/clicount0" />    
+        
+        <TextView
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/clisp0" />  
          
    
  	  </LinearLayout>    
@@ -94,12 +101,19 @@
  	          android:textSize="10dp" />
      
  	    <TextView
-        android:layout_width="150dp"
+        android:layout_width="90dp"
         android:layout_height="50dp"
         android:text = "Click-Count"
         android:textSize="10dp"
         android:gravity="center"
         android:id="@+id/clicount1" />    
+        
+ 	    <TextView
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/clisp1" /> 
          
    
  	  </LinearLayout>    
@@ -116,12 +130,20 @@
  	          android:textSize="10dp" />
      
  	    <TextView
-        android:layout_width="150dp"
+        android:layout_width="90dp"
         android:layout_height="50dp"
         android:text = "Click-Count"
         android:textSize="10dp"
         android:gravity="center"
         android:id="@+id/clicount2" />    
+        
+ 	    
+ 	    <TextView
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/clisp2" /> 
          
    
  	  </LinearLayout>    

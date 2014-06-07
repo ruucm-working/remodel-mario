@@ -17,14 +17,22 @@ public class Setting extends Activity {
 	private static final String TAG = "Setting_TAG";
 	private static final boolean DEVELOPER_MODE = true;
 
-	//Mesuring Time
-	static long count = 0;
-	static TextView time;
+	
+	//count click
 	TextView clicount0;
 	TextView clicount1;
 	TextView clicount2;
+	TextView clisp0;
+	TextView clisp1;
+	TextView clisp2;
+	
+	
+	
+	//Mesuring Time
+	static long count = 0;
+	static TextView time;	
 	ThreadTime thread;	
-	public static long second = 0;
+	public static long second = 60;
 
 	//프레퍼런스 값들
 	 public static TextPref mPref;			
@@ -39,6 +47,10 @@ public class Setting extends Activity {
 	public static int CliCount0;
 	public static int CliCount1;
 	public static int CliCount2;
+	
+	
+	float CliSp0;
+	
 	
 	
 	//스피너 변수들
@@ -64,6 +76,8 @@ public class Setting extends Activity {
 		 
 		time = (TextView)findViewById(R.id.time);
 		
+		
+		
 		clicount0 = (TextView)findViewById(R.id.clicount0);		
 		clicount0.setText( CliCount0 + "번 ");
 		clicount1 = (TextView)findViewById(R.id.clicount1);		
@@ -71,6 +85,11 @@ public class Setting extends Activity {
 		clicount2 = (TextView)findViewById(R.id.clicount2);		
 		clicount2.setText( CliCount2 + "번 ");
 
+
+		CliSp0 =  getSecondperCount(600);	
+		clisp0 = (TextView)findViewById(R.id.clisp0);		
+		clisp0.setText( "(" + CliSp0 + "/m)");
+		
 		  
 
 		thread = new ThreadTime(mHandler);
@@ -294,6 +313,38 @@ public class Setting extends Activity {
 		secondValue = milli / 10;
 		return secondValue;
 	}
+	
+	public static long getMinute(long milli){
+		long secondValue = 0;
+		secondValue = milli / 600;
+		return secondValue;
+	}
+	
+	
+	public static float getMinuteperCount(int clickcount){
+		
+		float clisp = 0 ;
+		
+		if (count > 10){
+		clisp = clickcount/count*600;
+		}		
+		
+		
+		return clisp;
+	}
+	
+	public static float getSecondperCount(int clickcount){
+		
+		float clisp = 0 ;
+		
+		if (count > 10){
+		clisp = clickcount/count*10;
+		}		
+		
+		
+		return clisp;
+	}
+	
 
 	class ThreadTime extends Thread{
 		Handler mHandler;
