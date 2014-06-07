@@ -115,7 +115,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			else
 				isBatteryLow = false;
 			
-			Toast.makeText(context, "Battery Changed", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(context, "Battery Changed", Toast.LENGTH_SHORT).show();
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
 			this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, getClass())));
@@ -141,7 +141,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			else
 				isPlaneMode = false;
 
-			Toast.makeText(context, "Plane mode status changed", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(context, "Plane mode status changed", Toast.LENGTH_SHORT).show();
 			Log.v(TAG, "isPlaneMode: " + isPlaneMode);
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
@@ -154,7 +154,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			Log.v(TAG, "Bluetooth");
 			BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
 			isBluetoothActivated = mBTAdapter.isEnabled();
-			Toast.makeText(context, "Bluetooth status changed", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(context, "Bluetooth status changed", Toast.LENGTH_SHORT).show();
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
 			this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, getClass())));
@@ -165,7 +165,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		{
 			Log.v(TAG, "Power Connected");
 			isPowerConnected = true;
-			Toast.makeText(context, "Power connected", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(context, "Power connected", Toast.LENGTH_SHORT).show();
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
 			this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, getClass())));
@@ -176,7 +176,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		{
 			Log.v(TAG, "Power Disconnected");
 			isPowerConnected = false;
-			Toast.makeText(context, "Power disconnected", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(context, "Power disconnected", Toast.LENGTH_SHORT).show();
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
 			this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, getClass())));

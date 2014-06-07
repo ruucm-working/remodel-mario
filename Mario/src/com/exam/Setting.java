@@ -19,6 +19,8 @@ public class Setting extends Activity {
 
 	
 	//count click
+	
+	TextView clicountinit;
 	TextView clicount0;
 	TextView clicount1;
 	TextView clicount2;
@@ -31,8 +33,7 @@ public class Setting extends Activity {
 	//Mesuring Time
 	static long count = 0;
 	static TextView time;	
-	ThreadTime thread;	
-	public static long second = 60;
+	//public static long second = 60;
 
 	//프레퍼런스 값들
 	 public static TextPref mPref;			
@@ -44,6 +45,7 @@ public class Setting extends Activity {
 	int spTag3;
 	Boolean checked[] = new Boolean[20];
 	
+	public static int CliCountinit;
 	public static int CliCount0;
 	public static int CliCount1;
 	public static int CliCount2;
@@ -77,7 +79,8 @@ public class Setting extends Activity {
 		time = (TextView)findViewById(R.id.time);
 		
 		
-		
+		clicountinit = (TextView)findViewById(R.id.clicountinit);		
+		clicountinit.setText( CliCountinit + "번 ");
 		clicount0 = (TextView)findViewById(R.id.clicount0);		
 		clicount0.setText( CliCount0 + "번 ");
 		clicount1 = (TextView)findViewById(R.id.clicount1);		
@@ -92,9 +95,7 @@ public class Setting extends Activity {
 		
 		  
 
-		thread = new ThreadTime(mHandler);
-		thread.start();
-		thread.onStart();
+		
 		Log.d(TAG, "time01");
 		Log.d("tag3", "time01");
 
@@ -129,6 +130,7 @@ public class Setting extends Activity {
 		spTag1 = mPref.ReadInt("Tag1", 0);
 		spTag2 = mPref.ReadInt("Tag2", 0);
 		spTag3 = mPref.ReadInt("Tag3", 0);
+		CliCountinit = mPref.ReadInt("clicountinit", 0);
 		CliCount0 = mPref.ReadInt("clicount0", 0);
 		CliCount1 = mPref.ReadInt("clicount1", 0);
 		CliCount2 = mPref.ReadInt("clicount2", 0);
@@ -291,22 +293,7 @@ public class Setting extends Activity {
 		spin3.setSelection(spTag3);
 
 	}
-	static Handler mHandler = new Handler(){
 
-
-		Context context = CoinBlockView.getContext();
-
-		int id;
-
-		public void handleMessage(Message msg){
-
-			count ++;
-			second = getSecond(count);
-			time.setText( second + "초 " + count%10 );
-			//if (second == 10)
-			//((CoinBlockWidgetApp) context.getApplicationContext()).GetView(0).OnEvolve();   
-		}
-	};
 
 	public static long getSecond(long milli){
 		long secondValue = 0;
@@ -346,36 +333,6 @@ public class Setting extends Activity {
 	}
 	
 
-	class ThreadTime extends Thread{
-		Handler mHandler;
-		boolean sns = false; //Thread를 통제하기 위한 boolean 값
-		public void run(){
-			while(true){
-				if(sns){
-
-					mHandler.sendEmptyMessage(0);
-					try{
-						Thread.sleep(100);
-					}catch(InterruptedException e){
-					}
-				}
-			}
-		}
-
-		//생성자
-		public ThreadTime(Handler handler){
-			mHandler = handler;
-		}
-
-		public void onStart(){
-			sns = true;
-		}
-
-		public void onStop(){
-			sns = false;
-		}		
-	}
-
 	public void onPause() {
 		super.onPause();
 		/* 
@@ -407,6 +364,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("Tag1", spTag1);
 			mPref.WriteInt("Tag2", spTag2);
 			mPref.WriteInt("Tag3", spTag3);
+			mPref.WriteInt("clicountinit", CliCountinit);
 			mPref.WriteInt("clicount0", CliCount0);
 			mPref.WriteInt("clicount1", CliCount1);
 			mPref.WriteInt("clicount2", CliCount2);
@@ -443,10 +401,12 @@ public class Setting extends Activity {
 			break;
 
 		case R.id.reset0:
-			//정지 버튼						
+			//정지 버튼		
+			/*
 			thread.onStop();									
 			time.setText("");
-			count = 0; //시간값 초기화		
+			count = 0; //시간값 초기화	
+			*/	
 			break;
 
 		case R.id.kind1:

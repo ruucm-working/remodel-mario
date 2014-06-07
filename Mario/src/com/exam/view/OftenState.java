@@ -65,7 +65,7 @@ public class OftenState implements ICoinBlockViewState {
 				public void run() {
 					if (mViewContext.getState().getClass() == OftenWaitState.class)
 					{
-						if (Setting.second >= 20 && Setting.second <25)	{	
+						if (coinBlockIntroActivity.second >= 20 && coinBlockIntroActivity.second <25)	{	
 							
 							//mViewContext.removeAnimatable(Lv0State.lv0Anim);
 							//mViewContext.removeAnimatable(oftenAnim);
@@ -123,7 +123,7 @@ public class OftenState implements ICoinBlockViewState {
 				Log.v("tag2", "waitstate- onevolve");
 			}
 		
-			*/
+			*/ 
 			
 		}
 
@@ -179,7 +179,7 @@ public class OftenState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 
 		Log.v("tag2", "often- OnEvolve");
-		if (Setting.second >= 20 && Setting.second <25)	{
+		if (coinBlockIntroActivity.second >= 20 && coinBlockIntroActivity.second <25)	{
 				// added
 			
 			//coinBlockView.setState(new Lv1State(coinBlockView));

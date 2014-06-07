@@ -46,7 +46,7 @@ public class CoinBlockView {
 
 		Children = new HashSet<IAnimatable>();
 		mWidgetId = widgetId;
-		setState(new NormalState());
+		setState(new InitState(this));
 
 
 
@@ -103,28 +103,36 @@ public class CoinBlockView {
 		public void handleMessage(Message msg){
 
 			
-			long second = Setting.second;
+			long second = coinBlockIntroActivity.second;			
+			int clicountinit = Setting.CliCountinit;
 			
 			Log.d("tag3", Long.toString(second));
 			
+			
+			
+
+
+			if (clicountinit >=5)
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+			else if (second >= 40 && second <= 42)
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+			else if (second >= 55 && second <= 57)
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+		
+			
+			  
 			
 			if(second >= 12 && second <=20 )			
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());	
 			else if (second >= 25 && second <= 35)
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 40 )
+			else if (second >= 40 && second <= 50 )
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
-			
+			else if (second >= 55 && second <= 65 )
+				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
 			 
 			
 			
-			if(second >= 10 && second <= 12)			
-				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());	
-			else if (second >= 25 && second <= 27)
-				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 40 && second <= 42)
-				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-		
 		
 
 		}		
@@ -298,7 +306,7 @@ public class CoinBlockView {
 	private static void updateInitIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub				
 
-		Log.v("tag2", Long.toString(Setting.second));
+		Log.v("tag2", Long.toString(coinBlockIntroActivity.second));
 		
 			Intent intent = new Intent(String.format(INTENT_INIT_FORMAT, mWidgetId));
 			intent.putExtra("widgetId11", mWidgetId);				
