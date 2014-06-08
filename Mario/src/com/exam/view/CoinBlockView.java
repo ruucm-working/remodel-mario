@@ -104,15 +104,15 @@ public class CoinBlockView {
 
 			
 			
-			int second = 20;
-			int clicountinit = 3;
+			//int second = 20;
+			//int clicountinit = 3;
 			
 			//String text = coinBlockIntroActivity.time.getText().toString();
 			
-			
+			 
 			//int second = Integer.parseInt(text);
-			//long second = String.toLong(text);		
-			//int clicountinit = Setting.CliCountinit;
+			long second = coinBlockIntroActivity.second;	
+			int clicountinit = Setting.CliCountinit;
 			
 			Log.d("tag3", Long.toString(second));
 			
@@ -120,7 +120,7 @@ public class CoinBlockView {
 			
 
 
-			if (clicountinit >=5)
+			if (second <= 10 && clicountinit >=5)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 			else if (second >= 40 && second <= 42)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());

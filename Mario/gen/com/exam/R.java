@@ -31,8 +31,9 @@ public final class R {
         public static final int money_sprites_4=0x7f020009;
         public static final int mushroom=0x7f02000a;
         public static final int reset=0x7f02000b;
-        public static final int samsung_01=0x7f02000c;
-        public static final int samsung_sample=0x7f02000d;
+        public static final int reset_large=0x7f02000c;
+        public static final int samsung_01=0x7f02000d;
+        public static final int samsung_sample=0x7f02000e;
     }
     public static final class id {
         public static final int block=0x7f090001;
@@ -67,11 +68,11 @@ public final class R {
         public static final int myspinner2=0x7f090014;
         public static final int myspinner3=0x7f090015;
         public static final int ok=0x7f090025;
-        public static final int reset0=0x7f09000a;
         public static final int reset1=0x7f090004;
         public static final int reset3=0x7f090016;
+        public static final int reset4=0x7f09000a;
         public static final int setbutton=0x7f090002;
-        public static final int time=0x7f090009;
+        public static final int textView1=0x7f090009;
         public static final int time0=0x7f090003;
         public static final int widget=0x7f090000;
     }
@@ -82,13 +83,14 @@ public final class R {
         public static final int settingpage=0x7f030003;
     }
     public static final class raw {
-        public static final int notify_sound=0x7f050000;
-        public static final int smb_1_up=0x7f050001;
-        public static final int smb_breakblock=0x7f050002;
-        public static final int smb_bump=0x7f050003;
-        public static final int smb_coin=0x7f050004;
-        public static final int smb_powerup=0x7f050005;
-        public static final int smb_powerup_appears=0x7f050006;
+        public static final int beep=0x7f050000;
+        public static final int notify_sound=0x7f050001;
+        public static final int smb_1_up=0x7f050002;
+        public static final int smb_breakblock=0x7f050003;
+        public static final int smb_bump=0x7f050004;
+        public static final int smb_coin=0x7f050005;
+        public static final int smb_powerup=0x7f050006;
+        public static final int smb_powerup_appears=0x7f050007;
     }
     public static final class string {
         public static final int app_name=0x7f070000;

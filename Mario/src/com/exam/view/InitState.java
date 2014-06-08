@@ -225,7 +225,7 @@ public class InitState implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 			coinBlockView.setState(new Lv0State(coinBlockView));
 			
-			//coinBlockIntroActivity.thread.onStart(); 
+			//coinBlockIntroActivity.onClick(); 
 			
 			 
 		

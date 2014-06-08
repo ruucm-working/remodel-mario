@@ -76,23 +76,10 @@ public class Setting extends Activity {
 		setContentView(R.layout.settingpage);             
 		Log.d(TAG, "setting view"); 
 		 
-		time = (TextView)findViewById(R.id.time);
+		//time = (TextView)findViewById(R.id.time);
 		
 		
-		clicountinit = (TextView)findViewById(R.id.clicountinit);		
-		clicountinit.setText( CliCountinit + "번 ");
-		clicount0 = (TextView)findViewById(R.id.clicount0);		
-		clicount0.setText( CliCount0 + "번 ");
-		clicount1 = (TextView)findViewById(R.id.clicount1);		
-		clicount1.setText( CliCount1 + "번 ");
-		clicount2 = (TextView)findViewById(R.id.clicount2);		
-		clicount2.setText( CliCount2 + "번 ");
-
-
-		CliSp0 =  getSecondperCount(600);	
-		clisp0 = (TextView)findViewById(R.id.clisp0);		
-		clisp0.setText( "(" + CliSp0 + "/m)");
-		
+	
 		  
 
 		
@@ -129,13 +116,31 @@ public class Setting extends Activity {
 
 		spTag1 = mPref.ReadInt("Tag1", 0);
 		spTag2 = mPref.ReadInt("Tag2", 0);
-		spTag3 = mPref.ReadInt("Tag3", 0);
+		spTag3 = mPref.ReadInt("Tag3", 0); 
+		
+		
 		CliCountinit = mPref.ReadInt("clicountinit", 0);
 		CliCount0 = mPref.ReadInt("clicount0", 0);
 		CliCount1 = mPref.ReadInt("clicount1", 0);
 		CliCount2 = mPref.ReadInt("clicount2", 0);
+		
+		
+		clicountinit = (TextView)findViewById(R.id.clicountinit);		
+		clicountinit.setText( CliCountinit + "번 ");
+		clicount0 = (TextView)findViewById(R.id.clicount0);		
+		clicount0.setText( CliCount0 + "번 ");
+		clicount1 = (TextView)findViewById(R.id.clicount1);		
+		clicount1.setText( CliCount1 + "번 ");
+		clicount2 = (TextView)findViewById(R.id.clicount2);		
+		clicount2.setText( CliCount2 + "번 ");
 
-		Log.d(TAG,"spTag3");
+
+		CliSp0 =  getSecondperCount(600);	
+		clisp0 = (TextView)findViewById(R.id.clisp0);		
+		clisp0.setText( "(" + CliSp0 + "/m)");
+		
+		
+
 
 		checked[0] = mPref.ReadBoolean("checked0", false);
 		checked[1] = mPref.ReadBoolean("checked1", false);
@@ -366,7 +371,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("Tag3", spTag3);
 			mPref.WriteInt("clicountinit", CliCountinit);
 			mPref.WriteInt("clicount0", CliCount0);
-			mPref.WriteInt("clicount1", CliCount1);
+			mPref.WriteInt("clicount1", CliCount1); 
 			mPref.WriteInt("clicount2", CliCount2);
 
 			mPref.WriteBoolean("checked0", checked[0]);
@@ -400,13 +405,20 @@ public class Setting extends Activity {
 			spin3.setSelection(0);
 			break;
 
-		case R.id.reset0:
-			//정지 버튼		
-			/*
-			thread.onStop();									
-			time.setText("");
-			count = 0; //시간값 초기화	
-			*/	
+	
+			
+		case R.id.reset4:
+			
+			CliCountinit = 0;
+			CliCount0 = 0;
+			CliCount1 = 0;
+			CliCount2 = 0;
+			
+			clicountinit.setText( CliCountinit + "번 ");
+			clicount0.setText( CliCount0 + "번 ");
+			clicount1.setText( CliCount1 + "번 ");
+			clicount2.setText( CliCount2 + "번 ");
+			
 			break;
 
 		case R.id.kind1:

@@ -5,9 +5,10 @@ import android.content.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
+import android.view.View.OnClickListener;
 import android.widget.*;
 
-public class coinBlockIntroActivity extends Activity
+public class coinBlockIntroActivity extends Activity implements OnClickListener
 {
 	/** Called when the activity is first created. */
 	
@@ -18,11 +19,27 @@ public class coinBlockIntroActivity extends Activity
 	
 	
 	
-	private AsyncTask<Void, Integer, Void> mTask;
+
 	
+
+	//Async Task
+	private AsyncTask<Void, Integer, Void> mTask;
+	private Button mButton;
+	
+	private long time1;
+	
+	
+	
+	private static coinBlockIntroActivity instance;
 	
 	 
 	
+	public static coinBlockIntroActivity getInstance() {
+        return instance;
+    }
+	
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -31,17 +48,18 @@ public class coinBlockIntroActivity extends Activity
 		//measuring time
 		time = (TextView)findViewById(R.id.time0);
 		
+		mButton = (Button) findViewById(R.id.btn_start);        
+        mButton.setOnClickListener(this);
 		
-		
-        
         /*
+    	
+        
         Button btnStart = (Button)findViewById(R.id.btn_start);
         Button btnPause = (Button)findViewById(R.id.btn_pause); 
         Button btnStop = (Button)findViewById(R.id.btn_stop);       
         
 		
 		
-	
         
     	//시작 버튼
         btnStart.setOnClickListener(new OnClickListener() {
@@ -84,6 +102,108 @@ public class coinBlockIntroActivity extends Activity
 	
 	
 	
+	@Override	
+	public void onClick(View v)
+	{
+		if(mButton.getText().equals("start"))
+		{
+			Log.v("tag7", "equals(start");
+			
+			mTask = new AsyncTask<Void, Integer, Void>()
+			{
+		    	private boolean isCanceled = false;
+		    	
+		    	@Override
+		    	protected void onPreExecute()
+		    	{
+		    		//publishProgress(0);
+		    		isCanceled = false;
+		    	}
+		    	 
+				@Override 
+				protected Void doInBackground(Void... params)
+				{
+					
+					Log.v("tag7", "doInBackground");
+					
+					for(int i = 1 ; i <= 50 && !isCanceled ; i++)
+					{
+						Log.v("tag7", "for"+i);
+
+						try
+						{
+							publishProgress(i);
+							Thread.sleep(100);
+						}
+						catch(InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+					}
+					/* 
+					
+					while(true)
+
+					{
+						
+					if(isCanceled == true) break;
+					
+					try
+					{
+						publishProgress(1);
+						Thread.sleep(100);
+					}
+					catch(InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+					
+
+					}*/
+					return null;
+				}
+
+				@Override
+				protected void onProgressUpdate(Integer... progress)
+				{
+					//mProgress.setProgress(progress[0]);
+					
+					count ++;
+					second = getSecond(count);
+					time.setText( second + "초 " + count%10 );
+					
+					
+				}
+				
+				@Override
+				protected void onPostExecute(Void result)
+				{
+					//Toast.makeText(coinBlockIntroActivity.this, "onPostExecute", Toast.LENGTH_SHORT).show();
+					//mButton.setText("start");
+				}
+				 
+				@Override
+				protected void onCancelled()
+				{
+					Log.v("tag7", "onCancelled");
+					isCanceled = true;
+					//publishProgress(0);
+					//Toast.makeText(coinBlockIntroActivity.this, "onCancelled", Toast.LENGTH_SHORT).show();
+				}
+			};
+			
+			mTask.execute();
+			mButton.setText("cancel");
+		}
+		else if(mButton.getText().equals("cancel"))
+		{
+			
+			Log.v("tag7", "equals(cancel");
+			mTask.cancel(false);
+			mButton.setText("start");
+		}
+	}
+	
 	
 	
 
@@ -97,78 +217,8 @@ public class coinBlockIntroActivity extends Activity
 			break;
 			
 			
-		case R.id.reset1:    		
-				
-			break;
 			
-			
-		case R.id.btn_start:
-			
-			
-				mTask = new AsyncTask<Void, Integer, Void>()
-				{
-			    	private boolean isCanceled = false;
-			    	
-			    	@Override
-			    	protected void onPreExecute()
-			    	{
-			    		publishProgress(0);
-			    		isCanceled = false;
-			    	}
-			    	
-					@Override
-					protected Void doInBackground(Void... params)
-					{
-						for(int i = 1 ;! isCanceled ; i++)
-						{
-						//while(! isCanceled){
-							try
-							{
-								publishProgress(1);
-								Thread.sleep(100);
-							}
-							catch(InterruptedException e)
-							{
-								e.printStackTrace();
-							}
-						}
-					//}
-						 
-						return null;
-					}
-
-					@Override
-					protected void onProgressUpdate(Integer... progress)
-					{
-						count ++;
-						second = getSecond(count);
-						time.setText( second + "초 " + count%10 );
-						//time.setText(Long.toString(second));				
-						} 
-					
-					@Override
-					protected void onPostExecute(Void result)
-					{
-						Toast.makeText(coinBlockIntroActivity.this, "onPostExcute", Toast.LENGTH_SHORT).show();
-						//mButton.setText("start");
-					}
-					
-					@Override
-					protected void onCancelled()
-					{
-						isCanceled = true;
-						publishProgress(0);
-						Toast.makeText(coinBlockIntroActivity.this, "cancled", Toast.LENGTH_SHORT).show();
-					}
-				};				
-				
-				mTask.execute();
-			
-			break;
 		
-		case R.id.btn_pause:
-			mTask.cancel(false);
-			break;
 			
 		case R.id.btn_stop:
 			//thread.onStop();				
