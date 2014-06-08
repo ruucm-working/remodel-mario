@@ -29,9 +29,9 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	private long time1;
 	
 	
-	
+	//Async Task
 	private static coinBlockIntroActivity instance;
-	
+	public static TaskTimer taskTimer = new TaskTimer();
 	 
 	
 	public static coinBlockIntroActivity getInstance() {
@@ -45,10 +45,18 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		//measuring time
-		time = (TextView)findViewById(R.id.time0);
 		
-		mButton = (Button) findViewById(R.id.btn_start);        
+		
+		instance = this;
+		
+		
+		
+		
+		
+		//measuring time
+		//time = (TextView)findViewById(R.id.time0);
+		
+		mButton = (Button) findViewById(R.id.btn_stop);        
         mButton.setOnClickListener(this);
 		
         /*
@@ -216,6 +224,16 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			startActivity(intent); 		
 			break;
 			
+		case R.id.btn_start: 
+			taskTimer.setTextView(R.id.time0);
+	        taskTimer.setTime(0);
+	        taskTimer.execute("");
+			break;
+			
+		case R.id.btn_pause:
+			//thread.onStop();				
+			taskTimer.cancel(true);
+			break;
 			
 			
 		

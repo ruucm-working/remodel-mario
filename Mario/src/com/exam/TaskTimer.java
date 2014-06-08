@@ -1,5 +1,7 @@
 package com.exam;
 
+import com.exam.view.*;
+
 import android.media.*;
 import android.os.*;
 import android.util.*;
@@ -35,6 +37,9 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
         timer.setText("" + time);
         timer.setTextColor(TEXT_COLOR_NORMAL);
+        
+        
+        
     }
 
     /** this method is executed BETWEEN onPreExecute() and onPostExecute()
@@ -43,11 +48,16 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     // you're not allowed to modify UI
     @Override
     protected String doInBackground(String... params) {
-        while(time > 0) {
+        while(time >= 0) { 
             try {
                 Thread.sleep(1000);         // one second sleep
-                time--;                     // decrement time
+                time++;                     // decrement time
                 publishProgress();          // trigger onProgressUpdate()
+                
+                //for CoinBlockView updateEvolveIntent
+                CoinBlockView.second = (long)time;
+                Log.v("tag8","for CoinBlock"+time);
+                
             } catch(InterruptedException e) {
                 Log.i("GUN", Log.getStackTraceString(e));
                 return RESULT_FAIL;

@@ -27,6 +27,8 @@ public class CoinBlockView {
 	private long lastRedrawMillis = 0;
 	private static int mWidgetId;
 	private static ICoinBlockViewState state;
+	
+	public static long second = 0;
 
 
 
@@ -111,33 +113,32 @@ public class CoinBlockView {
 			
 			 
 			//int second = Integer.parseInt(text);
-			long second = coinBlockIntroActivity.second;	
+			//long second = coinBlockIntroActivity.second;	
 			int clicountinit = Setting.CliCountinit;
 			
-			Log.d("tag3", Long.toString(second));
-			
+			Log.d("tag8", Long.toString(second));
+			 
 			
 			
 
 
-			if (second <= 10 && clicountinit >=5)
+			if (second == 0 && clicountinit >=5)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 40 && second <= 42)
+			else if (second >= 10 && second <= 12)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 55 && second <= 57)
+			else if (second >= 20 && second <= 22)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 		
-			
+			 
 			  
 			
-			if(second >= 12 && second <=20 )			
+			if(second >= 5 && second <=10 )			
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());	
-			else if (second >= 25 && second <= 35)
+			else if (second >= 12 && second <= 20)
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 40 && second <= 50 )
+			else if (second >= 22 )
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 55 && second <= 65 )
-				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
+			
 			 
 			
 			

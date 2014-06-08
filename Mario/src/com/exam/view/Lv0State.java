@@ -188,7 +188,7 @@ public class Lv0State implements ICoinBlockViewState {
 			
 		
 			 
-			 
+			  
 			/*
 			
 			//애니매이션 1 - 성공 (버섯올라오기)

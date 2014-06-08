@@ -224,8 +224,10 @@ public class InitState implements ICoinBlockViewState {
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
 			coinBlockView.setState(new Lv0State(coinBlockView));
-			
-			//coinBlockIntroActivity.onClick(); 
+			 
+			coinBlockIntroActivity.taskTimer.setTextView(R.id.time0);
+			coinBlockIntroActivity.taskTimer.setTime(0);
+			coinBlockIntroActivity.taskTimer.execute("");
 			
 			 
 		

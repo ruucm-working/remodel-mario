@@ -116,7 +116,12 @@ public class Lv2State implements ICoinBlockViewState {
 
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+
+
+			coinBlockView.removeAnimatable(lv2ofAnim);
+			lv2ofAnim = new Lv2OftenAnim();			
+			coinBlockView.addAnimatable(lv2ofAnim);
+			
 			
 		}
 
