@@ -32,7 +32,7 @@ public class CoinBlockView {
 
 
 	//UpdateThread
-	UpdateThread thread;
+	UpdateThread thread2;
 
 
 	public CoinBlockView(Context context, int widgetId) {
@@ -51,9 +51,9 @@ public class CoinBlockView {
 
 
 
-		thread = new UpdateThread(mHandler);
-		thread.start();
-		thread.onStart();
+		thread2 = new UpdateThread(mHandler2);
+		thread2.start();
+		thread2.onStart();
 
 
 
@@ -95,7 +95,7 @@ public class CoinBlockView {
 
 
 
-	static Handler mHandler = new Handler(){
+	static Handler mHandler2 = new Handler(){
 
 		RemoteViews rviews = new RemoteViews(CoinBlockWidgetApp.getApplication().getPackageName(), R.layout.coin_block_widget);
 
@@ -103,8 +103,16 @@ public class CoinBlockView {
 		public void handleMessage(Message msg){
 
 			
-			long second = coinBlockIntroActivity.second;			
-			int clicountinit = Setting.CliCountinit;
+			
+			int second = 20;
+			int clicountinit = 3;
+			
+			//String text = coinBlockIntroActivity.time.getText().toString();
+			
+			
+			//int second = Integer.parseInt(text);
+			//long second = String.toLong(text);		
+			//int clicountinit = Setting.CliCountinit;
 			
 			Log.d("tag3", Long.toString(second));
 			
@@ -306,7 +314,6 @@ public class CoinBlockView {
 	private static void updateInitIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub				
 
-		Log.v("tag2", Long.toString(coinBlockIntroActivity.second));
 		
 			Intent intent = new Intent(String.format(INTENT_INIT_FORMAT, mWidgetId));
 			intent.putExtra("widgetId11", mWidgetId);				

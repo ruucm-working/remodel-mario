@@ -5,19 +5,21 @@ import android.content.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
-import android.view.View.*;
 import android.widget.*;
 
 public class coinBlockIntroActivity extends Activity
 {
 	/** Called when the activity is first created. */
 	
-	static TextView time;
-	ThreadTime thread;
+	public static TextView time;
 	static int checkHandler = 0;
 	static long count = 0;
+	public static long second = 0;
 	
-	public static long second;
+	
+	
+	private AsyncTask<Void, Integer, Void> mTask;
+	
 	
 	 
 	
@@ -28,11 +30,15 @@ public class coinBlockIntroActivity extends Activity
 		
 		//measuring time
 		time = (TextView)findViewById(R.id.time0);
+		
+		
+		
+        
+        /*
         Button btnStart = (Button)findViewById(R.id.btn_start);
         Button btnPause = (Button)findViewById(R.id.btn_pause); 
         Button btnStop = (Button)findViewById(R.id.btn_stop);       
-        thread = new ThreadTime(mHandler);
-        thread.start();
+        
 		
 		
 	
@@ -57,20 +63,24 @@ public class coinBlockIntroActivity extends Activity
     			time.setText("");
     		}
         });       
+
+*/
         
         
+        /*
 
 		// Run service
 		Intent intent = new Intent(this, Notify.class);
 		startService(intent);
 		
-		
-		
-	}
+		*/
+          	      
+        
+        
+        
+	} 
 	
 	
-	
- 
 	
 	
 	
@@ -90,6 +100,82 @@ public class coinBlockIntroActivity extends Activity
 		case R.id.reset1:    		
 				
 			break;
+			
+			
+		case R.id.btn_start:
+			
+			
+				mTask = new AsyncTask<Void, Integer, Void>()
+				{
+			    	private boolean isCanceled = false;
+			    	
+			    	@Override
+			    	protected void onPreExecute()
+			    	{
+			    		publishProgress(0);
+			    		isCanceled = false;
+			    	}
+			    	
+					@Override
+					protected Void doInBackground(Void... params)
+					{
+						for(int i = 1 ;! isCanceled ; i++)
+						{
+						//while(! isCanceled){
+							try
+							{
+								publishProgress(1);
+								Thread.sleep(100);
+							}
+							catch(InterruptedException e)
+							{
+								e.printStackTrace();
+							}
+						}
+					//}
+						 
+						return null;
+					}
+
+					@Override
+					protected void onProgressUpdate(Integer... progress)
+					{
+						count ++;
+						second = getSecond(count);
+						time.setText( second + "초 " + count%10 );
+						//time.setText(Long.toString(second));				
+						} 
+					
+					@Override
+					protected void onPostExecute(Void result)
+					{
+						Toast.makeText(coinBlockIntroActivity.this, "onPostExcute", Toast.LENGTH_SHORT).show();
+						//mButton.setText("start");
+					}
+					
+					@Override
+					protected void onCancelled()
+					{
+						isCanceled = true;
+						publishProgress(0);
+						Toast.makeText(coinBlockIntroActivity.this, "cancled", Toast.LENGTH_SHORT).show();
+					}
+				};				
+				
+				mTask.execute();
+			
+			break;
+		
+		case R.id.btn_pause:
+			mTask.cancel(false);
+			break;
+			
+		case R.id.btn_stop:
+			//thread.onStop();				
+			count = 0; //시간값 초기화
+			time.setText("");
+			break;
+			
 		}
 	}
 	
@@ -97,17 +183,6 @@ public class coinBlockIntroActivity extends Activity
 	
 	
 	
-	
-	 static Handler mHandler = new Handler(){
-	    	
-			public void handleMessage(Message msg){
-				Log.v("StopWatch", "Handler" + count);
-				count ++;
-				second = getSecond(count);
-				time.setText( second + "초 " + count%10 );
-			}		
-			
-		};
 		
 		public static long getSecond(long milli){
 			long secondValue = 0;
@@ -116,36 +191,6 @@ public class coinBlockIntroActivity extends Activity
 		}
 		
 		
-		class ThreadTime extends Thread{
-			Handler mHandler;
-			boolean sns = false; //Thread를 통제하기 위한 boolean 값
-			public void run(){
-				while(true){
-					if(sns){
-						Log.v("StopWatch", "ThreadTime");
-						mHandler.sendEmptyMessage(0);
-						try{
-							Thread.sleep(100);
-						}catch(InterruptedException e){
-						}
-					}
-				}
-			}
-			
-			//생성자
-			public ThreadTime(Handler handler){
-				mHandler = handler;
-			}
-			
-			public void onStart(){
-				sns = true;
-			}
-			
-			public void onStop(){
-				sns = false;
-			}		
-			
-		}
 	
 	
 	

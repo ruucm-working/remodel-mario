@@ -34,8 +34,8 @@ class NormalState implements ICoinBlockViewState {
 		
 		Log.v("tag2", "state-onevolve");
 		
-		long second = coinBlockIntroActivity.second; 
-		Log.v("tag2", "state-second"+Long.toString(second));
+		//long second = coinBlockIntroActivity.second;
+		long second = 0;
 		
 		if (second >=10 && second < 20  && isMushroomCreated == false){
 			isMushroomCreated = true;

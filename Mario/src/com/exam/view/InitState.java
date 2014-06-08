@@ -17,8 +17,8 @@ public class InitState implements ICoinBlockViewState {
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
 	initAnimation initAnim;
-    Lv0OftenAnim initofAnim;
-    Lv0ClickAnim initclAnim;
+    InitOftenAnim initofAnim;
+    InitClickAnim initclAnim;
 	boolean fuck = false;
 	CoinBlockView context; 
 	 
@@ -30,7 +30,7 @@ public class InitState implements ICoinBlockViewState {
 	public InitState(CoinBlockView viewContext) {
 		context = viewContext;
 		initAnim = new initAnimation();
-		initofAnim = new Lv0OftenAnim();
+		initofAnim = new InitOftenAnim();
 		
 		viewContext.addAnimatable(initAnim);
 		//viewContext.addAnimatable(initofAnim);
@@ -151,7 +151,7 @@ public class InitState implements ICoinBlockViewState {
 			
 			viewContext.removeAnimatable(initclAnim);
 			
-			initclAnim = new Lv0ClickAnim();			
+			initclAnim = new InitClickAnim();			
 			viewContext.addAnimatable(initclAnim);
 			
 			
@@ -208,7 +208,7 @@ public class InitState implements ICoinBlockViewState {
 			//애니매이션 2 - 성공
 			
 			coinBlockView.removeAnimatable(initofAnim);
-			initofAnim = new Lv0OftenAnim();			
+			initofAnim = new InitOftenAnim();			
 			coinBlockView.addAnimatable(initofAnim);
 			
 			 
@@ -225,7 +225,9 @@ public class InitState implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 			coinBlockView.setState(new Lv0State(coinBlockView));
 			
+			//coinBlockIntroActivity.thread.onStart(); 
 			
+			 
 		
 			
 			Log.d("tag3","OnEvolve");
@@ -274,7 +276,7 @@ public class InitState implements ICoinBlockViewState {
 		
 	}
 	
-	private class Lv0OftenAnim implements IAnimatable {
+	private class InitOftenAnim implements IAnimatable {
 		
 
 		private int blockVib = 0;
@@ -320,7 +322,7 @@ public class InitState implements ICoinBlockViewState {
 	
 	
 
-	private class Lv0ClickAnim implements IAnimatable {
+	private class InitClickAnim implements IAnimatable {
 		
 
 		private int blockVib = 0;
