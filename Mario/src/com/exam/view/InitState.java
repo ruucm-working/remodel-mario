@@ -216,7 +216,7 @@ public class InitState implements ICoinBlockViewState {
 			
 			 
 			
-
+  
 
 			
 		}
@@ -225,16 +225,18 @@ public class InitState implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 			coinBlockView.setState(new Lv0State(coinBlockView));
 			 
-			coinBlockIntroActivity.taskTimer.setTextView(R.id.time0);
-			coinBlockIntroActivity.taskTimer.setTime(0);
-			coinBlockIntroActivity.taskTimer.execute("");
 			
-			 
+			/*
+			coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
+			coinBlockIntroActivity.taskTimer1.setTime(0);
+			coinBlockIntroActivity.taskTimer1.execute("");
+			
+			 */
 		
 			
 			Log.d("tag3","OnEvolve");
 			
-			
+			 
 		}
 
 	

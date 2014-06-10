@@ -17,6 +17,8 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	static long count = 0;
 	public static long second = 0;
 	
+	int tasktime ;
+	
 	
 	
 
@@ -31,7 +33,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	
 	//Async Task
 	private static coinBlockIntroActivity instance;
-	public static TaskTimer taskTimer = new TaskTimer();
+	public  TaskTimer taskTimer1 = new TaskTimer();
 	 
 	
 	public static coinBlockIntroActivity getInstance() {
@@ -56,8 +58,8 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		//measuring time
 		//time = (TextView)findViewById(R.id.time0);
 		
-		mButton = (Button) findViewById(R.id.btn_stop);        
-        mButton.setOnClickListener(this);
+		//mButton = (Button) findViewById(R.id.btn_stop);        
+        //mButton.setOnClickListener(this);
 		
         /*
     	
@@ -224,25 +226,72 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			startActivity(intent); 		
 			break;
 			
+			
 		case R.id.btn_start: 
-			taskTimer.setTextView(R.id.time0);
-	        taskTimer.setTime(0);
-	        taskTimer.execute("");
+			
+			
+			
+			if(taskTimer1.isCanceled == false){
+				TaskTimer taskTimer1 = new TaskTimer();
+				taskTimer1.setTextView1(R.id.time0);
+		        //taskTimer1.setTime(0);
+		        taskTimer1.execute("");
+		        //taskTimer1.execute("");
+			}
+			else
+				taskTimer1.isCanceled = false;
+
+			
+			/*
+				//taskTimer1.isCanceled = false;
+			
+				TaskTimer taskTimer2 = new TaskTimer();
+				taskTimer2.setTextView1(R.id.time0);
+		        taskTimer2.setTime(0);
+		        taskTimer2.execute("");
+			
+				*/
+		
+			/*
+				TaskTimer taskTimer1 = new TaskTimer();
+				taskTimer1.setTextView1(R.id.time0);
+		        //taskTimer1.setTime(0);
+		        taskTimer1.execute(""); 
+		
+			*/
+			
 			break;
 			
 		case R.id.btn_pause:
-			//thread.onStop();				
-			taskTimer.cancel(true);
+			//thread.onStop();		
+			
+			tasktime = taskTimer1.time;
+			Log.v("tag9", "tasktiem" +Integer.toString(tasktime));
+			taskTimer1.isCanceled = true;
+			
+			
+			//taskTimer1.cancel(false);
 			break;
 			
-			
+			 
 		
 			
 		case R.id.btn_stop:
-			//thread.onStop();				
-			count = 0; //시간값 초기화
-			time.setText("");
-			break;
+			
+			
+			
+			if(taskTimer1.isCanceled == false){
+				TaskTimer taskTimer1 = new TaskTimer();
+				taskTimer1.setTextView1(R.id.time0);
+		        taskTimer1.setTime(0);
+		        taskTimer1.timer.setText("0");
+		        //taskTimer1.execute("");
+			}
+			else
+				taskTimer1.isCanceled = false;
+
+		
+	        
 			
 		}
 	}

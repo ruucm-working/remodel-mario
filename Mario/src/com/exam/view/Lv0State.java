@@ -11,7 +11,7 @@ import com.exam.*;
 
 public class Lv0State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.eggs_sprites_4);
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;

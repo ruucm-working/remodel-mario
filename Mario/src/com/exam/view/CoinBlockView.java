@@ -35,6 +35,14 @@ public class CoinBlockView {
 
 	//UpdateThread
 	UpdateThread thread2;
+	
+	
+	
+	
+	//Async Task
+	
+	ViewAsyncTask asynctask = new ViewAsyncTask();
+	
 
 
 	public CoinBlockView(Context context, int widgetId) {
@@ -56,6 +64,10 @@ public class CoinBlockView {
 		thread2 = new UpdateThread(mHandler2);
 		thread2.start();
 		thread2.onStart();
+		
+		
+
+		
 
 
 
@@ -113,7 +125,7 @@ public class CoinBlockView {
 			
 			 
 			//int second = Integer.parseInt(text);
-			//long second = coinBlockIntroActivity.second;	
+			//second = coinBlockIntroActivity.second;	
 			int clicountinit = Setting.CliCountinit;
 			
 			Log.d("tag8", Long.toString(second));

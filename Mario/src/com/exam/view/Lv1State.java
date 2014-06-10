@@ -11,7 +11,7 @@ import com.exam.view.Lv0State.*;
 
 public class Lv1State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
