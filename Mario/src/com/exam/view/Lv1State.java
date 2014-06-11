@@ -7,6 +7,7 @@ import android.os.*;
 import android.util.*;
 
 import com.exam.*;
+import com.exam.view.InitState.*;
 import com.exam.view.Lv0State.*;
 
 public class Lv1State implements ICoinBlockViewState {
@@ -18,6 +19,7 @@ public class Lv1State implements ICoinBlockViewState {
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
 	Lv1OftenAnim lv1ofAnim;// here
 	Lv1Animation lv1Anim;
+	Lv1ClickAnim lv1clAnim;
 	CoinBlockView context;
 
 	public Lv1State(CoinBlockView viewContext) {
@@ -82,12 +84,24 @@ public class Lv1State implements ICoinBlockViewState {
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
+			
+			viewContext.removeAnimatable(lv1clAnim);
+			
+			lv1clAnim = new Lv1ClickAnim();			
+			viewContext.addAnimatable(lv1clAnim);
+			
+			
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
 					snd.start();
 				}
 			});
+			
+						
+			 
+		
+			
 			
 			
 			Setting.CliCount1++;			
@@ -129,7 +143,9 @@ public class Lv1State implements ICoinBlockViewState {
 
 		@Override
 		public void OnInit(CoinBlockView coinBlockView) {
-			coinBlockView.removeAnimatable(lv1Anim);			
+			coinBlockView.removeAnimatable(lv1Anim);	
+			coinBlockView.removeAnimatable(lv1ofAnim);
+			coinBlockView.removeAnimatable(lv1clAnim);
 		}
 
 
@@ -141,7 +157,7 @@ public class Lv1State implements ICoinBlockViewState {
 		//진동할때 올라오고, 상단에 남는 드로블
 		
 		private int flowerRaise = 4;
-		private int flowerRaise2 = 4;
+		//private int flowerRaise2 = 4;
 
 		public boolean AnimationFinished() {
 			return false;
@@ -235,6 +251,50 @@ public class Lv1State implements ICoinBlockViewState {
 
 		
 	}
+	
+	private class Lv1ClickAnim implements IAnimatable {
+		
+
+		private int spriteVib = 0;
+		
+		
+		
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			
+			
+			// Draw the brick at bottom
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+			//진동할때의 하단드로블
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
+			
+
+						if (spriteVib < 7) { 
+							spriteVib++;
+						}
+						
+		
+			/*
+			if (blockVib >= 7){
+				context.setState(new Lv0WaitState(context));
+				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+			}
+			
+			*/
+			
+			
+			
+			
+		}
+
+		
+	}
+	
+	
 	
 	
 	

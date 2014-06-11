@@ -33,7 +33,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	
 	//Async Task
 	private static coinBlockIntroActivity instance;
-	public  TaskTimer taskTimer1 = new TaskTimer();
+	public static  TaskTimer taskTimer1 = new TaskTimer();
 	 
 	
 	public static coinBlockIntroActivity getInstance() {

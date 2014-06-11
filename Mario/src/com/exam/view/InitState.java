@@ -226,12 +226,12 @@ public class InitState implements ICoinBlockViewState {
 			coinBlockView.setState(new Lv0State(coinBlockView));
 			 
 			
-			/*
+			
 			coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
-			coinBlockIntroActivity.taskTimer1.setTime(0);
+			//coinBlockIntroActivity.taskTimer1.setTime(0);
 			coinBlockIntroActivity.taskTimer1.execute("");
 			
-			 */
+			
 		
 			
 			Log.d("tag3","OnEvolve");

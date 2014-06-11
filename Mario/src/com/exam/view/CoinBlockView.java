@@ -131,10 +131,10 @@ public class CoinBlockView {
 			Log.d("tag8", Long.toString(second));
 			 
 			
-			
+			second = coinBlockIntroActivity.taskTimer1.time;
 
-
-			if (second == 0 && clicountinit >=5)
+   
+			if ( second == 0 && clicountinit >=5)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 			else if (second >= 10 && second <= 12)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());

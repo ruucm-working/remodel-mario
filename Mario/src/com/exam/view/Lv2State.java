@@ -11,25 +11,26 @@ import com.exam.view.Lv1State.*;
 
 public class Lv2State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_sample);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.flowers_sprites_4);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
-	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, 0 };	// here
 	Lv2OftenAnim lv2ofAnim;// here
-	Lv2Animation lv2Anim;
+	Lv2Animation lv2Anim; 
+	Lv2ClickAnim lv2clAnim;
 	CoinBlockView context;
 
 	public Lv2State(CoinBlockView viewContext) {
 		context = viewContext;
-		lv2Anim = new Lv2Animation();
-		viewContext.addAnimatable(lv2Anim);
+		lv2Anim = new Lv2Animation(); 
+		viewContext.addAnimatable(lv2Anim); 
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
 				snd.start();
-			}
-		});
+			} 
+		}); 
 	}
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -82,15 +83,27 @@ public class Lv2State implements ICoinBlockViewState {
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
-			//viewContext.removeAnimatable(lv2Anim);
+
+
+			
+			viewContext.removeAnimatable(lv2clAnim);
+			
+			lv2clAnim = new Lv2ClickAnim();			
+			viewContext.addAnimatable(lv2clAnim);
+			
+			
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 				public void onSeekComplete(MediaPlayer mp) {
 					snd.start();
 				}
 			});
-			//viewContext.setState(new DisabledState(viewContext));
+									
+			 
+		
 			
+			
+						
 			Setting.CliCount2++;			
 			
 			Setting.mPref.Ready();			
@@ -127,7 +140,12 @@ public class Lv2State implements ICoinBlockViewState {
 
 		@Override
 		public void OnInit(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+
+			
+			coinBlockView.removeAnimatable(lv2Anim);	
+			coinBlockView.removeAnimatable(lv2ofAnim);
+			coinBlockView.removeAnimatable(lv2clAnim);
+			
 			
 		}
 
@@ -223,6 +241,41 @@ public class Lv2State implements ICoinBlockViewState {
 			
 			*/
 			
+			
+			
+			
+		}
+
+		
+	}
+	
+	
+	private class Lv2ClickAnim implements IAnimatable {
+		
+
+		private int spriteVib = 0;
+		
+		
+		
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			
+			
+			// Draw the brick at bottom
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+			//진동할때의 하단드로블
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
+			
+
+						if (spriteVib < 7) { 
+							spriteVib++;
+						}
+						
+		
 			
 			
 			
