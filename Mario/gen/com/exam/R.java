@@ -35,6 +35,8 @@ public final class R {
         public static final int samsung_01=0x7f02000d;
         public static final int samsung_sample=0x7f02000e;
         public static final int samsung_sample2=0x7f02000f;
+        public static final int samsung_sample3=0x7f020010;
+        public static final int test=0x7f020011;
     }
     public static final class id {
         public static final int block=0x7f090001;

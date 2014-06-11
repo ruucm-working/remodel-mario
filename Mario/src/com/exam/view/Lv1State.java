@@ -145,7 +145,7 @@ public class Lv1State implements ICoinBlockViewState {
 		public void OnInit(CoinBlockView coinBlockView) {
 			coinBlockView.removeAnimatable(lv1Anim);	
 			coinBlockView.removeAnimatable(lv1ofAnim);
-			coinBlockView.removeAnimatable(lv1clAnim);
+			//coinBlockView.removeAnimatable(lv1clAnim);
 		}
 
 
