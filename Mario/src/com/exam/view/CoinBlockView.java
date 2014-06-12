@@ -28,7 +28,15 @@ public class CoinBlockView {
 	private static int mWidgetId;
 	private static ICoinBlockViewState state;
 	
+	
+	//for evolve
 	public static long second = 0;
+	
+	static boolean init = true;
+	static boolean lv0_1 = true;
+	static boolean lv0_2 = true;
+	static boolean lv1 = true;
+	static boolean lv2 = true;
 
 
 
@@ -127,19 +135,37 @@ public class CoinBlockView {
 			//int second = Integer.parseInt(text);
 			//second = coinBlockIntroActivity.second;	
 			int clicountinit = Setting.CliCountinit;
+			int clicount0 = Setting.CliCount0;
+			int clicount0_2 = Setting.CliCount0_2;
+			int clicount1 = Setting.CliCount1;
+			int clicount2 = Setting.CliCount2;
 			
 			Log.d("tag8", Long.toString(second));
 			  
-			
+			 
 			second = coinBlockIntroActivity.taskTimer1.GetTime();
- 
    
-			if ( second == 0 && clicountinit >=5)
+   
+			if ( second == 0 && clicountinit >=3 && init){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 10 && second <= 12)
+				init = false;
+			}
+			else if (second >= 10 && second <= 12 && clicount0 >= 3 && lv0_1){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 20 && second <= 22)
+				lv0_1 = false;
+			} 
+			else if ( clicount0_2 >= 3  && lv0_2){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+				lv0_2 = false;
+			} 
+			else if (second >= 20 && second <= 22 && clicount1 >= 10 && lv1){
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+				lv1 = false;
+			} 
+			else if (second >= 30 && second <= 32 && clicount2 >=3 && lv2){
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+				lv2 = false;
+			}
 		
 			  
 			  
@@ -326,7 +352,7 @@ public class CoinBlockView {
 
 	}
 	
-	
+	/*
 	private static void updateInitIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub				
 
@@ -344,7 +370,7 @@ public class CoinBlockView {
 
 
 	}
-
+*/
 
 
 

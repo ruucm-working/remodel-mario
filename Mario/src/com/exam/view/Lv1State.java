@@ -8,11 +8,12 @@ import android.util.*;
 
 import com.exam.*;
 import com.exam.view.InitState.*;
-import com.exam.view.Lv0State.*;
+import com.exam.view.Lv0_1State.*;
 
 public class Lv1State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test5);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+	Sprite bottom = MediaAssets.getInstance().getSprite(R.drawable.egg_break);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0; 
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
@@ -36,9 +37,9 @@ public class Lv1State implements ICoinBlockViewState {
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		// Draw the brick at bottom
-		Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		
 		//진동할때의 하단드로블
-		SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,0,
+		SpriteHelper.DrawSprite(canvas, bottom, 0, SpriteHelper.DrawPosition.BottomCenter,0,
 				-(int)(heightModifier[animStage] * viewContext.getDensity()));
 		
 	
@@ -56,7 +57,7 @@ public class Lv1State implements ICoinBlockViewState {
 	}
 
 	private class Lv1WaitState implements ICoinBlockViewState {
-		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.egg_break);
 		//진동후의, 하단 드로블
 		MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup);
 		CoinBlockView mViewContext;
@@ -85,6 +86,8 @@ public class Lv1State implements ICoinBlockViewState {
 
 		public void OnClick(CoinBlockView viewContext) {
 			
+			viewContext.removeAnimatable(lv1Anim);
+			viewContext.removeAnimatable(lv1ofAnim);
 			viewContext.removeAnimatable(lv1clAnim);
 			
 			lv1clAnim = new Lv1ClickAnim();			
@@ -118,7 +121,7 @@ public class Lv1State implements ICoinBlockViewState {
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
+			//SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
 		}
 
 		public boolean NeedRedraw() { 
@@ -134,6 +137,8 @@ public class Lv1State implements ICoinBlockViewState {
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
 			
+			coinBlockView.removeAnimatable(lv1Anim);
+			coinBlockView.removeAnimatable(lv1clAnim);
 			coinBlockView.removeAnimatable(lv1ofAnim);
 			lv1ofAnim = new Lv1OftenAnim();			
 			coinBlockView.addAnimatable(lv1ofAnim);
@@ -155,7 +160,7 @@ public class Lv1State implements ICoinBlockViewState {
 	private class Lv1Animation implements IAnimatable {
 		
 		//진동할때 올라오고, 상단에 남는 드로블
-		
+		 
 		private int flowerRaise = 4;
 		//private int flowerRaise2 = 4;
 
@@ -167,10 +172,15 @@ public class Lv1State implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, flowerSprite, 0,
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
+			
+			SpriteHelper.DrawSprite(canvas, bottom, 0, SpriteHelper.DrawPosition.BottomCenter);
+			
+		
+			
 	
 			// Draw the flower
 			if (flowerRaise < 8) {
-				flowerRaise++;
+				flowerRaise++; 
 			}
 			
 			
@@ -223,9 +233,9 @@ public class Lv1State implements ICoinBlockViewState {
 			
 			
 			// Draw the brick at bottom
-			Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블
-			SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
 					-(int)(widthModifier[blockVib] * context.getDensity()),0);
 			
 
@@ -270,7 +280,7 @@ public class Lv1State implements ICoinBlockViewState {
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블
 			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
-					-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
+					-(int)(widthModifier[spriteVib] * context.getDensity()), 0 );
 			
 
 						if (spriteVib < 7) { 

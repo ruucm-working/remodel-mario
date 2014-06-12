@@ -231,6 +231,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			
 			
 			
+			
 			if(taskTimer1.isCanceled == false){
 				TaskTimer taskTimer1 = new TaskTimer();
 				taskTimer1.setTextView1(R.id.time0);

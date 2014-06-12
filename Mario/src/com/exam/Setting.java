@@ -22,6 +22,7 @@ public class Setting extends Activity {
 	
 	TextView clicountinit;
 	TextView clicount0;
+	TextView clicount0_2;
 	TextView clicount1;
 	TextView clicount2;
 	TextView clisp0;
@@ -47,6 +48,7 @@ public class Setting extends Activity {
 	
 	public static int CliCountinit;
 	public static int CliCount0;
+	public static int CliCount0_2;
 	public static int CliCount1;
 	public static int CliCount2;
 	
@@ -121,6 +123,7 @@ public class Setting extends Activity {
 		
 		CliCountinit = mPref.ReadInt("clicountinit", 0);
 		CliCount0 = mPref.ReadInt("clicount0", 0);
+		CliCount0_2 = mPref.ReadInt("clicount0_2", 0);
 		CliCount1 = mPref.ReadInt("clicount1", 0);
 		CliCount2 = mPref.ReadInt("clicount2", 0);
 		
@@ -129,6 +132,8 @@ public class Setting extends Activity {
 		clicountinit.setText( CliCountinit + "번 ");
 		clicount0 = (TextView)findViewById(R.id.clicount0);		
 		clicount0.setText( CliCount0 + "번 ");
+		clicount0_2 = (TextView)findViewById(R.id.clicount0_2);		
+		clicount0_2.setText( CliCount0_2 + "번 ");
 		clicount1 = (TextView)findViewById(R.id.clicount1);		
 		clicount1.setText( CliCount1 + "번 ");
 		clicount2 = (TextView)findViewById(R.id.clicount2);		
@@ -371,6 +376,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("Tag3", spTag3);
 			mPref.WriteInt("clicountinit", CliCountinit);
 			mPref.WriteInt("clicount0", CliCount0);
+			mPref.WriteInt("clicount0_2", CliCount0_2);
 			mPref.WriteInt("clicount1", CliCount1); 
 			mPref.WriteInt("clicount2", CliCount2);
 
@@ -411,11 +417,13 @@ public class Setting extends Activity {
 			
 			CliCountinit = 0;
 			CliCount0 = 0;
+			CliCount0_2 = 0;
 			CliCount1 = 0;
 			CliCount2 = 0;
 			
 			clicountinit.setText( CliCountinit + "번 ");
 			clicount0.setText( CliCount0 + "번 ");
+			clicount0_2.setText( CliCount0_2 + "번 ");
 			clicount1.setText( CliCount1 + "번 ");
 			clicount2.setText( CliCount2 + "번 ");
 			
