@@ -11,7 +11,7 @@ import com.exam.view.Lv1State.*;
 
 public class Lv2State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test4);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test7);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
@@ -29,7 +29,7 @@ public class Lv2State implements ICoinBlockViewState {
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
-				snd.start();
+				snd.start(); 
 			} 
 		}); 
 	}
@@ -169,7 +169,7 @@ public class Lv2State implements ICoinBlockViewState {
 		public void Draw(Bitmap canvas) {
 			
 			
-			SpriteHelper.DrawSprite(canvas, flowerSprite, 0,
+			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
 	
