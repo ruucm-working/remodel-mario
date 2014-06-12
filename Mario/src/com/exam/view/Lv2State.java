@@ -11,11 +11,11 @@ import com.exam.view.Lv1State.*;
 
 public class Lv2State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test7);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
-	private int[] heightModifier2 = { 12, 8, 4, 2 };
+	private int[] heightModifier2 = { 16, 20, 24, 28 };
 	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, 0 };	// here
 	Lv2OftenAnim lv2ofAnim;// here
 	Lv2Animation lv2Anim; 
@@ -169,6 +169,8 @@ public class Lv2State implements ICoinBlockViewState {
 		public void Draw(Bitmap canvas) {
 			
 			
+			
+			
 			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
@@ -185,15 +187,20 @@ public class Lv2State implements ICoinBlockViewState {
 			// Draw the brick at bottom
 			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
 							- (int)(heightModifier2[animStage] * context.getDensity()));
-			animStage++;
+			
+			
+			if (animstage < 3) {
+				animstage++;
+			}
+			
 			
 			
 			if (animStage >= heightModifier.length) {
 				context.setState(new DisabledState(context));
 			}
 			
-			
 			*/
+			
 			
 		}
 		

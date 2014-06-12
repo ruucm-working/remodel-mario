@@ -8,7 +8,12 @@ import android.util.*;
 
 public class Notify extends Service
 {
+	final int NOTIFY_CNT = 3;
 	protected boolean mRunning;
+	
+	private long notify_time[] = new long[] {10, 20, 30};
+	private boolean notify_activated[] = new boolean[NOTIFY_CNT];
+	private int notify_index = 0;
 	
 	@Override
 	public IBinder onBind(Intent intent)
@@ -67,25 +72,23 @@ public class Notify extends Service
 			@Override
 			public void run()
 			{
-				
-				TaskTimer taskTimer1 = new TaskTimer();
-				if(taskTimer1.time < 10)
-					mRunning = true;
-				else
-					mRunning = false;
-				
 				while(mRunning)
 				{
 					try
 					{
-						Thread.sleep(10000);
+						Thread.sleep(2000);
 					}
 					catch (InterruptedException e)
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					mHandler.sendEmptyMessage(0);		// call handleMessage
+					if(notify_index < NOTIFY_CNT)
+					{
+						int second = coinBlockIntroActivity.taskTimer1.GetTime();
+						if(notify_time[notify_index] < second)
+						mHandler.sendEmptyMessage(0);		// call handleMessage
+					}
 				}
 			}
 		}).start();

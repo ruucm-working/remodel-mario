@@ -265,7 +265,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		case R.id.btn_pause:
 			//thread.onStop();		
 			
-			tasktime = taskTimer1.time;
+			tasktime = taskTimer1.GetTime();
 			Log.v("tag9", "tasktiem" +Integer.toString(tasktime));
 			taskTimer1.isCanceled = true;
 			

@@ -37,6 +37,7 @@ public class MediaAssets {
         // Lazy loading
         public Sprite getSprite(int resId) {
                 Sprite output = sprites.get(resId);
+                Log.v("tag10", "output "+output);
                 if (output == null) {
                         try {
                                 long start = System.currentTimeMillis();
@@ -72,29 +73,40 @@ public class MediaAssets {
                 options.inScaled = true;
                 Bitmap bitmap = BitmapFactory.decodeResource(resources, resId, options);
                 int frame = parseNumberOfFrame(resId);
+                Log.v("tag11", "parseNumberOfFrame "+frame);
                 int bwidth = bitmap.getWidth() / frame;
+                Log.v("tag11", "bwidth "+bwidth);
                 int bheight = bitmap.getHeight();
+                Log.v("tag11", "bheight "+bheight);
                 int[][] pixels = new int[frame][bwidth * bheight];
                 for (int i = 0; i < frame; i++) {
                         bitmap.getPixels(pixels[i], 0, bwidth, bwidth * i, 0, bwidth, bheight);
                 }
                 Sprite newSprite = new Sprite(pixels, bwidth, bheight, frame);
+                Log.v("tag11", "newSprite "+newSprite);
                 return newSprite;
         }
 
         private int parseNumberOfFrame(int resId) {
                 String spriteName = resources.getResourceEntryName(resId);
-                int numOfFrame = 1;
-                try {
+                Log.v("tag12", "spriteName "+spriteName);
+                int numOfFrame = 1; 
+                try {  
                         Pattern p = Pattern.compile("\\d+$", Pattern.CASE_INSENSITIVE);
+                        Log.v("tag12", "p "+p);
                         Matcher m = p.matcher(spriteName);
+                        Log.v("tag12", "m "+m);
+                        Log.v("tag12", "m.find()1 "+m.find());
                         if (m.find()) {
+                        		Log.v("tag12", "m.find()2 "+m.find());
                                 String strFrame = m.group();
+                                Log.v("tag12", "strFrame "+strFrame);
                                 numOfFrame = Integer.parseInt(strFrame);
                         }
                 } catch (Exception e) {
                         numOfFrame = 1;
                 }
                 return Math.max(1, numOfFrame);
+                
         }
 }

@@ -129,10 +129,10 @@ public class CoinBlockView {
 			int clicountinit = Setting.CliCountinit;
 			
 			Log.d("tag8", Long.toString(second));
-			 
+			  
 			
-			second = coinBlockIntroActivity.taskTimer1.time;
-
+			second = coinBlockIntroActivity.taskTimer1.GetTime();
+ 
    
 			if ( second == 0 && clicountinit >=5)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
@@ -141,7 +141,7 @@ public class CoinBlockView {
 			else if (second >= 20 && second <= 22)
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 		
-			 
+			  
 			  
 			
 			if(second >= 5 && second <=10 )			
@@ -150,6 +150,9 @@ public class CoinBlockView {
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
 			else if (second >= 22 )
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
+
+
+			
 			
 			 
 			

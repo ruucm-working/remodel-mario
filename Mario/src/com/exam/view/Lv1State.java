@@ -12,21 +12,21 @@ import com.exam.view.Lv0State.*;
 
 public class Lv1State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test5);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
-	private int animStage = 0;
+	private int animStage = 0; 
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
-	Lv1OftenAnim lv1ofAnim;// here
-	Lv1Animation lv1Anim;
-	Lv1ClickAnim lv1clAnim;
-	CoinBlockView context;
+	Lv1OftenAnim lv1ofAnim;// here 
+	Lv1Animation lv1Anim; 
+	Lv1ClickAnim lv1clAnim;  
+	CoinBlockView context; 
 
 	public Lv1State(CoinBlockView viewContext) {
-		context = viewContext;
+		context = viewContext; 
 		lv1Anim = new Lv1Animation();
 		viewContext.addAnimatable(lv1Anim);
-		snd.seekTo(0);
+		snd.seekTo(0); 
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
 				snd.start();
@@ -164,7 +164,7 @@ public class Lv1State implements ICoinBlockViewState {
 		}
 
 		public void Draw(Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0,
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
 	
