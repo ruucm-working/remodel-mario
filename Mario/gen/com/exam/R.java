@@ -32,11 +32,15 @@ public final class R {
         public static final int mushroom=0x7f02000a;
         public static final int reset=0x7f02000b;
         public static final int reset_large=0x7f02000c;
-        public static final int samsung_01=0x7f02000d;
-        public static final int samsung_sample=0x7f02000e;
-        public static final int samsung_sample2=0x7f02000f;
-        public static final int samsung_sample3=0x7f020010;
-        public static final int test=0x7f020011;
+        public static final int samsung=0x7f02000d;
+        public static final int samsung_01=0x7f02000e;
+        public static final int samsung_sample=0x7f02000f;
+        public static final int samsung_sample2=0x7f020010;
+        public static final int samsung_sample3=0x7f020011;
+        public static final int test=0x7f020012;
+        public static final int test2=0x7f020013;
+        public static final int test3=0x7f020014;
+        public static final int test4=0x7f020015;
     }
     public static final class id {
         public static final int block=0x7f090001;

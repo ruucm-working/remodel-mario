@@ -11,10 +11,11 @@ import com.exam.view.Lv1State.*;
 
 public class Lv2State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.test4);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
+	private int[] heightModifier2 = { 12, 8, 4, 2 };
 	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, 0 };	// here
 	Lv2OftenAnim lv2ofAnim;// here
 	Lv2Animation lv2Anim; 
@@ -158,14 +159,17 @@ public class Lv2State implements ICoinBlockViewState {
 		//진동할때 올라오고, 상단에 남는 드로블
 		
 		private int flowerRaise = 4;
-		private int flowerRaise2 = 4;
+		private int animstage = 0;
+		
 
 		public boolean AnimationFinished() {
 			return false;
 		}
 
 		public void Draw(Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
+			
+			
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0,
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
 	
@@ -174,6 +178,22 @@ public class Lv2State implements ICoinBlockViewState {
 				flowerRaise++;
 			}
 			
+			
+			
+			
+			/*
+			// Draw the brick at bottom
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter, 0,
+							- (int)(heightModifier2[animStage] * context.getDensity()));
+			animStage++;
+			
+			
+			if (animStage >= heightModifier.length) {
+				context.setState(new DisabledState(context));
+			}
+			
+			
+			*/
 			
 		}
 		
