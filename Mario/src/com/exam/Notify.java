@@ -1,15 +1,22 @@
 package com.exam;
 
+import java.util.Arrays;
+
 import android.app.*;
 import android.content.*;
-import android.media.*;
 import android.os.*;
 import android.support.v4.app.*;
 import android.util.*;
 
 public class Notify extends Service
 {
+	private final int NOTIFY_CNT = 3;
+	
 	protected boolean mRunning;
+	private long notify_time[] = new long[] {10, 20, 30};
+	private boolean notify_activated[] = new boolean[NOTIFY_CNT];
+	private int notify_index = 0;
+	private TaskTimer taskTimer1 = new TaskTimer();
 	
 	@Override
 	public IBinder onBind(Intent intent)
@@ -21,6 +28,7 @@ public class Notify extends Service
 	public void onCreate()
 	{
 		Log.d("service2","onCreate");
+		Arrays.fill(notify_activated, false);	// 배열을 false로 채움
 	}
 
 	@Override
@@ -68,30 +76,35 @@ public class Notify extends Service
 			@Override
 			public void run()
 			{
+				Log.v("TA9", NOTIFY_CNT + " vs " + notify_index);
 				
-					mRunning = true;
-					
-				
-				while(mRunning)
+				while(NOTIFY_CNT > notify_index)
 				{
-					// notificaation 10초마다 무한루프되는듯. 빠른 시일내에 수정예정
 					try
 					{
-						Thread.sleep(10000000); 
+						Thread.sleep(2000);
 					}
 					catch (InterruptedException e)
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					mHandler.sendEmptyMessage(0);		// call handleMessage
-					MediaPlayer music = MediaPlayer.create(getApplicationContext(), R.raw.notify_sound);	
-					music.setLooping(false);
-					music.start();		// play music for 5 sec
 					
-					Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-					long[] pattern = { 0, 1000, 200, 1000 };	// vibrate pattern (0ms delay, 1000ms vibrate, 200ms rest, 1000ms vibrate...)
-					vibe.vibrate(pattern, -1);		// vibrate for 2 sec
+					Log.v("TA9", NOTIFY_CNT + " vs " + notify_index);
+					if(NOTIFY_CNT > notify_index)
+					{
+						Log.v("TA9", "Enter");
+						// YOU MUST MODIFY HERE
+						int tasktime = taskTimer1.time;
+						
+						Log.v("TA9", tasktime + "초 경과");
+						
+						if(tasktime > notify_time[notify_index] && notify_activated[notify_index] == false)
+						{
+							mHandler.sendEmptyMessage(0);		// call handleMessage
+							notify_activated[notify_index++] = true;
+						}
+					}
 				}
 			}
 		}).start();

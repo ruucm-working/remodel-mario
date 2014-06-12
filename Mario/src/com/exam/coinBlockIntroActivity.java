@@ -11,66 +11,49 @@ import android.widget.*;
 public class coinBlockIntroActivity extends Activity implements OnClickListener
 {
 	/** Called when the activity is first created. */
-	
+
 	public static TextView time;
 	static int checkHandler = 0;
 	static long count = 0;
 	public static long second = 0;
-	
-	int tasktime ;
-	
-	
-	
-
-	
+	int tasktime;
 
 	//Async Task
 	private AsyncTask<Void, Integer, Void> mTask;
 	private Button mButton;
-	
 	private long time1;
-	
-	
+
 	//Async Task
 	private static coinBlockIntroActivity instance;
 	public static  TaskTimer taskTimer1 = new TaskTimer();
-	 
-	
-	public static coinBlockIntroActivity getInstance() {
-        return instance;
-    }
-	
-	
+
+	public static coinBlockIntroActivity getInstance()
+	{
+		return instance;
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-		
-		
+
+		// Run service
+		Intent intent = new Intent(this, Notify.class);
+		startService(intent);
+
 		instance = this;
-		
-		
-		
-		
-		
 		//measuring time
 		//time = (TextView)findViewById(R.id.time0);
-		
+
 		//mButton = (Button) findViewById(R.id.btn_stop);        
-        //mButton.setOnClickListener(this);
-		
-        /*
-    	
-        
+		//mButton.setOnClickListener(this);
+
+		/*
         Button btnStart = (Button)findViewById(R.id.btn_start);
         Button btnPause = (Button)findViewById(R.id.btn_pause); 
-        Button btnStop = (Button)findViewById(R.id.btn_stop);       
-        
-		
-		
-        
+        Button btnStop = (Button)findViewById(R.id.btn_stop);
+
     	//시작 버튼
         btnStart.setOnClickListener(new OnClickListener() {
     		public void onClick(View v) {
@@ -82,7 +65,8 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     		public void onClick(View v) {
     			thread.onStop();				
     		}
-        });   
+        });
+
         //정지 버튼
         btnStop.setOnClickListener(new OnClickListener() {
     		public void onClick(View v) {
@@ -90,52 +74,41 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     			count = 0; //시간값 초기화
     			time.setText("");
     		}
-        });       
+        });
+		 */
 
-*/
-        
-        
-        /*
 
+		/*
 		// Run service
 		Intent intent = new Intent(this, Notify.class);
 		startService(intent);
-		
-		*/
-          	      
-        
-        
-        
-	} 
-	
-	
-	
-	
-	
+		 */
+	}
+
 	@Override	
 	public void onClick(View v)
 	{
 		if(mButton.getText().equals("start"))
 		{
 			Log.v("tag7", "equals(start");
-			
+
 			mTask = new AsyncTask<Void, Integer, Void>()
-			{
-		    	private boolean isCanceled = false;
-		    	
-		    	@Override
-		    	protected void onPreExecute()
-		    	{
-		    		//publishProgress(0);
-		    		isCanceled = false;
-		    	}
-		    	 
+					{
+				private boolean isCanceled = false;
+
+				@Override
+				protected void onPreExecute()
+				{
+					//publishProgress(0);
+					isCanceled = false;
+				}
+
 				@Override 
 				protected Void doInBackground(Void... params)
 				{
-					
+
 					Log.v("tag7", "doInBackground");
-					
+
 					for(int i = 1 ; i <= 50 && !isCanceled ; i++)
 					{
 						Log.v("tag7", "for"+i);
@@ -151,13 +124,13 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 						}
 					}
 					/* 
-					
+
 					while(true)
 
 					{
-						
+
 					if(isCanceled == true) break;
-					
+
 					try
 					{
 						publishProgress(1);
@@ -167,7 +140,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 					{
 						e.printStackTrace();
 					}
-					
+
 
 					}*/
 					return null;
@@ -177,21 +150,19 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 				protected void onProgressUpdate(Integer... progress)
 				{
 					//mProgress.setProgress(progress[0]);
-					
+
 					count ++;
 					second = getSecond(count);
 					time.setText( second + "초 " + count%10 );
-					
-					
 				}
-				
+
 				@Override
 				protected void onPostExecute(Void result)
 				{
 					//Toast.makeText(coinBlockIntroActivity.this, "onPostExecute", Toast.LENGTH_SHORT).show();
 					//mButton.setText("start");
 				}
-				 
+
 				@Override
 				protected void onCancelled()
 				{
@@ -200,22 +171,19 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 					//publishProgress(0);
 					//Toast.makeText(coinBlockIntroActivity.this, "onCancelled", Toast.LENGTH_SHORT).show();
 				}
-			};
-			
-			mTask.execute();
-			mButton.setText("cancel");
+					};
+
+					mTask.execute();
+					mButton.setText("cancel");
 		}
 		else if(mButton.getText().equals("cancel"))
 		{
-			
+
 			Log.v("tag7", "equals(cancel");
 			mTask.cancel(false);
 			mButton.setText("start");
 		}
 	}
-	
-	
-	
 
 	public void mOnClick(View v)
 	{
@@ -225,91 +193,63 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			Intent intent = new Intent(this, Setting.class);
 			startActivity(intent); 		
 			break;
-			
-			
-		case R.id.btn_start: 
-			
-			
-			
+
+		case R.id.btn_start:
 			if(taskTimer1.isCanceled == false){
 				TaskTimer taskTimer1 = new TaskTimer();
 				taskTimer1.setTextView1(R.id.time0);
-		        //taskTimer1.setTime(0);
-		        taskTimer1.execute("");
-		        //taskTimer1.execute("");
+				//taskTimer1.setTime(0);
+				taskTimer1.execute("");
+				//taskTimer1.execute("");
 			}
 			else
 				taskTimer1.isCanceled = false;
 
-			
 			/*
 				//taskTimer1.isCanceled = false;
-			
+
 				TaskTimer taskTimer2 = new TaskTimer();
 				taskTimer2.setTextView1(R.id.time0);
 		        taskTimer2.setTime(0);
 		        taskTimer2.execute("");
-			
-				*/
-		
+			 */
+
 			/*
 				TaskTimer taskTimer1 = new TaskTimer();
 				taskTimer1.setTextView1(R.id.time0);
 		        //taskTimer1.setTime(0);
 		        taskTimer1.execute(""); 
-		
-			*/
-			
+			 */
 			break;
-			
+
 		case R.id.btn_pause:
 			//thread.onStop();		
-			
+
 			tasktime = taskTimer1.time;
 			Log.v("tag9", "tasktiem" +Integer.toString(tasktime));
 			taskTimer1.isCanceled = true;
-			
-			
+
 			//taskTimer1.cancel(false);
 			break;
-			
-			 
-		
-			
+
 		case R.id.btn_stop:
-			
-			
-			
-			if(taskTimer1.isCanceled == false){
+			if(taskTimer1.isCanceled == false)
+			{
 				TaskTimer taskTimer1 = new TaskTimer();
 				taskTimer1.setTextView1(R.id.time0);
-		        taskTimer1.setTime(0);
-		        taskTimer1.timer.setText("0");
-		        //taskTimer1.execute("");
+				taskTimer1.setTime(0);
+				taskTimer1.timer.setText("0");
+				//taskTimer1.execute("");
 			}
 			else
 				taskTimer1.isCanceled = false;
-
-		
-	        
-			
 		}
 	}
-	
-	
-	
-	
-	
-		
-		public static long getSecond(long milli){
-			long secondValue = 0;
-			secondValue = milli / 10;
-			return secondValue;
-		}
-		
-		
-	
-	
-	
-	
+
+	public static long getSecond(long milli)
+	{
+		long secondValue = 0;
+		secondValue = milli / 10;
+		return secondValue;
+	}
 }
