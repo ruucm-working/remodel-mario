@@ -12,13 +12,14 @@ import com.exam.*;
 public class Lv0_2State implements ICoinBlockViewState {
 	
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.egg_break);
+	
 	//진동후의, 하단 드로블
 	//Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.reset_large);
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
-	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, 0 };	// here
+	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
 	//Lv0Animation lv0Anim;  
     Lv0_2OftenAnim lv0_2ofAnim; 
     Lv0_2ClickAnim lv0_2clAnim;    
@@ -348,7 +349,8 @@ public class Lv0_2State implements ICoinBlockViewState {
 	private class Lv0_2ClickAnim implements IAnimatable {
 		
 
-		private int spriteVib = 0;
+		private int spriteVib = 4;
+		Sprite sp2 = MediaAssets.getInstance().getSprite(R.drawable.flowers_sprites_4);
 		
 		
 		
@@ -364,10 +366,10 @@ public class Lv0_2State implements ICoinBlockViewState {
 			//진동할때의 하단드로블 
 			 
 			
-			//Sprite sp2 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+			
 						
-			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter,
-					-(int)(widthModifier[spriteVib] * context.getDensity()), 0);
+			SpriteHelper.DrawSprite(canvas, sp2, sp2.NextFrame(), SpriteHelper.DrawPosition.BottomCenter 
+					);
 			
 
 						if (spriteVib < 7) { 

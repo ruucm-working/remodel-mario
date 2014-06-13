@@ -133,7 +133,7 @@ public class Lv1State implements ICoinBlockViewState {
 			coinBlockView.setState(new Lv2State(coinBlockView));
 			
 		}
-
+ 
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
 			
@@ -173,9 +173,11 @@ public class Lv1State implements ICoinBlockViewState {
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
 			
-			SpriteHelper.DrawSprite(canvas, bottom, 0, SpriteHelper.DrawPosition.BottomCenter);
+			Sprite bottom2 = MediaAssets.getInstance().getSprite(R.drawable.egg_break2);
 			
-		
+			SpriteHelper.DrawSprite(canvas, bottom2, 0, SpriteHelper.DrawPosition.BottomCenter);
+			 
+		 
 			
 	
 			// Draw the flower
