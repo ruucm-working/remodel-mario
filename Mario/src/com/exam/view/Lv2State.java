@@ -11,7 +11,8 @@ import com.exam.view.Lv1State.*;
 
 public class Lv2State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsungtest);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_test);
+	Sprite evolve = MediaAssets.getInstance().getSprite(R.drawable.samsungevolve_sprites_4);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
@@ -36,9 +37,9 @@ public class Lv2State implements ICoinBlockViewState {
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
 		// Draw the brick at bottom
-		Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		//진동할때의 하단드로블
-		SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,0,
+		SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
 				-(int)(heightModifier[animStage] * viewContext.getDensity()));
 		
 	
@@ -48,7 +49,7 @@ public class Lv2State implements ICoinBlockViewState {
 	}
 
 	public boolean NeedRedraw() {
-		return true;
+		return true; 
 	}
 
 	public void OnClick(CoinBlockView viewContext) {
@@ -56,7 +57,7 @@ public class Lv2State implements ICoinBlockViewState {
 	}
 
 	private class Lv2WaitState implements ICoinBlockViewState {
-		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+		//Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.samsung_test);
 		//진동후의, 하단 드로블
 		MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup);
 		CoinBlockView mViewContext;
@@ -115,7 +116,7 @@ public class Lv2State implements ICoinBlockViewState {
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter);
 		}
 
 		public boolean NeedRedraw() {
@@ -168,7 +169,7 @@ public class Lv2State implements ICoinBlockViewState {
 
 		public void Draw(Bitmap canvas) {
 			
-			
+			/*
 			
 			
 			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
@@ -179,7 +180,7 @@ public class Lv2State implements ICoinBlockViewState {
 			if (flowerRaise < 8) {
 				flowerRaise++;
 			}
-			
+			*/
 			
 			
 			
@@ -247,9 +248,9 @@ public class Lv2State implements ICoinBlockViewState {
 			
 			
 			// Draw the brick at bottom
-			Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 			//진동할때의 하단드로블
-			SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
 					-(int)(widthModifier[blockVib] * context.getDensity()),0);
 			
 
@@ -290,7 +291,7 @@ public class Lv2State implements ICoinBlockViewState {
 
 		public void Draw(Bitmap canvas) {
 			
-			
+			/*
 			// Draw the brick at bottom
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블
@@ -298,12 +299,18 @@ public class Lv2State implements ICoinBlockViewState {
 					-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
 			
 
-						if (spriteVib < 7) { 
-							spriteVib++;
-						}
+						
 						
 		
+			*/
 			
+			SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
+					-(int)(heightModifier[spriteVib] * context.getDensity()));
+			
+		
+			if (spriteVib < 7) { 
+				spriteVib++;
+			}
 			
 			
 		}

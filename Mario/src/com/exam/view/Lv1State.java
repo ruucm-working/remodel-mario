@@ -12,8 +12,9 @@ import com.exam.view.Lv0_1State.*;
 
 public class Lv1State implements ICoinBlockViewState {
 	
-	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung);
 	Sprite bottom = MediaAssets.getInstance().getSprite(R.drawable.egg_break);
+	
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0; 
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
@@ -50,8 +51,7 @@ public class Lv1State implements ICoinBlockViewState {
 
 	public boolean NeedRedraw() {
 		return true;
-	}
-
+	} 
 	public void OnClick(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub 
 	}
@@ -302,12 +302,55 @@ public class Lv1State implements ICoinBlockViewState {
 			
 			
 		}
+		
+		/*
+		private class Lv1EvolveAnim implements IAnimatable {
+			
+
+			private int spriteVib = 0;
+			
+			
+			
+			public boolean AnimationFinished() {
+				return false;
+			}
+
+			public void Draw(Bitmap canvas) {
+				
+				
+				// Draw the brick at bottom
+				//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+				//진동할때의 하단드로블
+				SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter);
+				
+				
+				
+
+							if (spriteVib < 7) { 
+								spriteVib++;
+							}
+							
+							
+			
+				
+				if (blockVib >= 7){
+					context.setState(new Lv0WaitState(context));
+					Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+				}
+				
+				
+				
+				
+				
+				
+			}
 
 		
 	}
+		*/
 	
 	
-	
+	}
 	
 	
 
