@@ -89,20 +89,20 @@ public class MediaAssets {
 
         private int parseNumberOfFrame(int resId) {
                 String spriteName = resources.getResourceEntryName(resId);
-               // Log.v("tag12", "spriteName "+spriteName);
+                Log.v("tag12", "spriteName "+spriteName);
                 int numOfFrame = 1; 
                 try {  
                         Pattern p = Pattern.compile("\\d+$", Pattern.CASE_INSENSITIVE);
-                        //Log.v("tag12", "p "+p);
+                        Log.v("tag12", "p "+p);
                         Matcher m = p.matcher(spriteName);
-                        //Log.v("tag12", "m "+m);
+                        Log.v("tag12", "m "+m); 
                         //Log.v("tag12", "m.find()1 "+m.find());
-                        if (false) {
+                        if (m.find()) {
                         		//Log.v("tag12", "m.find()2 "+m.find());
                                 String strFrame = m.group();
-                                //Log.v("tag12", "strFrame "+strFrame);
+                                Log.v("tag12", "strFrame "+strFrame);
                                 numOfFrame = Integer.parseInt(strFrame);
-                        }
+                        } 
                 } catch (Exception e) {
                         numOfFrame = 1;
                 }

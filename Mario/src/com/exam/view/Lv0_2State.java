@@ -12,6 +12,7 @@ import com.exam.*;
 public class Lv0_2State implements ICoinBlockViewState {
 	
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.egg_break);
+	Sprite sp2 = MediaAssets.getInstance().getSprite(R.drawable.eggsbreak_sprites_4);
 	
 	//진동후의, 하단 드로블
 	//Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.reset_large);
@@ -47,10 +48,10 @@ public class Lv0_2State implements ICoinBlockViewState {
 		// Draw the brick at bottom
 		//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		//진동할때의 하단드로블
-		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter,0,
+		SpriteHelper.DrawSprite(canvas, sp2, sp2.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
 				-(int)(heightModifier[animStage] * viewContext.getDensity()));
 		
-	
+	 
 		animStage++; 
 		
 		Log.v("tag3", "animstage");
@@ -147,7 +148,7 @@ public class Lv0_2State implements ICoinBlockViewState {
 			
 
 			
-			
+			viewContext.removeAnimatable(lv0_2ofAnim);
 			viewContext.removeAnimatable(lv0_2clAnim);
 			
 			
@@ -186,9 +187,9 @@ public class Lv0_2State implements ICoinBlockViewState {
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
+			//SpriteHelper.DrawSprite(canvas, sp2, sp2.NextFrame(), SpriteHelper.DrawPosition.BottomCenter);
 		}
-
+ 
 		public boolean NeedRedraw() { 
 			return false;
 		}
@@ -317,7 +318,7 @@ public class Lv0_2State implements ICoinBlockViewState {
 			// Draw the brick at bottom
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 			//진동할때의 하단드로블
-			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter,
+			SpriteHelper.DrawSprite(canvas, sp2, sp2.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,
 					-(int)(widthModifier[blockVib] * context.getDensity()),0);
 			
 
@@ -350,17 +351,17 @@ public class Lv0_2State implements ICoinBlockViewState {
 		
 
 		private int spriteVib = 4;
-		Sprite sp2 = MediaAssets.getInstance().getSprite(R.drawable.flowers_sprites_4);
+		//Sprite sp2 = MediaAssets.getInstance().getSprite(R.drawable.flowers_sprites_4);
 		
 		
 		
 		public boolean AnimationFinished() {
 			return false;
 		}
-
+ 
 		public void Draw(Bitmap canvas) {
 			 
-			
+			 
 			// Draw the brick at bottom
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블 

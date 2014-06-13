@@ -173,7 +173,7 @@ public class Lv1State implements ICoinBlockViewState {
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
 			
-			Sprite bottom2 = MediaAssets.getInstance().getSprite(R.drawable.egg_break2);
+			Sprite bottom2 = MediaAssets.getInstance().getSprite(R.drawable.eggs_break);
 			
 			SpriteHelper.DrawSprite(canvas, bottom2, 0, SpriteHelper.DrawPosition.BottomCenter);
 			 
