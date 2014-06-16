@@ -18,7 +18,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
-	private int[] widthModifier = { 12, -12, 8, -8, 4, -4, 2, -2 };		// here
+	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, -0 };		// here
 	//Lv0Animation lv0Anim;  
     Lv0OftenAnim lv0ofAnim; 
     Lv0ClickAnim lv0clAnim;    
@@ -28,10 +28,10 @@ public class Lv0_1State implements ICoinBlockViewState {
 	public Lv0_1State(CoinBlockView viewContext) {
 		context = viewContext;
 		//lv0Anim = new Lv0Animation();
-		lv0ofAnim = new Lv0OftenAnim();
+		lv0clAnim = new Lv0ClickAnim();
 		
 		//viewContext.addAnimatable(lv0Anim);
-		viewContext.addAnimatable(lv0ofAnim);
+		viewContext.addAnimatable(lv0clAnim);
 		
 		
 		snd.seekTo(0);
@@ -50,7 +50,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 				-(int)(heightModifier[animStage] * viewContext.getDensity()));
 		
 	
-		animStage++; 
+		animStage++;  
 		
 		Log.v("tag3", "animstage");
 		

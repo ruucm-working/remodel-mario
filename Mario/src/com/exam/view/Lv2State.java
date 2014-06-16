@@ -16,7 +16,7 @@ public class Lv2State implements ICoinBlockViewState {
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
-	private int[] heightModifier2 = { 16, 20, 24, 28 };
+	private int[] heightModifier2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, 0 };	// here
 	Lv2OftenAnim lv2ofAnim;// here
 	Lv2Animation lv2Anim; 
@@ -40,12 +40,20 @@ public class Lv2State implements ICoinBlockViewState {
 		//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		//진동할때의 하단드로블
 		SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
-				-(int)(heightModifier[animStage] * viewContext.getDensity()));
+				-(int)(heightModifier2[animStage%8] * viewContext.getDensity()));
 		
-	
+		
 		animStage++;
+		
+		/*
 		if (animStage >= heightModifier.length)
 			viewContext.setState(new Lv2WaitState(viewContext));
+			*/
+		
+		if(animStage > 60){			
+			viewContext.setState(new Lv2WaitState(viewContext));			
+		}
+		
 	}
 
 	public boolean NeedRedraw() {
@@ -87,7 +95,8 @@ public class Lv2State implements ICoinBlockViewState {
 		public void OnClick(CoinBlockView viewContext) {
 
 
-			
+			//viewContext.removeAnimatable(lv2Anim);
+			//viewContext.removeAnimatable(lv2ofAnim);
 			viewContext.removeAnimatable(lv2clAnim);
 			
 			lv2clAnim = new Lv2ClickAnim();			
