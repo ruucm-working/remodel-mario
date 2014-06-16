@@ -158,7 +158,7 @@ public class CoinBlockView {
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 				lv0_2 = false;
 			} 
-			else if (second >= 20 && second <= 22 && clicount1 >= 10 && lv1){
+			else if (second >= 20 && second <= 22 && clicount1 >= 3 && lv1){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 				lv1 = false;
 			} 
@@ -349,7 +349,7 @@ public class CoinBlockView {
 
 		Log.d(coinBlockWidgetProvider.TAG," updateEvolveIntent(Remo(rviews);");
 
-
+ 
 	}
 	
 	/*
