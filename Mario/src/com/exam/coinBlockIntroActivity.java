@@ -2,6 +2,7 @@ package com.exam;
 
 import android.app.*;
 import android.content.*;
+import android.hardware.SensorManager;
 import android.os.*;
 import android.util.*;
 import android.view.*;
@@ -37,6 +38,13 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		// onCreate에 삽입
+		Log.v("SHAKE", "SHAKE IT");
+
+		SensorManager t_sm = (SensorManager)getSystemService(SENSOR_SERVICE);
+		ShakeListener sm = new ShakeListener(t_sm);
+		sm.onStart();
 
 		// Run service
 		Intent intent = new Intent(this, Notify.class);
