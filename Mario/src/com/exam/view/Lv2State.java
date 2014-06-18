@@ -134,7 +134,8 @@ public class Lv2State implements ICoinBlockViewState {
 
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+			
+			//coinBlockView.setState(new InitState(coinBlockView));	
 			
 		}
 

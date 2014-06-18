@@ -263,7 +263,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			
 			break;
 			
-		case R.id.btn_pause:
+		case R.id.btn_pause: 
 			//thread.onStop();		
 			
 			tasktime = taskTimer1.GetTime();
@@ -290,6 +290,17 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			}
 			else
 				taskTimer1.isCanceled = false;
+			
+			
+			break;
+			
+			
+		case R.id.reset1:
+			
+			
+						
+			
+			break;
 
 		
 	        
