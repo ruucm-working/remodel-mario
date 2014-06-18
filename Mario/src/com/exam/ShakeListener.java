@@ -1,5 +1,7 @@
 package com.exam;
 
+import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,6 +10,7 @@ import android.util.Log;
 
 public class ShakeListener implements SensorEventListener
 {
+	private static Context context;
 	//맴버변수 (마지막과 현재값을 비교하여 변위를 계산하는 방식)
 	private long	m_lLastTime;
 	private float	m_fSpeed;
@@ -21,8 +24,9 @@ public class ShakeListener implements SensorEventListener
 	private SensorManager	m_senMng;
 	private Sensor			m_senAccelerometer;
 
-	public ShakeListener(SensorManager sm)
+	public ShakeListener(SensorManager sm, Context context)
 	{
+		this.context = context;
 		// 시스템 서비스에서 센서메니져 획득
 		// m_senMng = (SensorManager)getSystemService(SENSOR_SERVICE);
 		m_senMng = sm;
@@ -75,6 +79,7 @@ public class ShakeListener implements SensorEventListener
 				if(m_fSpeed > SHAKE_THRESHOLD)
 				{
 					Log.i("SHAKE", "이 개SHAKE IT");
+					context.sendBroadcast(new Intent("com.exam.view.SHAKE_DETECTED"));
 				}
 
 				// 마지막 위치 저장

@@ -43,7 +43,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		Log.v("SHAKE", "SHAKE IT");
 
 		SensorManager t_sm = (SensorManager)getSystemService(SENSOR_SERVICE);
-		ShakeListener sm = new ShakeListener(t_sm);
+		ShakeListener sm = new ShakeListener(t_sm, getApplicationContext());
 		sm.onStart();
 
 		// Run service

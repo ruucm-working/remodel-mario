@@ -90,6 +90,10 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 
 			Log.d("tag2","provider - onenvolve");
 		}
+		else if (intent.getAction().startsWith("com.exam.view.SHAKE_DETECTED")){
+			Toast.makeText(context, "이런 개SHAKE IT", Toast.LENGTH_SHORT).show();
+		}
+		
 
 		// Custom Recevier
 		// SMS
