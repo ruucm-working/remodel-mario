@@ -53,6 +53,11 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		
 		
 		
+		init();
+        dataInit();
+        facebookInit(savedInstanceState);
+		
+		
 		
 		
 		//measuring time

@@ -7,7 +7,6 @@ import android.os.*;
 import android.util.*;
 
 import com.exam.*;
-import com.exam.view.Lv0_1State.Lv0WaitState;
 
 public class OftenState implements ICoinBlockViewState {
 	private Sprite sp1 = null ;
@@ -44,7 +43,7 @@ public class OftenState implements ICoinBlockViewState {
 
 	public boolean NeedRedraw() {
 		return true;
-	}
+	} 
 
 	public void OnClick(CoinBlockView viewContext) {
 		
