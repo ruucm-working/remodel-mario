@@ -42,8 +42,6 @@ class NormalState implements ICoinBlockViewState {
 			viewContext.setState(new InitState(viewContext));
 			Log.v("tag2", "lv0");   
 		}
-		
-		
 	}
 
 	@Override
@@ -54,6 +52,12 @@ class NormalState implements ICoinBlockViewState {
 
 	@Override
 	public void OnInit(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLongClick(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 		
 	}

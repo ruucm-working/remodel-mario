@@ -99,8 +99,11 @@ public class FlowerState implements ICoinBlockViewState {
 			
 		}
 
-
-
+		@Override
+		public void onLongClick(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	private class FlowerAnimation implements IAnimatable {
@@ -138,9 +141,10 @@ public class FlowerState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
 
-
+	@Override
+	public void onLongClick(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
 }

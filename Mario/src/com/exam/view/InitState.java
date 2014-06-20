@@ -21,11 +21,6 @@ public class InitState implements ICoinBlockViewState {
     InitClickAnim initclAnim;
 	boolean fuck = false;
 	CoinBlockView context; 
-	 
-	
-	
-	
-	
 
 	public InitState(CoinBlockView viewContext) {
 		context = viewContext;
@@ -34,7 +29,6 @@ public class InitState implements ICoinBlockViewState {
 		
 		viewContext.addAnimatable(initAnim);
 		//viewContext.addAnimatable(initofAnim);
-		
 		
 		snd.seekTo(0);
 		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
@@ -78,28 +72,18 @@ public class InitState implements ICoinBlockViewState {
 		
 	}
 	
-	
 	@Override
 	public void OnEvolve(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
-		
-	
-		
 		
 	}
 	
 
 	@Override
 	public void OnInit(CoinBlockView coinBlockView) {
-		
 		coinBlockView.removeAnimatable(initAnim);
-		
-		
 	}
 	
-	
-	
-
 	class InitWaitState implements ICoinBlockViewState {
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		//진동후의, 하단 드로블
@@ -126,9 +110,6 @@ public class InitState implements ICoinBlockViewState {
 							mViewContext.setState(new Lv1State(mViewContext));
 							
 							Log.v("tag3", "Lv0WaitState-setState"); 
-							 
-							
-							
 						}
 						 */
 						
@@ -137,23 +118,16 @@ public class InitState implements ICoinBlockViewState {
 						
 						//initAnim.Draw2(Bitmap.createBitmap(mViewContext.cwidth, mViewContext.cheight, Bitmap.Config.ARGB_8888));
 						//mViewContext.scheduleRedraw();
-						
 					}
 				}
 			}, 3000);
-			
-			
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
-			
-			
-			
 			viewContext.removeAnimatable(initclAnim);
 			
 			initclAnim = new InitClickAnim();			
 			viewContext.addAnimatable(initclAnim);
-			
 			
 			snd.seekTo(0);
 			snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
@@ -162,20 +136,12 @@ public class InitState implements ICoinBlockViewState {
 				}
 			});
 			
-			
-			
-			 
-			Setting.CliCountinit++;			
-			
+			Setting.CliCountinit++;
 			Setting.mPref.Ready();			
 			Setting.mPref.WriteInt("clicountinit", Setting.CliCountinit);			
 			Setting.mPref.CommitWrite();
-		
-			
 			
 			Log.v("tag5", "Setting.mPref.WriteIntn"); 
-			
-			
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -185,14 +151,9 @@ public class InitState implements ICoinBlockViewState {
 		public boolean NeedRedraw() { 
 			return false;
 		}
-
 		
 		@Override
 		public void OnOften(CoinBlockView coinBlockView) {
-			
-		
-			 
-			 
 			/*
 			
 			//애니매이션 1 - 성공 (버섯올라오기)
@@ -202,71 +163,47 @@ public class InitState implements ICoinBlockViewState {
 			coinBlockView.addAnimatable(initAnim);
 			
 			*/
-			
-			
-			
 			//애니매이션 2 - 성공
 			
 			coinBlockView.removeAnimatable(initofAnim);
 			initofAnim = new InitOftenAnim();			
 			coinBlockView.addAnimatable(initofAnim);
-			
-			 
-			
-			
-			 
-			
-  
-
-			
 		}
+		
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
 			coinBlockView.setState(new Lv0_1State(coinBlockView));
 			 
-			
-			
 			coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
 			//coinBlockIntroActivity.taskTimer1.setTime(0);
 			coinBlockIntroActivity.taskTimer1.execute("");
 			
-			
-		
-			
 			Log.d("tag3","OnEvolve");
-			
-			 
 		}
-
-	
-
+		
 		@Override
 		public void OnInit(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
-			
 
 			coinBlockView.removeAnimatable(initAnim);	
 			coinBlockView.removeAnimatable(initofAnim);
 			coinBlockView.removeAnimatable(initclAnim);
 			
 			//coinBlockView.setState(new DisabledState(coinBlockView));
-			
 			Log.d("tag3","OnInit");
-			 
-			
 		}
 
-
-
+		@Override
+		public void onLongClick(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	private class initAnimation implements IAnimatable {
-		
 		//진동할때 올라오고, 상단에 남는 드로블
-		
 		private int flowerRaise = 4;
-
 
 		public boolean AnimationFinished() {
 			return false;
@@ -274,26 +211,17 @@ public class InitState implements ICoinBlockViewState {
 
 		public void Draw(Bitmap canvas) {
 			
-			
 		}
-
-		
 	}
 	
 	private class InitOftenAnim implements IAnimatable {
-		
-
 		private int blockVib = 0;
-		
-		
 		
 		public boolean AnimationFinished() {
 			return false;
 		}
 
 		public void Draw(Bitmap canvas) {
-			
-			
 			// Draw the brick at bottom
 			
 			//진동할때의 하단드로블
@@ -304,7 +232,6 @@ public class InitState implements ICoinBlockViewState {
 						if (blockVib < 7) { 
 							blockVib++;
 						}
-						
 			
 			Log.v("tag4", "blockVib"+Integer.toString(blockVib));
 			
@@ -315,31 +242,17 @@ public class InitState implements ICoinBlockViewState {
 			}
 			
 			*/
-			
-			
-			
-			
 		}
-
-		
 	}
 	
-	
-
 	private class InitClickAnim implements IAnimatable {
-		
-
 		private int blockVib = 0;
-		
-		
 		
 		public boolean AnimationFinished() {
 			return false;
 		}
 
 		public void Draw(Bitmap canvas) {
-			
-			
 			// Draw the brick at bottom
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블
@@ -347,15 +260,9 @@ public class InitState implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,
 					-(int)(widthModifier[blockVib] * context.getDensity()),0);
 			
-
 						if (blockVib < 7) { 
 							blockVib++;
 						}
-			
-		
-						
-		   
-						
 		
 			/*
 			if (blockVib >= 7){
@@ -364,19 +271,12 @@ public class InitState implements ICoinBlockViewState {
 			}
 			
 			*/
-			
-			
-			
-			
 		}
+	}
 
+	@Override
+	public void onLongClick(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	
-
-	
-	
-
-
 }

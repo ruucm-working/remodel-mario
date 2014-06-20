@@ -84,5 +84,9 @@ class CoinState implements ICoinBlockViewState {
 		
 	}
 
-
+	@Override
+	public void onLongClick(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
 }

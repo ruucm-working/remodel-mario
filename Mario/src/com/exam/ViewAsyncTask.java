@@ -37,9 +37,6 @@ public class ViewAsyncTask extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
         timer.setText("" + time);
         timer.setTextColor(TEXT_COLOR_NORMAL);
-        
-        
-        
     }
 
     /** this method is executed BETWEEN onPreExecute() and onPostExecute()
@@ -90,5 +87,4 @@ public class ViewAsyncTask extends AsyncTask<String, String, String> {
         if(RESULT_SUCCESS.equals(result))
             timer.setTextColor(TEXT_COLOR_FINISHED);
     }
-
 }
