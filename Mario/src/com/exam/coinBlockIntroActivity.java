@@ -30,11 +30,14 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
   	public static TextPref mPref;
 	 
 	
+  	/*
 	//facebook	
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
     private Button buttonLoginLogout;
     
-    
+    */
+  	
+  	
    // static String userId ;
 	
 	
@@ -105,13 +108,13 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
         
 		
-		
+		/*
 		
 		init();
         dataInit();
         facebookInit(savedInstanceState);
 		
-         
+         */
        
         
         //welcome.setText(coinBlockLoginActivity.userFirstName+" "+coinBlockLoginActivity.userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요" );
@@ -382,7 +385,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			return secondValue;
 		}
 		
-		
+		/*
 		
 		//Facebook Login
 		
@@ -491,7 +494,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	                    public void onCompleted(GraphUser user, Response response) {
 	                        response.getError();
 	                        
-	                        /*
+	                        
 	                        System.err.println(" getId  :  " + user.getId());
 	                        System.err.println(" getFirstName  :  " + user.getFirstName());
 	                        System.err.println(" getLastName  :  " + user.getLastName());
@@ -502,7 +505,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	                        //System.err.println(" getUsername :  " + user.getUsername());
 	                        //System.err.println(" getLocation :  " + user.getLocation());
 	                        //System.err.println("getRawResponse  :  " + response.getRawResponse());
-	                        */
+	                       
 	                         
 	                        Log.d("tag01"," getId  :  " + user.getId() );
 	                        Log.d("tag01"," getFirstName  :  " + user.getFirstName() );
@@ -519,7 +522,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	            }
 	        }
 
-			
+			*/
 		
 		
 	

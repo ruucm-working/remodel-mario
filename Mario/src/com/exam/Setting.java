@@ -395,6 +395,10 @@ public class Setting extends Activity {
 
 			mPref.CommitWrite();
 			finish();
+			
+			
+			DialogSimple();
+			
 			break;
 
 		case R.id.cancled:

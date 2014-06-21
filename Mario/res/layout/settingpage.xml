@@ -19,6 +19,64 @@
     android:orientation="vertical"    
       >
     
+    
+    
+    
+    
+    
+    <RelativeLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >
+
+         <TextView
+ 	          android:layout_width="wrap_content"
+ 	          android:layout_height="wrap_content"
+ 	          android:gravity="center"
+ 	          android:text="당신의 휴대폰 기종을 입력해주세요"
+ 	          android:textColor="#ff282CB6"
+ 	          android:textSize="10dp" />
+     
+ 	    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text = "model name"
+        android:textSize="10dp"
+        
+        />    
+
+     </RelativeLayout>
+     
+    
+    
+    
+    
+    <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical" >
+
+         <TextView
+ 	          android:layout_width="wrap_content"
+ 	          android:layout_height="wrap_content"
+ 	          
+ 	          android:layout_marginTop="18dp"
+ 	          android:text="당신의 휴대폰 주민등록번호인 IMEI를 입력해주세요
+(IMEI 번호는 설정 - 디바이스정보 - IMEI 에있습니다)"
+android:textColor="#ff282CB6"
+ 	          android:textSize="10dp" />
+     
+ 	    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text = "IMEI Number"
+        android:textSize="10dp" />    
+
+     </LinearLayout>
+    
+    
 
  	  
      <RelativeLayout
@@ -46,7 +104,7 @@
              android:layout_marginLeft="8dp"
              android:layout_toRightOf="@+id/textView1"
              android:adjustViewBounds="true"
-             android:clickable="true"
+             android:clickable="true" 
              android:onClick="mOnClick"
              android:src="@drawable/reset_large" />
 
