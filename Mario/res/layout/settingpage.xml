@@ -89,6 +89,27 @@
                 android:gravity="center"
                 android:textSize="10dp" />
         </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="DblClickCount"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/dblclickcount"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Click-Count"
+                android:textSize="10dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"

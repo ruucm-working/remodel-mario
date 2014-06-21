@@ -69,5 +69,11 @@ class DisabledState implements ICoinBlockViewState {
 		
 	}
 
+	@Override
+	public void OnDoubleClick(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 

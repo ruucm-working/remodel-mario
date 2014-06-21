@@ -74,6 +74,10 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			Log.d(TAG,"com.gueei");
 
 		}
+		else if (intent.getAction().startsWith("com.exam.view.DOUBLE_CLICK")){
+			int id = intent.getIntExtra("widgetId1", 0);
+			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnDoubleClick();         
+		}
 		else if (intent.getAction().startsWith("com.exam.view.INTENT_OFTEN_FORMAT")){
 			int id = intent.getIntExtra("widgetId2", 0);
 			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnOften();         

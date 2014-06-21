@@ -263,6 +263,12 @@ public class Lv0_1State implements ICoinBlockViewState {
 			
 		}
 
+		@Override
+		public void OnDoubleClick(CoinBlockView viewContext) {
+			// TODO Auto-generated method stub
+			
+		}
+
 
 
 	}
@@ -370,6 +376,12 @@ public class Lv0_1State implements ICoinBlockViewState {
 
 	@Override
 	public void OnShake(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnDoubleClick(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
 	}

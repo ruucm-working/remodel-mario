@@ -7,6 +7,8 @@ interface ICoinBlockViewState {
 
 	public void OnClick(CoinBlockView viewContext);
 	
+	public void OnDoubleClick(CoinBlockView viewContext);
+	
 	public void OnShake(CoinBlockView viewContext);
 
 	public boolean NeedRedraw();

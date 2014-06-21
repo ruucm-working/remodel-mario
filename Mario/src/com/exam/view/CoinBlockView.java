@@ -14,6 +14,7 @@ import android.widget.*;
 import com.exam.*;
 
 public class CoinBlockView {
+	public static String INTENT_ON_DOUBLECLICK_FORMAT = "com.exam.view.DOUBLE_CLICK";
 	public static String INTENT_ON_CLICK_FORMAT = "com.gueei.mario.coinBlock.id.%d.click";
 	public static String INTENT_OFTEN_FORMAT = "com.exam.view.INTENT_OFTEN_FORMAT";
 	public static String INTENT_EVOLVE_FORMAT = "com.exam.view.INTENT_EVOLVE_FORMAT";
@@ -26,6 +27,7 @@ public class CoinBlockView {
 	private long lastRedrawMillis = 0;
 	private static int mWidgetId;
 	private static ICoinBlockViewState state;
+	private long last_clicked_time = 0;
 
 	int cheight;
 	int cwidth;
@@ -133,7 +135,7 @@ public class CoinBlockView {
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 				lv2 = false;
 			}
-			
+
 			if(second >= 5 && second <=10 )			
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());	
 			else if (second >= 12 && second <= 20)
@@ -170,11 +172,32 @@ public class CoinBlockView {
 	}
 
 	public void OnClick() {
-		state.OnClick(this);
+		if(last_clicked_time == 0)
+		{
+			last_clicked_time = System.currentTimeMillis();
+			state.OnClick(this);
+		}		
+		else
+		{
+			Log.v("DOUBLECLICK", "LastTime: " + last_clicked_time);
+			Log.v("DOUBLECLICK", "CurrentTime: " + System.currentTimeMillis());
+			if(System.currentTimeMillis() - last_clicked_time < 500)
+			{
+				last_clicked_time = 0;		// prevent 3-time-click to 2-double click
+				state.OnDoubleClick(this);
+			}
+			
+			else
+				state.OnClick(this);
+			
+			last_clicked_time = System.currentTimeMillis();
+		}
 	}
 	
+	public void OnDoubleClick() {	
+	}
+
 	public void OnShake() {
-		Log.v("SHAKE", "Entering OnShake");
 		state.OnShake(this);
 	}
 
@@ -239,7 +262,7 @@ public class CoinBlockView {
 		Log.d("draw", "scheduleRedrawAt");
 	}
 
-	public  void setState(ICoinBlockViewState newState) {
+	public void setState(ICoinBlockViewState newState) {
 		state = newState;
 		scheduleRedraw();
 

@@ -139,6 +139,17 @@ public class InitState implements ICoinBlockViewState {
 			Log.v("tag5", "Setting.mPref.WriteIntn");
 		}
 		
+		@Override
+		public void OnDoubleClick(CoinBlockView viewContext) {
+			// TODO Auto-generated method stub
+			Log.v("DOUBLECLICK", "Entering Doubleclick");
+			
+			Setting.CliDblClick++;
+			Setting.mPref.Ready();
+			Setting.mPref.WriteInt("dblclick", Setting.CliDblClick);			
+			Setting.mPref.CommitWrite();
+		}
+		
 		public void OnShake(CoinBlockView viewContext) {
 			Log.v("SHAKE", "Entering OnShake - InitState");
 			
@@ -271,6 +282,12 @@ public class InitState implements ICoinBlockViewState {
 
 	@Override
 	public void OnShake(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnDoubleClick(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
 	}

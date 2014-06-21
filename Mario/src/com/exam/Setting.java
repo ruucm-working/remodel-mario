@@ -20,7 +20,7 @@ public class Setting extends Activity {
 
 	//count click
 	TextView clicountinit;
-	TextView shakecount, clicount0, clicount0_2, clicount1, clicount2;
+	TextView shakecount, dblclick, clicount0, clicount0_2, clicount1, clicount2;
 	TextView clisp0, clisp1, clisp2;
 
 	//Mesuring Time
@@ -39,12 +39,8 @@ public class Setting extends Activity {
 	Boolean checked[] = new Boolean[20];
 
 	public static int CliCountinit;
-	public static int CliShakeCount, CliCount0, CliCount0_2, CliCount1, CliCount2;
-
-
+	public static int CliShakeCount, CliDblClick, CliCount0, CliCount0_2, CliCount1, CliCount2;
 	float CliSp0;
-
-
 
 	//스피너 변수들
 	ArrayAdapter<CharSequence> adspin1;
@@ -105,15 +101,18 @@ public class Setting extends Activity {
 
 		CliCountinit = mPref.ReadInt("clicountinit", 0);
 		CliShakeCount = mPref.ReadInt("shakecount", 0);
+		CliDblClick = mPref.ReadInt("dblclick", 0);
 		CliCount0 = mPref.ReadInt("clicount0", 0);
 		CliCount0_2 = mPref.ReadInt("clicount0_2", 0);
 		CliCount1 = mPref.ReadInt("clicount1", 0);
 		CliCount2 = mPref.ReadInt("clicount2", 0);
 
 		clicountinit = (TextView)findViewById(R.id.clicountinit);		
-		clicountinit.setText( CliCountinit + "번 ");
+		clicountinit.setText(CliCountinit+ "번 ");
 		shakecount = (TextView)findViewById(R.id.shakecount);		
 		shakecount.setText( CliShakeCount + "번 ");
+		dblclick = (TextView)findViewById(R.id.dblclickcount);		
+		dblclick.setText( CliDblClick + "번 ");
 		clicount0 = (TextView)findViewById(R.id.clicount0);		
 		clicount0.setText( CliCount0 + "번 ");
 		clicount0_2 = (TextView)findViewById(R.id.clicount0_2);		
@@ -304,17 +303,13 @@ public class Setting extends Activity {
 	}
 
 	public static float getSecondperCount(int clickcount){
-
 		float clisp = 0 ;
 
 		if (count > 10){
 			clisp = clickcount/count*10;
 		}		
-
-
 		return clisp;
 	}
-
 
 	public void onPause() {
 		super.onPause();
@@ -349,6 +344,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("Tag3", spTag3);
 			mPref.WriteInt("clicountinit", CliCountinit);
 			mPref.WriteInt("shakecount", CliShakeCount);
+			mPref.WriteInt("dblclick", CliDblClick);
 			mPref.WriteInt("clicount0", CliCount0);
 			mPref.WriteInt("clicount0_2", CliCount0_2);
 			mPref.WriteInt("clicount1", CliCount1); 
@@ -385,12 +381,11 @@ public class Setting extends Activity {
 			spin3.setSelection(0);
 			break;
 
-
-
 		case R.id.reset4:
 
 			CliCountinit = 0;
 			CliShakeCount = 0;
+			CliDblClick = 0;
 			CliCount0 = 0;
 			CliCount0_2 = 0;
 			CliCount1 = 0;
@@ -398,6 +393,7 @@ public class Setting extends Activity {
 
 			clicountinit.setText( CliCountinit + "번 ");
 			shakecount.setText( CliShakeCount + "번 ");
+			dblclick.setText( CliDblClick + "번 ");
 			clicount0.setText( CliCount0 + "번 ");
 			clicount0_2.setText( CliCount0_2 + "번 ");
 			clicount1.setText( CliCount1 + "번 ");

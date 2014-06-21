@@ -51,6 +51,7 @@
         <receiver android:name="coinBlockWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.exam.view.DOUBLE_CLICK" />
                 <action android:name="com.exam.view.INTENT_OFTEN_FORMAT" />
                 <action android:name="com.exam.view.INTENT_EVOLVE_FORMAT" />
                 <action android:name="com.exam.view.INTENT_INIT_FORMAT" />
