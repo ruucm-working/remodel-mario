@@ -16,17 +16,15 @@
     	android:textColor="#000"
     	android:textSize="18dip"
     	/>
-   	<TextView
-    	android:typeface="monospace"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_marginLeft="120dip"
-    	android:layout_marginTop="10dip"
-    	android:paddingRight="10dip"
-    	android:text="You can also get the respective wallpaper by clicking the button below"
-    	android:textColor="#000"
-    	android:textSize="12dip"
-    	/>
+    
+    
+   	<Button
+            android:id="@+id/buttonLoginLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인" />
+   	
+   	
 	<Button android:text="Get Set-up" 
 		android:layout_marginLeft="120dip"
     	android:layout_marginTop="10dip"	
@@ -48,6 +46,8 @@
 	        android:layout_weight="0.88"
 	        android:gravity="center"
 	        android:textSize="30dp" />
+	    
+	    
 
 	    <Button
 	        android:id="@+id/reset1"

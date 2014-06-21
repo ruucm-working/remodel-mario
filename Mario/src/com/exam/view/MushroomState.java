@@ -6,7 +6,6 @@ import android.media.MediaPlayer.OnSeekCompleteListener;
 
 import com.exam.*;
 
-
 class MushroomState implements ICoinBlockViewState{
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
@@ -54,6 +53,12 @@ class MushroomState implements ICoinBlockViewState{
 
 	@Override
 	public void OnInit(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnShake(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
 	}

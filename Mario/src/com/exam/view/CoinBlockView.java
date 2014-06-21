@@ -18,32 +18,32 @@ public class CoinBlockView {
 	public static String INTENT_OFTEN_FORMAT = "com.exam.view.INTENT_OFTEN_FORMAT";
 	public static String INTENT_EVOLVE_FORMAT = "com.exam.view.INTENT_EVOLVE_FORMAT";
 	public static String INTENT_INIT_FORMAT = "com.exam.view.INTENT_INIT_FORMAT";
+
 	private static final int REFRESH_RATE = 40;
-	int cheight;
 	private volatile Set<IAnimatable> Children;
-	int cwidth;
 	private float density;
 
 	private long lastRedrawMillis = 0;
 	private static int mWidgetId;
 	private static ICoinBlockViewState state;
-	
+
+	int cheight;
+	int cwidth;
+
+	//for evolve
 	public static long second = 0;
 
+	static boolean init = true;
+	static boolean lv0_1 = true;
+	static boolean lv0_2 = true;
+	static boolean lv1 = true;
+	static boolean lv2 = true;
 
-
-
-	//UpdateThread
+	// UpdateThread
 	UpdateThread thread2;
-	
-	
-	
-	
-	//Async Task
-	
-	ViewAsyncTask asynctask = new ViewAsyncTask();
-	
 
+	//Async Task
+	ViewAsyncTask asynctask = new ViewAsyncTask();
 
 	public CoinBlockView(Context context, int widgetId) {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -58,22 +58,10 @@ public class CoinBlockView {
 		mWidgetId = widgetId;
 		setState(new InitState(this));
 
-
-
-
 		thread2 = new UpdateThread(mHandler2);
 		thread2.start();
 		thread2.onStart();
-		
-		
-
-		
-
-
-
-
 	}
-
 
 	class UpdateThread extends Thread{
 		Handler mHandler;
@@ -103,46 +91,48 @@ public class CoinBlockView {
 		public void onStop(){
 			sns = false;
 		}		
-
 	}
 
-
-
-
 	static Handler mHandler2 = new Handler(){
-
 		RemoteViews rviews = new RemoteViews(CoinBlockWidgetApp.getApplication().getPackageName(), R.layout.coin_block_widget);
 
-
 		public void handleMessage(Message msg){
-
-			
-			
 			//int second = 20;
 			//int clicountinit = 3;
-			
 			//String text = coinBlockIntroActivity.time.getText().toString();
-			
-			 
+
 			//int second = Integer.parseInt(text);
 			//second = coinBlockIntroActivity.second;	
 			int clicountinit = Setting.CliCountinit;
-			
-			Log.d("tag8", Long.toString(second));
-			 
-			
-			second = coinBlockIntroActivity.taskTimer1.time;
+			int shakecount = Setting.CliShakeCount;
+			int clicount0 = Setting.CliCount0;
+			int clicount0_2 = Setting.CliCount0_2;
+			int clicount1 = Setting.CliCount1;
+			int clicount2 = Setting.CliCount2;
 
-   
-			if ( second == 0 && clicountinit >=5)
+			Log.d("tag8", Long.toString(second));
+			second = coinBlockIntroActivity.taskTimer1.GetTime();
+
+			if ( second == 0 && clicountinit >=3 && init){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 10 && second <= 12)
+				init = false;
+			}
+			else if (second >= 10 && second <= 12 && clicount0 >= 3 && lv0_1){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-			else if (second >= 20 && second <= 22)
+				lv0_1 = false;
+			} 
+			else if ( clicount0_2 >= 3  && lv0_2){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-		
-			 
-			  
+				lv0_2 = false;
+			} 
+			else if (second >= 20 && second <= 22 && clicount1 >= 3 && lv1){
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+				lv1 = false;
+			} 
+			else if (second >= 30 && second <= 32 && clicount2 >=3 && lv2){
+				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
+				lv2 = false;
+			}
 			
 			if(second >= 5 && second <=10 )			
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());	
@@ -150,18 +140,8 @@ public class CoinBlockView {
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
 			else if (second >= 22 )
 				updateOftenIntent(rviews, CoinBlockWidgetApp.getApplication());
-			
-			 
-			
-			
-		
-
-		}		
-
+		}
 	};
-
-
-
 
 	public synchronized void addAnimatable(IAnimatable child)
 	{
@@ -192,27 +172,28 @@ public class CoinBlockView {
 	public void OnClick() {
 		state.OnClick(this);
 	}
+	
+	public void OnShake() {
+		Log.v("SHAKE", "Entering OnShake");
+		state.OnShake(this);
+	}
 
 	public void OnOften() {
 		state.OnOften(this);
-//		/scheduleRedraw();
+		// scheduleRedraw();
 	}
-
 
 	public void OnEvolve() {
 		state.OnEvolve(this);
 		Log.d("tag3", "state.OnEvolve");
-
 	}
-	
+
 	public void OnInit() {
 		state.OnInit(this);
 		Log.d("tag3", "state.OnInit");
-		
 	}
-	
 
-	public  void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
+	public void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
 		RemoteViews rviews = new RemoteViews(context.getPackageName(), R.layout.coin_block_widget);
 		Bitmap canvas = Bitmap.createBitmap(cwidth, cheight, Bitmap.Config.ARGB_8888);
 
@@ -228,9 +209,7 @@ public class CoinBlockView {
 		state.Draw(this,canvas);
 		rviews.setImageViewBitmap(R.id.block, canvas);
 		updateClickIntent(rviews);
-
 		Log.d("draw", "Redraw");
-
 
 		AppWidgetManager.getInstance(context).updateAppWidget(mWidgetId, rviews);
 
@@ -240,15 +219,13 @@ public class CoinBlockView {
 			scheduleRedraw();
 	}
 
-
-
 	void scheduleRedraw() {
 		long nextRedraw = lastRedrawMillis + REFRESH_RATE;
 		nextRedraw = nextRedraw > SystemClock.uptimeMillis() ? nextRedraw :
 			SystemClock.uptimeMillis() + REFRESH_RATE;
-		
+
 		Log.d("draw", "scheduleRedraw"+Long.toString(nextRedraw));
-		
+
 		scheduleRedrawAt(nextRedraw);
 	}
 
@@ -258,15 +235,14 @@ public class CoinBlockView {
 				Redraw(CoinBlockWidgetApp.getApplication());
 			}
 		}, timeMillis);
-		
+
 		Log.d("draw", "scheduleRedrawAt");
-		
 	}
 
 	public  void setState(ICoinBlockViewState newState) {
 		state = newState;
 		scheduleRedraw();
-		
+
 		Log.v("log1","setstate");
 	}
 
@@ -282,67 +258,28 @@ public class CoinBlockView {
 		PendingIntent pi = PendingIntent.getBroadcast(getContext(), 0, intent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 		rviews.setOnClickPendingIntent(R.id.widget, pi);
-
-		
 	}
-
 
 	private static void updateOftenIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub
-
 		Intent intent = new Intent(String.format(INTENT_OFTEN_FORMAT, mWidgetId));
 		intent.putExtra("widgetId2", mWidgetId);				
 
-
 		context.sendBroadcast(intent);
-
-
-
 	}
 
 	private static void updateEvolveIntent(RemoteViews rviews, Context context) {
 		// TODO Auto-generated method stub				
+		Intent intent = new Intent(String.format(INTENT_INIT_FORMAT, mWidgetId));
+		intent.putExtra("widgetId11", mWidgetId);		
 
-		
-			Intent intent = new Intent(String.format(INTENT_INIT_FORMAT, mWidgetId));
-			intent.putExtra("widgetId11", mWidgetId);		
+		context.sendBroadcast(intent);
 
-			context.sendBroadcast(intent);
-	
-		
-		
-		
-			Intent intent2 = new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
-			intent2.putExtra("widgetId10", mWidgetId);				
+		Intent intent2 = new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
+		intent2.putExtra("widgetId10", mWidgetId);				
 
-			context.sendBroadcast(intent2);
-	
+		context.sendBroadcast(intent2);
 
 		Log.d(coinBlockWidgetProvider.TAG," updateEvolveIntent(Remo(rviews);");
-
-
 	}
-	
-	
-	private static void updateInitIntent(RemoteViews rviews, Context context) {
-		// TODO Auto-generated method stub				
-
-		
-			Intent intent = new Intent(String.format(INTENT_INIT_FORMAT, mWidgetId));
-			intent.putExtra("widgetId11", mWidgetId);				
-
-
-
-			context.sendBroadcast(intent);
-		
-
-
-		Log.d(coinBlockWidgetProvider.TAG," updateEvolveIntent(Remo(rviews);");
-
-
-	}
-
-
-
-
 }

@@ -4,6 +4,7 @@ package com.exam;
 import android.bluetooth.BluetoothAdapter;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.os.SystemClock;
 import android.content.Context;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -30,6 +31,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 	private static boolean isPowerConnected = false;
 	private static boolean isUsbAttached = false;
 	private static boolean isThreadCreated = false;
+	private static boolean isShakeDetected = false;
 	private int nowBattery;
 	private static boolean isAdditionalListenerCreated = false;
 
@@ -81,7 +83,6 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			int id = intent.getIntExtra("widgetId10", 0);
 			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnEvolve();
 
-
 			Log.d("tag2","provider - onenvolve");
 		}
 		else if (intent.getAction().startsWith("com.exam.view.INTENT_INIT_FORMAT")){ 
@@ -91,9 +92,18 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			Log.d("tag2","provider - onenvolve");
 		}
 		else if (intent.getAction().startsWith("com.exam.view.SHAKE_DETECTED")){
-			Toast.makeText(context, "이런 개SHAKE IT", Toast.LENGTH_SHORT).show();
+			Log.d("SHAKE", "Shake Detected");
+			
+			if(isShakeDetected == false)
+			{
+				int id = intent.getIntExtra("widgetId13", 0);
+				((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnShake();
+				isShakeDetected = true;
+				Toast.makeText(context, "이 개SHAKE IT", Toast.LENGTH_SHORT).show();
+				SystemClock.sleep(1000);
+				isShakeDetected = false;
+			}
 		}
-		
 
 		// Custom Recevier
 		// SMS

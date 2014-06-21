@@ -2,5 +2,14 @@
 <resources>
     
     <string name="app_name">Mario Block Copy</string>
-<string name="click_intent">com.exam.click</string>
+	<string name="click_intent">com.exam.click</string>
+	
+	<string name="board_detail_activity_title">loginligi1238</string>
+	<string name="app_id">776277205745641</string>
+
+
+
+
+
+
 </resources>

@@ -6,6 +6,8 @@ interface ICoinBlockViewState {
 	public void Draw(CoinBlockView viewContext, Bitmap canvas);
 
 	public void OnClick(CoinBlockView viewContext);
+	
+	public void OnShake(CoinBlockView viewContext);
 
 	public boolean NeedRedraw();
 

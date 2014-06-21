@@ -1,7 +1,5 @@
 package com.exam;
 
-import java.util.Arrays;
-
 import android.app.*;
 import android.content.*;
 import android.os.*;
@@ -10,13 +8,12 @@ import android.util.*;
 
 public class Notify extends Service
 {
-	private final int NOTIFY_CNT = 3;
-	
+	final int NOTIFY_CNT = 3;
 	protected boolean mRunning;
+	
 	private long notify_time[] = new long[] {10, 20, 30};
 	private boolean notify_activated[] = new boolean[NOTIFY_CNT];
 	private int notify_index = 0;
-	private TaskTimer taskTimer1 = new TaskTimer();
 	
 	@Override
 	public IBinder onBind(Intent intent)
@@ -28,7 +25,6 @@ public class Notify extends Service
 	public void onCreate()
 	{
 		Log.d("service2","onCreate");
-		Arrays.fill(notify_activated, false);	// 배열을 false로 채움
 	}
 
 	@Override
@@ -76,9 +72,7 @@ public class Notify extends Service
 			@Override
 			public void run()
 			{
-				Log.v("TA9", NOTIFY_CNT + " vs " + notify_index);
-				
-				while(NOTIFY_CNT > notify_index)
+				while(mRunning)
 				{
 					try
 					{
@@ -89,21 +83,11 @@ public class Notify extends Service
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					Log.v("TA9", NOTIFY_CNT + " vs " + notify_index);
-					if(NOTIFY_CNT > notify_index)
+					if(notify_index < NOTIFY_CNT)
 					{
-						Log.v("TA9", "Enter");
-						// YOU MUST MODIFY HERE
-						int tasktime = taskTimer1.time;
-						
-						Log.v("TA9", tasktime + "초 경과");
-						
-						if(tasktime > notify_time[notify_index] && notify_activated[notify_index] == false)
-						{
-							mHandler.sendEmptyMessage(0);		// call handleMessage
-							notify_activated[notify_index++] = true;
-						}
+						int second = coinBlockIntroActivity.taskTimer1.GetTime();
+						if(notify_time[notify_index] < second)
+						mHandler.sendEmptyMessage(0);		// call handleMessage
 					}
 				}
 			}
