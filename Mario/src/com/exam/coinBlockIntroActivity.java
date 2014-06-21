@@ -2,6 +2,8 @@ package com.exam;
 
 
 
+import java.io.*;
+
 import android.annotation.*;
 import android.app.*;
 import android.content.*;
@@ -20,12 +22,20 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	/** Called when the activity is first created. */
 	
 	
-	  
+	TextView welcome ; 
+	   
 	
+	
+	//프레퍼런스 
+  	public static TextPref mPref;
+	 
 	
 	//facebook	
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
     private Button buttonLoginLogout;
+    
+    
+   // static String userId ;
 	
 	
 	public static TextView time;
@@ -64,8 +74,36 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		setContentView(R.layout.main);
 		
 		
+
 		
 		instance = this;
+		
+		//프레퍼런스 읽어오기   
+  		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
+  		if(!saveDir.exists()) 
+  		{
+  			saveDir.mkdirs();
+  		}
+
+
+  		try {
+  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+
+  		} catch (Exception e) { 
+  			e.printStackTrace();
+  		}       
+		mPref.Ready();
+        
+        
+		
+  		String userId = mPref.ReadString("userId", "");
+  		String userFirstName = mPref.ReadString("userFirstName", "");
+  		String userLastName = mPref.ReadString("userLastName", "");
+  		
+  		
+		welcome = (TextView)findViewById(R.id.welcome);		
+		welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
+        
 		
 		
 		
@@ -73,6 +111,12 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
         dataInit();
         facebookInit(savedInstanceState);
 		
+         
+       
+        
+        //welcome.setText(coinBlockLoginActivity.userFirstName+" "+coinBlockLoginActivity.userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요" );
+        
+        
 		
 		//measuring time
 		//time = (TextView)findViewById(R.id.time0);
@@ -465,6 +509,10 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	                        Log.d("tag01"," getLastName  :  " + user.getLastName() );
 	                        Log.d("tag01"," getMiddleName  :  " + user.getMiddleName() );
 	                        Log.d("tag01"," getBirthday  :  " + user.getBirthday() );
+	                         
+	                        
+	                        
+	                       
 	                        
 	                    }
 	                }).executeAsync();

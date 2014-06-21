@@ -15,6 +15,7 @@
     	android:text="This is a home-screen widget. To Install, press Menu -> Add -> Widget in Home Screen"
     	android:textColor="#000"
     	android:textSize="18dip"
+    	android:id="@+id/welcome"
     	/>
     
     

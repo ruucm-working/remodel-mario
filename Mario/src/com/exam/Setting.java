@@ -11,8 +11,6 @@ import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-import com.exam.view.*;
-
 public class Setting extends Activity { 
 	private static final String TAG = "Setting_TAG";
 	private static final boolean DEVELOPER_MODE = true;
@@ -414,7 +412,7 @@ public class Setting extends Activity {
 	
 			
 		case R.id.reset4:
-			
+			 
 			CliCountinit = 0;
 			CliCount0 = 0;
 			CliCount0_2 = 0;
@@ -474,4 +472,33 @@ public class Setting extends Activity {
 			break;
 		}
 	}
+	
+	
+	
+	
+	private void DialogSimple(){
+        AlertDialog.Builder alt_bld = new AlertDialog.Builder(this);
+        alt_bld.setMessage("Do you want to close this window ?").setCancelable(
+                false).setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Action for 'Yes' Button
+                    }
+                }).setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Action for 'NO' Button
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alt_bld.create();
+        // Title for AlertDialog
+        alert.setTitle("Title");
+        // Icon for AlertDialog
+        alert.setIcon(R.drawable.icon);
+        alert.show();
+    }
+	
+	
+	
 }
