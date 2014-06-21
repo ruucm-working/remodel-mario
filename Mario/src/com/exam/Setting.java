@@ -72,9 +72,13 @@ public class Setting extends Activity {
 	
 	
 	
-	//기타
+	//액티비티 화면 결정	
+	public static boolean InitState = false;
+	public static boolean Lv0State = false;
 	
-	static boolean DialogOn = true;
+	
+	
+	
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void onCreate(Bundle savedInstanceState) {
@@ -158,6 +162,8 @@ public class Setting extends Activity {
 		
 
 
+		
+		InitState = mPref.ReadBoolean("initstate", false);
 		checked[0] = mPref.ReadBoolean("checked0", false);
 		checked[1] = mPref.ReadBoolean("checked1", false);
 		checked[2] = mPref.ReadBoolean("checked2", false);
@@ -396,6 +402,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("clicount1", CliCount1); 
 			mPref.WriteInt("clicount2", CliCount2);
 
+			
 			mPref.WriteBoolean("checked0", checked[0]);
 			mPref.WriteBoolean("checked1", checked[1]);
 			mPref.WriteBoolean("checked2", checked[2]);
@@ -414,9 +421,12 @@ public class Setting extends Activity {
 			mPref.CommitWrite();
 			
 			
-			if (DialogOn){
+			if (!InitState){
 				DialogSimple();
-				DialogOn = false ;
+				InitState = true ;
+				mPref.Ready();
+				mPref.WriteBoolean("initstate", InitState);
+				mPref.CommitWrite();
 			}
 			else 
 				finish();

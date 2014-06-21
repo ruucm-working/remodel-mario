@@ -3,23 +3,22 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/login"
+    android:background="@drawable/background0"
     >
     <TextView
-    	android:typeface="monospace"
+        android:id="@+id/lv0statetext"    	
     	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
+    	android:layout_height="wrap_content" 
     	android:layout_marginLeft="120dip"
     	android:layout_marginTop="70dip"
     	android:paddingRight="10dip"
-    	android:text="This is a home-screen widget. To Install, press Menu -> Add -> Widget in Home Screen"
+    	android:text="page 01"
     	android:textColor="#000"
     	android:textSize="18dip"
-    	android:id="@+id/welcome"
     	/>
     
     
-
+ 
    	
 	<Button android:text="Set-up" 
 		android:layout_marginLeft="120dip"

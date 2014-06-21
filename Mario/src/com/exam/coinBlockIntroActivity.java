@@ -24,11 +24,16 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	
 	
 	TextView welcome ; 
+	
+	
+	TextView InitStateText ; 
+	TextView Lv0StateText ; 
 	   
 	
 	
 	//프레퍼런스 
-  	public static TextPref mPref;
+	public static TextPref mPref;
+  	public static TextPref fbPref;
 	 
 	
   	/*
@@ -75,10 +80,9 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
 		
+		//setContentView(R.layout.main);
 		
-
 		
 		instance = this;
 		
@@ -91,24 +95,75 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 
 
   		try {
-  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+  			fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+  			
 
   		} catch (Exception e) { 
   			e.printStackTrace();
   		}       
-		mPref.Ready();
-        
-        
+  		mPref.Ready();
+		fbPref.Ready();
 		
-  		String userId = mPref.ReadString("userId", "");
-  		String userFirstName = mPref.ReadString("userFirstName", "");
-  		String userLastName = mPref.ReadString("userLastName", "");
+
+		//set Main Background Image & Text
+		
+		
+		boolean initstate = mPref.ReadBoolean("initstate", false);
+		boolean lv0state = mPref.ReadBoolean("lv0state", false);
+		
+        	if(!initstate){
+    			setContentView(R.layout.main);
+    			
+    			String userId = fbPref.ReadString("userId", "");
+    	  		String userFirstName = fbPref.ReadString("userFirstName", "");
+    	  		String userLastName = fbPref.ReadString("userLastName", "");
+    	  		
+    			welcome = (TextView)findViewById(R.id.welcome);		
+    			welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
+    			
+        	}
+        	
+        	else  {
+    			setContentView(R.layout.initstate);
+    			InitStateText = (TextView)findViewById(R.id.initstatetxt);
+    			InitStateText.setText("상자를 열어라");
+    		}
+	
+        	/*
+        	
+    		else if (initstate && !lv0state) {
+    			setContentView(R.layout.initstate);
+    			Log.d("tag02","setContentView");
+    			InitStateText = (TextView)findViewById(R.id.initstatetxt);
+    			InitStateText.setText("상자를 열어라");
+    			Log.d("tag02","setText");
+    		}
+        	
+        	
+    		else if (lv0state) {
+    			setContentView(R.layout.lv0state);    			
+    			Lv0StateText = (TextView)findViewById(R.id.lv0statetext);
+    			Lv0StateText.setText("알을 애인처럼 다뤄서 부화시켜라");
+    			
+    		}
+    		    		
+
+        */	 
+		
   		
-  		mPref.EndReady();
+  		
+  		fbPref.EndReady();
   		
   		
-		welcome = (TextView)findViewById(R.id.welcome);		
-		welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
+  		Log.d("tag02","EndReady");
+  		
+  		
+  		
+		
+
+  		Log.d("tag02","welcome");
+		
         
 		
 		/*
@@ -533,7 +588,11 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			case SETTING:
 				Log.d("tag02","onActivityResult");
 				
-				setContentView(R.layout.main2);
+				setContentView(R.layout.initstate);
+				
+				InitStateText = (TextView)findViewById(R.id.initstatetxt);
+				InitStateText.setText("상자를 열어라");
+				
 			}
 			
 			

@@ -42,7 +42,11 @@ public class coinBlockLoginActivity extends Activity
 	
     
     //프레퍼런스 
-  	public static TextPref mPref;			
+    public static TextPref mPref;	
+  	public static TextPref fbPref;	
+  	
+  	boolean DialogOn ;
+  	
   
 
 	
@@ -76,7 +80,8 @@ public class coinBlockLoginActivity extends Activity
 
 
       		try {
-      			mPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+      			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+      			fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
 
       		} catch (Exception e) { 
       			e.printStackTrace();
@@ -84,12 +89,20 @@ public class coinBlockLoginActivity extends Activity
 
 
       		mPref.Ready();
+      		fbPref.Ready();
         
         
 		
-      		userId = mPref.ReadString("userId", "");
-      		userFirstName = mPref.ReadString("userFirstName", "");
-      		userLastName = mPref.ReadString("userLastName", "");
+      		
+      		DialogOn = mPref.ReadBoolean("dialogon", true);
+      		
+      		userId = fbPref.ReadString("userId", "");
+      		userFirstName = fbPref.ReadString("userFirstName", "");
+      		userLastName = fbPref.ReadString("userLastName", "");
+      		
+      		
+      		mPref.EndReady();
+      		fbPref.EndReady();
       		
       		
       		
@@ -166,13 +179,31 @@ public class coinBlockLoginActivity extends Activity
 	                    public void onClick(View view) { onClickLogout(); }
 	                });
 	                
+	                
+	                
+	                Intent intent = new Intent(this, coinBlockIntroActivity.class);
+		            //intent.putExtra("userId", userId);
+		            //intent.putExtra("userFirstName", userFirstName);
+		            //intent.putExtra("userLastName", userLastName);
+					startActivity(intent); 
+	                
+					/*
+	                if(DialogOn){
+	                
 
 		            Intent intent = new Intent(this, coinBlockIntroActivity.class);
-		            intent.putExtra("userId", userId);
-		            intent.putExtra("userFirstName", userFirstName);
-		            intent.putExtra("userLastName", userLastName);
+		            //intent.putExtra("userId", userId);
+		            //intent.putExtra("userFirstName", userFirstName);
+		            //intent.putExtra("userLastName", userLastName);
 					startActivity(intent); 
-					
+	                }
+	                
+	                else {
+	                	Intent intent = new Intent(this, coinBlockIntroActivity2.class);
+						startActivity(intent);
+	                }
+	                
+	                */
 					Log.d("tag02","userFirstName"+ userFirstName );
 		            
 					 
@@ -249,16 +280,16 @@ public class coinBlockLoginActivity extends Activity
 	                        Log.d("tag02","userFirstName2"+userFirstName);
 	                        
 	                        
-	                        mPref.Ready();
+	                        fbPref.Ready();
 	                        
-	                        mPref.WriteString("userId", userId);
-	            			mPref.WriteString("userFirstName", userFirstName);
-	            			mPref.WriteString("userLastName", userLastName);
+	                        fbPref.WriteString("userId", userId);
+	            			fbPref.WriteString("userFirstName", userFirstName);
+	            			fbPref.WriteString("userLastName", userLastName);
 	                  		
 	                    
 	                    
 	            			
-	            			mPref.CommitWrite();
+	            			fbPref.CommitWrite();
 	            			finish();
 	                        
 	                        

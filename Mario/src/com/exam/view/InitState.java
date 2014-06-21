@@ -231,6 +231,15 @@ public class InitState implements ICoinBlockViewState {
 			//coinBlockIntroActivity.taskTimer1.setTime(0);
 			coinBlockIntroActivity.taskTimer1.execute("");
 			
+			 
+			
+			//Setting.InitState = false;	
+			Setting.Lv0State = true;	
+			
+			Setting.mPref.Ready();			
+			//Setting.mPref.WriteBoolean("initstate", Setting.InitState);	
+			Setting.mPref.WriteBoolean("lv0state", Setting.Lv0State);
+			Setting.mPref.CommitWrite();
 			
 		
 			
