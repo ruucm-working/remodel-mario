@@ -4,7 +4,6 @@ package com.exam;
 
 import java.io.*;
 
-import android.annotation.*;
 import android.app.*;
 import android.content.*;
 import android.os.*;
@@ -13,13 +12,15 @@ import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-import com.facebook.*;
-import com.facebook.model.*;
-
 
 public class coinBlockIntroActivity extends Activity implements OnClickListener
 {
 	/** Called when the activity is first created. */
+	
+	
+	//액티비티간 통신을 위한
+	final static int SETTING = 0;
+	
 	
 	
 	TextView welcome ; 
@@ -102,6 +103,8 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
   		String userId = mPref.ReadString("userId", "");
   		String userFirstName = mPref.ReadString("userFirstName", "");
   		String userLastName = mPref.ReadString("userLastName", "");
+  		
+  		mPref.EndReady();
   		
   		
 		welcome = (TextView)findViewById(R.id.welcome);		
@@ -289,7 +292,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		{
 		case R.id.setbutton:    		
 			Intent intent = new Intent(this, Setting.class);
-			startActivity(intent); 		
+			startActivityForResult(intent, SETTING ); 		
 			break;
 			
 			
@@ -523,6 +526,18 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	        }
 
 			*/
+		
+		
+		protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+			switch (requestCode){
+			case SETTING:
+				Log.d("tag02","onActivityResult");
+				
+				setContentView(R.layout.main2);
+			}
+			
+			
+		}
 		
 		
 	

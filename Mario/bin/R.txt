@@ -144,7 +144,7 @@ int id clicount0 0x7f06002b
 int id clicount0_2 0x7f06002d
 int id clicount1 0x7f06002f
 int id clicount2 0x7f060031
-int id clicountinit 0x7f060028
+int id clicountinit 0x7f06002a
 int id clisp0 0x7f06002c
 int id clisp0_2 0x7f06002e
 int id clisp1 0x7f060030
@@ -198,10 +198,10 @@ int id ok 0x7f060046
 int id picker_subtitle 0x7f060014
 int id reset1 0x7f060023
 int id reset3 0x7f060037
-int id reset4 0x7f06002a
+int id reset4 0x7f060029
 int id setbutton 0x7f060021
 int id small 0x7f060000
-int id textView1 0x7f060029
+int id textView1 0x7f060028
 int id time0 0x7f060022
 int id welcome 0x7f060020
 int id widget 0x7f060003
@@ -224,7 +224,8 @@ int layout com_facebook_usersettingsfragment 0x7f03000f
 int layout global_config 0x7f030010
 int layout login 0x7f030011
 int layout main 0x7f030012
-int layout settingpage 0x7f030013
+int layout main2 0x7f030013
+int layout settingpage 0x7f030014
 int raw beep 0x7f050000
 int raw notify_sound 0x7f050001
 int raw smb_1_up 0x7f050002

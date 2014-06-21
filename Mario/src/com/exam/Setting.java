@@ -16,6 +16,13 @@ public class Setting extends Activity {
 	private static final boolean DEVELOPER_MODE = true;
 
 	
+	
+	
+	//facebook profile
+	String userFirstName ;
+	String userLastName ;
+	
+	
 	//count click
 	
 	TextView clicountinit;
@@ -35,7 +42,8 @@ public class Setting extends Activity {
 	//public static long second = 60;
 
 	//프레퍼런스 값들
-	 public static TextPref mPref;			
+	 public static TextPref mPref;		
+	 public static TextPref fbPref;	
 	String stNum1;
 	String stNum2;
 	
@@ -60,6 +68,13 @@ public class Setting extends Activity {
 	ArrayAdapter<CharSequence> adspin2;
 	ArrayAdapter<CharSequence> adspin3;
 	boolean mInitSpinner;
+	
+	
+	
+	
+	//기타
+	
+	static boolean DialogOn = true;
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void onCreate(Bundle savedInstanceState) {
@@ -91,22 +106,20 @@ public class Setting extends Activity {
 		if(!saveDir.exists()) 
 		{
 			saveDir.mkdirs();
-			Log.d("tag3", "time00");
 		}
 
-		Log.d("tag3", "time02");
 
 		try {
 			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
-			Log.d("tag3", "time05");
+			fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
 
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}       
 
-		Log.d("tag3", "time04");
 
 		mPref.Ready();
+		fbPref.Ready();
 
 		TextView Num1;
 		TextView Num2;
@@ -160,8 +173,13 @@ public class Setting extends Activity {
 		checked[12] = mPref.ReadBoolean("checked12", false);
 		checked[13] = mPref.ReadBoolean("checked13", false);
 
-		Log.d(TAG,"checked[11]");
+		
+		userFirstName = fbPref.ReadString("userFirstName", "");
+		userLastName = fbPref.ReadString("userLastName", "");
+		
+		
 		mPref.EndReady();
+		fbPref.EndReady();
 
 		//체크박스 값에 따라 체크해주기
 
@@ -394,10 +412,18 @@ public class Setting extends Activity {
 			mPref.WriteBoolean("checked13", checked[13]);
 
 			mPref.CommitWrite();
-			finish();
 			
 			
-			DialogSimple();
+			if (DialogOn){
+				DialogSimple();
+				DialogOn = false ;
+			}
+			else 
+				finish();
+			
+			
+			
+			//finish();
 			
 			break;
 
@@ -482,22 +508,26 @@ public class Setting extends Activity {
 	
 	private void DialogSimple(){
         AlertDialog.Builder alt_bld = new AlertDialog.Builder(this);
-        alt_bld.setMessage("Do you want to close this window ?").setCancelable(
+        alt_bld.setMessage(userFirstName +" "+ userLastName+" 님 당신의 위젯은 아직 깨어나지 않았습니다. 홈화면에서 위젯을 설치하고, 위젯을 자극해서 알을 받으세요! 핸드폰의 기종와 IMEI 번호를 반영해 알이 배정될 예정입니다.").setCancelable(
                 false).setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Action for 'Yes' Button
+                    	
+                    	finish();
                     }
                 }).setNegativeButton("No",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Action for 'NO' Button
+                    	
+                    	
                         dialog.cancel();
                     }
                 });
         AlertDialog alert = alt_bld.create();
         // Title for AlertDialog
-        alert.setTitle("Title");
+        alert.setTitle("반갑습니다");
         // Icon for AlertDialog
         alert.setIcon(R.drawable.icon);
         alert.show();

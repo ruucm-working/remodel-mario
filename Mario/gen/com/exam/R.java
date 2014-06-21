@@ -287,7 +287,7 @@ containing a value of this type.
         public static final int clicount0_2=0x7f06002d;
         public static final int clicount1=0x7f06002f;
         public static final int clicount2=0x7f060031;
-        public static final int clicountinit=0x7f060028;
+        public static final int clicountinit=0x7f06002a;
         public static final int clisp0=0x7f06002c;
         public static final int clisp0_2=0x7f06002e;
         public static final int clisp1=0x7f060030;
@@ -341,10 +341,10 @@ containing a value of this type.
         public static final int picker_subtitle=0x7f060014;
         public static final int reset1=0x7f060023;
         public static final int reset3=0x7f060037;
-        public static final int reset4=0x7f06002a;
+        public static final int reset4=0x7f060029;
         public static final int setbutton=0x7f060021;
         public static final int small=0x7f060000;
-        public static final int textView1=0x7f060029;
+        public static final int textView1=0x7f060028;
         public static final int time0=0x7f060022;
         public static final int welcome=0x7f060020;
         public static final int widget=0x7f060003;
@@ -369,7 +369,8 @@ containing a value of this type.
         public static final int global_config=0x7f030010;
         public static final int login=0x7f030011;
         public static final int main=0x7f030012;
-        public static final int settingpage=0x7f030013;
+        public static final int main2=0x7f030013;
+        public static final int settingpage=0x7f030014;
     }
     public static final class raw {
         public static final int beep=0x7f050000;
