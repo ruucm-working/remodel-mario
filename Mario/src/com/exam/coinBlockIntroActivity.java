@@ -11,24 +11,8 @@ import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
- 
-import com.facebook.LoggingBehavior;
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.Settings;
-import com.facebook.model.GraphUser;
- 
+import com.facebook.*;
+import com.facebook.model.*;
 
 
 public class coinBlockIntroActivity extends Activity implements OnClickListener
@@ -36,7 +20,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	/** Called when the activity is first created. */
 	
 	
-	 
+	  
 	
 	
 	//facebook	
@@ -85,7 +69,9 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		
 		
 		
-	
+		init();
+        dataInit();
+        facebookInit(savedInstanceState);
 		
 		
 		//measuring time
@@ -145,7 +131,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	
 	
 	
-	@Override	
+	
 	public void onClick(View v)
 	{
 		if(mButton.getText().equals("start"))
@@ -155,7 +141,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			mTask = new AsyncTask<Void, Integer, Void>()
 			{
 		    	private boolean isCanceled = false;
-		    	
+		    	 
 		    	@Override
 		    	protected void onPreExecute()
 		    	{
@@ -447,8 +433,45 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	            @Override
 	            public void call(Session session, SessionState state, Exception exception) {
 	                updateView();    
+	                getFaceBookMe(session);
 	            }
 	        }
+	        
+	        
+	        private void getFaceBookMe(Session session){
+	        	 
+	            if(session.isOpened()){
+	                Request.newMeRequest(session, new Request.GraphUserCallback() {
+	     
+	                    @Override
+	                    public void onCompleted(GraphUser user, Response response) {
+	                        response.getError();
+	                        
+	                        /*
+	                        System.err.println(" getId  :  " + user.getId());
+	                        System.err.println(" getFirstName  :  " + user.getFirstName());
+	                        System.err.println(" getLastName  :  " + user.getLastName());
+	                        System.err.println(" getMiddleName  :  " + user.getMiddleName());
+	                        System.err.println(" getBirthday  :  " + user.getBirthday());
+	                        //System.err.println(" getLink  :  " + user.getLink());
+	                        //System.err.println(" getName  :  " + user.getName());
+	                        //System.err.println(" getUsername :  " + user.getUsername());
+	                        //System.err.println(" getLocation :  " + user.getLocation());
+	                        //System.err.println("getRawResponse  :  " + response.getRawResponse());
+	                        */
+	                         
+	                        Log.d("tag01"," getId  :  " + user.getId() );
+	                        Log.d("tag01"," getFirstName  :  " + user.getFirstName() );
+	                        Log.d("tag01"," getLastName  :  " + user.getLastName() );
+	                        Log.d("tag01"," getMiddleName  :  " + user.getMiddleName() );
+	                        Log.d("tag01"," getBirthday  :  " + user.getBirthday() );
+	                        
+	                    }
+	                }).executeAsync();
+	            }
+	        }
+
+			
 		
 		
 	

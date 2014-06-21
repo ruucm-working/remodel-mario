@@ -14,6 +14,7 @@ public class Lv2State implements ICoinBlockViewState {
 	Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.samsung_test);
 	Sprite evolve = MediaAssets.getInstance().getSprite(R.drawable.samsungevolve_sprites_4);
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
+	MediaPlayer snd2 = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_1_up);
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
 	private int[] heightModifier2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -27,10 +28,10 @@ public class Lv2State implements ICoinBlockViewState {
 		context = viewContext;
 		lv2Anim = new Lv2Animation(); 
 		viewContext.addAnimatable(lv2Anim); 
-		snd.seekTo(0);
-		snd.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+		snd2.seekTo(0);
+		snd2.setOnSeekCompleteListener(new OnSeekCompleteListener() {
 			public void onSeekComplete(MediaPlayer mp) {
-				snd.start(); 
+				snd2.start(); 
 			} 
 		}); 
 	}
@@ -44,6 +45,8 @@ public class Lv2State implements ICoinBlockViewState {
 		
 		
 		animStage++;
+		
+		
 		
 		/*
 		if (animStage >= heightModifier.length)
