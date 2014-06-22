@@ -84,5 +84,17 @@ class CoinState implements ICoinBlockViewState {
 		
 	}
 
+	@Override
+	public void OnDoubleClick(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnShake(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

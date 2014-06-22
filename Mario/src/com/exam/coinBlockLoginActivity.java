@@ -2,19 +2,32 @@ package com.exam;
 
 
 
-import java.io.*;
+import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-import android.annotation.*;
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.util.*;
-import android.view.*;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Base64;
+import android.util.Log;
+import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.Button;
 
-import com.facebook.*;
-import com.facebook.model.*;
+import com.facebook.LoggingBehavior;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.Settings;
+import com.facebook.model.GraphUser;
 
 
 public class coinBlockLoginActivity extends Activity
@@ -51,7 +64,7 @@ public class coinBlockLoginActivity extends Activity
 
 	
 
-	
+	 
 
 	
 	@Override
@@ -60,7 +73,20 @@ public class coinBlockLoginActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 		
-		
+		try {
+			PackageInfo info = getPackageManager().getPackageInfo(
+			"com.facebook.samples.hellofacebook", 
+			PackageManager.GET_SIGNATURES);
+			for (Signature signature : info.signatures) {
+			MessageDigest md = MessageDigest.getInstance("SHA");
+			md.update(signature.toByteArray());
+			Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+			}
+			} catch (NameNotFoundException e) {
+
+			} catch (NoSuchAlgorithmException e) {
+
+			}
 			
 		
 		init();

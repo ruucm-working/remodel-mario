@@ -3,7 +3,6 @@ package com.exam;
 import android.app.*;
 import android.content.*;
 import android.os.*;
-import android.support.v4.app.*;
 import android.util.*;
 
 public class Notify extends Service
@@ -40,7 +39,8 @@ public class Notify extends Service
 		{
 			NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-			NotificationCompat.Builder builder = new NotificationCompat.Builder(Notify.this);
+			// NotificationCompat.Builder builder = new NotificationCompat.Builder(Notify.this);
+			Notification.Builder builder = new Notification.Builder(Notify.this);
 			builder.setSmallIcon(R.drawable.brick_question);
 			builder.setTicker("Mario");
 			builder.setContentTitle("Hello");
