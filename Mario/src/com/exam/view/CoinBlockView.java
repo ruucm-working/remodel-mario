@@ -176,11 +176,9 @@ public class CoinBlockView {
 		{
 			last_clicked_time = System.currentTimeMillis();
 			state.OnClick(this);
-		}		
+		}
 		else
 		{
-			Log.v("DOUBLECLICK", "LastTime: " + last_clicked_time);
-			Log.v("DOUBLECLICK", "CurrentTime: " + System.currentTimeMillis());
 			if(System.currentTimeMillis() - last_clicked_time < 500)
 			{
 				last_clicked_time = 0;		// prevent 3-time-click to 2-double click

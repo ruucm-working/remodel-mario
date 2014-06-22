@@ -10,16 +10,20 @@ import com.exam.*;
 
 public class InitState implements ICoinBlockViewState {
 
-	Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
-	//진동할때 올라오고, 상단에 남는 드로블
+	Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);	//진동할때 올라오고, 상단에 남는 드로블
+	
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
+	MediaPlayer snd2 = MediaAssets.getInstance().getSoundPlayer(R.raw.notify_sound);
+	
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	
 	initAnimation initAnim;
 	InitOftenAnim initofAnim;
 	InitClickAnim initclAnim;
-	boolean fuck = false;
+	InitDblClickAnim initdblAnim;
+	
 	CoinBlockView context; 
 
 	public InitState(CoinBlockView viewContext) {
@@ -142,6 +146,18 @@ public class InitState implements ICoinBlockViewState {
 		@Override
 		public void OnDoubleClick(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
+			viewContext.removeAnimatable(initdblAnim);
+
+			initdblAnim = new InitDblClickAnim();			
+			viewContext.addAnimatable(initdblAnim);
+
+			snd2.seekTo(0);
+			snd2.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+				public void onSeekComplete(MediaPlayer mp) {
+					snd2.start();
+				}
+			});
+			
 			Log.v("DOUBLECLICK", "Entering Doubleclick");
 			
 			Setting.CliDblClick++;
@@ -153,9 +169,9 @@ public class InitState implements ICoinBlockViewState {
 		public void OnShake(CoinBlockView viewContext) {
 			Log.v("SHAKE", "Entering OnShake - InitState");
 			
-			Setting.CliShakeCount++;			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteInt("shakecount", Setting.CliShakeCount);			
+			Setting.CliShakeCount++;
+			Setting.mPref.Ready();
+			Setting.mPref.WriteInt("shakecount", Setting.CliShakeCount);
 			Setting.mPref.CommitWrite();
 		}
 		
@@ -163,7 +179,7 @@ public class InitState implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter);
 		}
 
-		public boolean NeedRedraw() { 
+		public boolean NeedRedraw() {
 			return false;
 		}
 
@@ -201,6 +217,7 @@ public class InitState implements ICoinBlockViewState {
 			coinBlockView.removeAnimatable(initAnim);	
 			coinBlockView.removeAnimatable(initofAnim);
 			coinBlockView.removeAnimatable(initclAnim);
+			coinBlockView.removeAnimatable(initdblAnim);
 
 			//coinBlockView.setState(new DisabledState(coinBlockView));
 
@@ -247,13 +264,46 @@ public class InitState implements ICoinBlockViewState {
 				context.setState(new Lv0WaitState(context));
 				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
 			}
-
 			 */
 		}
 	}
 
 	private class InitClickAnim implements IAnimatable {
 		private int blockVib = 0;
+		
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			// Draw the brick at bottom
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+			//진동할때의 하단드로블
+
+			SpriteHelper.DrawSprite(canvas, sp1, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[blockVib] * context.getDensity()),0);
+
+			if (blockVib < 7) { 
+				blockVib++;
+			}
+
+			/*
+			if (blockVib >= 7){
+				context.setState(new Lv0WaitState(context));
+				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+			}
+			 */
+		}
+	}
+	
+	private class InitDblClickAnim implements IAnimatable {
+		private int blockVib = 0;	
+		private int[] widthModifier = { 16, -16, 8, -8, 4, -4, 0, 0 };	// here
+		
+		public InitDblClickAnim()
+		{
+			Log.v("DOUBLECLICK","butcher & sum");
+		}
 		
 		public boolean AnimationFinished() {
 			return false;

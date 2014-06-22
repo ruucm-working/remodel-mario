@@ -345,18 +345,16 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	        
 	        Session session = Session.getActiveSession();
 	        if (session == null) {
-	            if (savedInstanceState != null) {
+	            if (savedInstanceState != null)
 	                session = Session.restoreSession(this, null, statusCallback, savedInstanceState);
-	            }
-	            if (session == null) {
+	            
+	            if (session == null)
 	                session = new Session(this);
-	            }
+	            
 	            Session.setActiveSession(session);
-	            if (session.getState().equals(SessionState.CREATED_TOKEN_LOADED)) {
+	            if (session.getState().equals(SessionState.CREATED_TOKEN_LOADED))
 	                session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
-	            }
 	        }
-	        
 	        updateView();
 	    }
 	 

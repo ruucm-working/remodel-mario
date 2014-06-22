@@ -17,7 +17,6 @@ public class Setting extends Activity {
 	private static final String TAG = "Setting_TAG";
 	private static final boolean DEVELOPER_MODE = true;
 
-
 	//count click
 	TextView clicountinit;
 	TextView shakecount, dblclick, clicount0, clicount0_2, clicount1, clicount2;
@@ -327,8 +326,8 @@ public class Setting extends Activity {
 		switch(v.getId()){    	
 
 		case R.id.ok:    		
-			Intent intent = new Intent();    		
-			setResult(RESULT_OK,intent)	;
+			Intent intent = new Intent();
+			setResult(RESULT_OK,intent);
 			Log.d(TAG,"setOK");
 
 			mPref.Ready();
@@ -347,7 +346,7 @@ public class Setting extends Activity {
 			mPref.WriteInt("dblclick", CliDblClick);
 			mPref.WriteInt("clicount0", CliCount0);
 			mPref.WriteInt("clicount0_2", CliCount0_2);
-			mPref.WriteInt("clicount1", CliCount1); 
+			mPref.WriteInt("clicount1", CliCount1);
 			mPref.WriteInt("clicount2", CliCount2);
 
 			mPref.WriteBoolean("checked0", checked[0]);
@@ -382,7 +381,6 @@ public class Setting extends Activity {
 			break;
 
 		case R.id.reset4:
-
 			CliCountinit = 0;
 			CliShakeCount = 0;
 			CliDblClick = 0;
@@ -398,7 +396,6 @@ public class Setting extends Activity {
 			clicount0_2.setText( CliCount0_2 + "번 ");
 			clicount1.setText( CliCount1 + "번 ");
 			clicount2.setText( CliCount2 + "번 ");
-
 			break;
 
 		case R.id.kind1:
