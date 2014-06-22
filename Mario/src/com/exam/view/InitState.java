@@ -235,6 +235,8 @@ public class InitState implements ICoinBlockViewState {
 			
 			//coinBlockIntroActivity.setContentView(R.layout.main);
 			
+			
+			/*
 			 
 			
 			//Setting.InitState = false;	
@@ -244,6 +246,11 @@ public class InitState implements ICoinBlockViewState {
 			//Setting.mPref.WriteBoolean("initstate", Setting.InitState);	
 			Setting.mPref.WriteBoolean("lv0state", Setting.Lv0State);
 			Setting.mPref.CommitWrite();
+			*/
+			
+			
+			setContentView(R.drawable.background0, "껒여껒여껒여껒여");
+			
 			
 		
 			
@@ -386,23 +393,28 @@ public class InitState implements ICoinBlockViewState {
 		
 	}
 	
-	/*
-	public void setContentView(int textViewId) {
+	
+	public void setContentView(int drawbleid, String txt) {
 		
-		coinBlockIntroActivity.getInstance().setContentView(R.layout.main);
 		
-        timer = (TextView)coinBlockIntroActivity.getInstance()
-                .findViewById(textViewId);
+		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
+		
+		instance.setContentView(R.layout.main);		
+		
+		
+		//set newstate's background img
+		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
+		a.setBackgroundResource(drawbleid);
+		
+		//set newstate's text
+		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
+		statetxt.setText(txt);
+		
     }
 	
 	
-	public void setTextView1(int textViewId) {
-        timer = (TextView)coinBlockIntroActivity.getInstance()
-                .findViewById(textViewId);
-    }
 	
-	
-*/
+
 	
 	
 
