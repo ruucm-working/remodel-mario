@@ -31,7 +31,6 @@ public class CoinBlockView {
 	private static int mWidgetId;
 	private static ICoinBlockViewState state;
 	
-	
 	//for evolve
 	public static long second = 0;
 	

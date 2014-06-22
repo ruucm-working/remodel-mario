@@ -9,19 +9,24 @@ import com.exam.*;
 
 public class Lv0_1State implements ICoinBlockViewState {
 
+	CoinBlockView context;
+
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.egg);
 	//진동후의, 하단 드로블
 	//Sprite flowerSprite = MediaAssets.getInstance().getSprite(R.drawable.reset_large);
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
+	MediaPlayer snd1 = MediaAssets.getInstance().getSoundPlayer(R.raw.notify_sound);
+
+	//Lv0Animation lv0Anim;  
+	Lv0OftenAnim lv0ofAnim; 
+	Lv0ClickAnim lv0clAnim;
+	Lv0DblClickAnim lv0dblAnim;
+
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, -0 };		// here
-	//Lv0Animation lv0Anim;  
-	Lv0OftenAnim lv0ofAnim; 
-	Lv0ClickAnim lv0clAnim;    
-	boolean fuck = false;   
-	CoinBlockView context;
+	boolean fuck = false;		
 
 	public Lv0_1State(CoinBlockView viewContext) {
 		context = viewContext;
@@ -120,7 +125,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 
 			lv0clAnim = new Lv0ClickAnim();			
 			viewContext.addAnimatable(lv0clAnim);
-			
+
 			/*
 			viewContext.removeAnimatable(lv0ofAnim);
 			lv0ofAnim = new Lv0OftenAnim();			
@@ -165,7 +170,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 			lv0ofAnim = new Lv0OftenAnim();			
 			coinBlockView.addAnimatable(lv0ofAnim);
 		}
-		
+
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
@@ -255,10 +260,61 @@ public class Lv0_1State implements ICoinBlockViewState {
 		}		
 	}
 
+	private class Lv0DblClickAnim implements IAnimatable {
+		private int blockVib = 0;	
+		private int[] widthModifier = { 16, -16, 8, -8, 4, -4, 0, 0 };	// here
+
+		public Lv0DblClickAnim()
+		{
+			Log.v("DOUBLECLICK","butcher & sum");
+		}
+
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			// Draw the brick at bottom
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+			//진동할때의 하단드로블
+
+			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[blockVib] * context.getDensity()),0);
+
+			if (blockVib < 7) { 
+				blockVib++;
+			}
+
+			/*
+			if (blockVib >= 7){
+				context.setState(new Lv0WaitState(context));
+				Log.v("tag4", "blockVib >= heightModifier.length)"+Integer.toString(blockVib));
+			}
+			 */
+		}
+	}
+
 	@Override
 	public void OnDoubleClick(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
+		viewContext.removeAnimatable(lv0dblAnim);
 
+		lv0dblAnim = new Lv0DblClickAnim();			
+		viewContext.addAnimatable(lv0dblAnim);
+
+		snd1.seekTo(0);
+		snd1.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+			public void onSeekComplete(MediaPlayer mp) {
+				snd1.start();
+			}
+		});
+
+		Log.v("DOUBLECLICK", "Entering Doubleclick");
+
+		Setting.CliDblClick++;
+		Setting.mPref.Ready();
+		Setting.mPref.WriteInt("dblclick", Setting.CliDblClick);			
+		Setting.mPref.CommitWrite();
 	}
 
 	@Override
