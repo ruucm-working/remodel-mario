@@ -234,6 +234,9 @@ public class Lv0_1State implements ICoinBlockViewState {
 			coinBlockIntroActivity.taskTimer1.isCanceled = true;
 			
 			
+			
+			
+			
 			Log.d("tag3","OnEvolve");
 			
 			
@@ -359,6 +362,25 @@ public class Lv0_1State implements ICoinBlockViewState {
 
 		
 	}
+	
+	
+	public void setContentView(int drawbleid, String txt) {
+		
+		
+		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
+		
+		instance.setContentView(R.layout.main);		
+		
+		
+		//set newstate's background img
+		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
+		a.setBackgroundResource(drawbleid);
+		
+		//set newstate's text
+		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
+		statetxt.setText(txt);
+		
+    }
 	
 	
 

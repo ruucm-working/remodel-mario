@@ -5,6 +5,7 @@ import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
 import android.util.*;
+import android.widget.*;
 
 import com.exam.*;
 import com.exam.view.InitState.*;
@@ -131,6 +132,8 @@ public class Lv1State implements ICoinBlockViewState {
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			coinBlockView.setState(new Lv2State(coinBlockView));
+
+			setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
 			
 		}
  
@@ -351,6 +354,27 @@ public class Lv1State implements ICoinBlockViewState {
 	
 	
 	}
+	
+	
+	public void setContentView(int drawbleid, String txt) {
+		
+		
+		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
+		
+		instance.setContentView(R.layout.main);		
+		
+		
+		//set newstate's background img
+		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
+		a.setBackgroundResource(drawbleid);
+		
+		//set newstate's text
+		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
+		statetxt.setText(txt);
+		
+    }
+	
+	
 	
 	
 
