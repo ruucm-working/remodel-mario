@@ -68,7 +68,8 @@ public class coinBlockLoginActivity extends Activity
         facebookInit(savedInstanceState);
 		
         
-
+        //Ready next activity intent
+        
         
         
         //프레퍼런스 읽어오기   
@@ -179,7 +180,7 @@ public class coinBlockLoginActivity extends Activity
 	                    public void onClick(View view) { onClickLogout(); }
 	                });
 	                
-	                
+	                /*
 	                
 	                Intent intent = new Intent(this, coinBlockIntroActivity.class);
 		            //intent.putExtra("userId", userId);
@@ -232,6 +233,18 @@ public class coinBlockLoginActivity extends Activity
 	                session.closeAndClearTokenInformation();
 	            }
 	        }
+	        
+	        
+	        private void toIntro() {
+
+	        	Intent intent = new Intent(this, coinBlockIntroActivity.class);
+	            //intent.putExtra("userId", userId);
+	            //intent.putExtra("userFirstName", userFirstName);
+	            //intent.putExtra("userLastName", userLastName);
+				startActivity(intent);
+	        	
+	        }
+	        
 	 
 	        private class SessionStatusCallback implements Session.StatusCallback {
 	            @Override
@@ -287,10 +300,18 @@ public class coinBlockLoginActivity extends Activity
 	            			fbPref.WriteString("userLastName", userLastName);
 	                  		
 	                    
+	            			Log.d("tag03", "WriteString;");
 	                    
 	            			
 	            			fbPref.CommitWrite();
+	            			
+	            			toIntro();
 	            			finish();
+	            			
+	            			
+
+	            			
+	            			
 	                        
 	                        
 	                    }

@@ -4,8 +4,10 @@ package com.exam;
 
 import java.io.*;
 
+import android.annotation.SuppressLint;
 import android.app.*;
 import android.content.*;
+import android.graphics.drawable.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
@@ -16,6 +18,11 @@ import android.widget.*;
 public class coinBlockIntroActivity extends Activity implements OnClickListener
 {
 	/** Called when the activity is first created. */
+	
+	
+	
+	static boolean initstate;
+	
 	
 	
 	//액티비티간 통신을 위한
@@ -104,20 +111,23 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
   		}       
   		mPref.Ready();
 		fbPref.Ready();
+		Log.d("tag03", "fbPref.Ready();");
 		
 
 		//set Main Background Image & Text
 		
 		
-		boolean initstate = mPref.ReadBoolean("initstate", false);
+		String userId = fbPref.ReadString("userId", "");
+  		String userFirstName = fbPref.ReadString("userFirstName", "");
+  		String userLastName = fbPref.ReadString("userLastName", "");
+		
+		initstate = mPref.ReadBoolean("initstate", false);
 		boolean lv0state = mPref.ReadBoolean("lv0state", false);
 		
         	if(!initstate){
-    			setContentView(R.layout.main);
+    			setContentView(R.layout.main); 
     			
-    			String userId = fbPref.ReadString("userId", "");
-    	  		String userFirstName = fbPref.ReadString("userFirstName", "");
-    	  		String userLastName = fbPref.ReadString("userLastName", "");
+    			
     	  		
     			welcome = (TextView)findViewById(R.id.welcome);		
     			welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
@@ -583,14 +593,33 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			*/
 		
 		
+		@SuppressLint("NewApi")
 		protected void onActivityResult (int requestCode, int resultCode, Intent data) {
 			switch (requestCode){
 			case SETTING:
 				Log.d("tag02","onActivityResult");
 				
-				setContentView(R.layout.initstate);
 				
-				InitStateText = (TextView)findViewById(R.id.initstatetxt);
+				
+				//if(!initstate)
+				setContentView(R.layout.main);
+				
+				
+				
+				LinearLayout a = (LinearLayout)findViewById(R.id.mainlinear);
+				Log.d("tag03","LinearLayout");
+				
+				
+				a.setBackgroundResource(R.drawable.background);
+				//a.setBackground( (Drawable)getResources().getDrawable(R.drawable.coin_background2));
+				Log.d("tag03","setBackgroundResource");
+				
+				
+				//coinBlockIntroActivity b = new coinBlockIntroActivity();
+				//b.setBackground( (Drawable)getResources().getDrawable(R.drawable.coin_background2));
+						
+				
+				InitStateText = (TextView)findViewById(R.id.welcome);
 				InitStateText.setText("상자를 열어라");
 				
 			}

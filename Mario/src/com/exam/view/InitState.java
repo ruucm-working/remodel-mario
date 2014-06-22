@@ -5,6 +5,7 @@ import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
 import android.util.*;
+import android.widget.*;
 
 import com.exam.*;
 
@@ -231,6 +232,9 @@ public class InitState implements ICoinBlockViewState {
 			//coinBlockIntroActivity.taskTimer1.setTime(0);
 			coinBlockIntroActivity.taskTimer1.execute("");
 			
+			
+			//coinBlockIntroActivity.setContentView(R.layout.main);
+			
 			 
 			
 			//Setting.InitState = false;	
@@ -382,8 +386,23 @@ public class InitState implements ICoinBlockViewState {
 		
 	}
 	
+	/*
+	public void setContentView(int textViewId) {
+		
+		coinBlockIntroActivity.getInstance().setContentView(R.layout.main);
+		
+        timer = (TextView)coinBlockIntroActivity.getInstance()
+                .findViewById(textViewId);
+    }
 	
-
+	
+	public void setTextView1(int textViewId) {
+        timer = (TextView)coinBlockIntroActivity.getInstance()
+                .findViewById(textViewId);
+    }
+	
+	
+*/
 	
 	
 
