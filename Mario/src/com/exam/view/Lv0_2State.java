@@ -29,6 +29,10 @@ public class Lv0_2State implements ICoinBlockViewState {
 
 	public Lv0_2State(CoinBlockView viewContext) {
 		context = viewContext;
+		
+		
+		setContentView(R.drawable.background0,"lv0-2 임 ㅇㅇ");
+		
 		//lv0Anim = new Lv0Animation();
 		lv0_2ofAnim = new Lv0_2OftenAnim();
 		
@@ -244,7 +248,7 @@ public class Lv0_2State implements ICoinBlockViewState {
 		        
 		        
 		        
-		    setContentView(R.drawable.background1, "레벨1임이제 ㅋㅋㅋㅋㅄ");
+		    //setContentView(R.drawable.background1, "레벨1임이제 ㅋㅋㅋㅋㅄ");
 			
 			
 			Log.d("tag3","OnEvolve");
@@ -411,6 +415,10 @@ public class Lv0_2State implements ICoinBlockViewState {
 		
 		instance.setContentView(R.layout.main);		
 		
+		
+		//set time
+		TextView time = (TextView)instance.findViewById(R.id.time0);
+		time.setText(Long.toString(instance.second));
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			

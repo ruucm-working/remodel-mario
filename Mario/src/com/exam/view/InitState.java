@@ -30,6 +30,9 @@ public class InitState implements ICoinBlockViewState {
 
 	public InitState(CoinBlockView viewContext) {
 		context = viewContext;
+		
+		setContentView(R.drawable.background,"상자를 열어라");
+		
 		initAnim = new initAnimation();
 		initofAnim = new InitOftenAnim();
 		
@@ -399,21 +402,26 @@ public class InitState implements ICoinBlockViewState {
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
 		
-		instance.setContentView(R.layout.main);		
+		//instance.setContentView(R.layout.main);		
 		
+		
+		/*
+		
+		//set time
+		TextView time = (TextView)instance.findViewById(R.id.time0);
+		time.setText(Long.toString(instance.second));
+		
+		*/
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
 		a.setBackgroundResource(drawbleid);
-		
+		 
 		//set newstate's text
 		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
 		statetxt.setText(txt);
 		
     }
-	
-	
-	
 
 	
 	

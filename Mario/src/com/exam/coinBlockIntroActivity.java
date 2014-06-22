@@ -600,7 +600,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 				Log.d("tag02","onActivityResult");
 				
 				
-				
+				/*
 				//if(!initstate)
 				setContentView(R.layout.main);
 				
@@ -621,6 +621,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 				
 				InitStateText = (TextView)findViewById(R.id.welcome);
 				InitStateText.setText("상자를 열어라");
+				*/
 				
 			}
 			

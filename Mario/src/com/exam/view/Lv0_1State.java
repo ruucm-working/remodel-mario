@@ -27,6 +27,11 @@ public class Lv0_1State implements ICoinBlockViewState {
 
 	public Lv0_1State(CoinBlockView viewContext) {
 		context = viewContext;
+		
+		
+		
+		setContentView(R.drawable.background0,"lv0-1 임 ㅇㅇ");
+		
 		//lv0Anim = new Lv0Animation();
 		lv0clAnim = new Lv0ClickAnim();
 		
@@ -369,18 +374,27 @@ public class Lv0_1State implements ICoinBlockViewState {
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
 		
-		instance.setContentView(R.layout.main);		
+		//instance.setContentView(R.layout.main);		
 		
+		
+		/*
+		
+		//set time
+		TextView time = (TextView)instance.findViewById(R.id.time0);
+		time.setText(Long.toString(instance.second));
+		
+		*/
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
 		a.setBackgroundResource(drawbleid);
-		
+		 
 		//set newstate's text
 		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
 		statetxt.setText(txt);
 		
     }
+	
 	
 	
 

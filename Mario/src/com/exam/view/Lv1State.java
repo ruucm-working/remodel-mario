@@ -27,6 +27,9 @@ public class Lv1State implements ICoinBlockViewState {
 
 	public Lv1State(CoinBlockView viewContext) {
 		context = viewContext; 
+		
+		setContentView(R.drawable.background1, "레벨1s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+		
 		lv1Anim = new Lv1Animation();
 		viewContext.addAnimatable(lv1Anim);
 		snd.seekTo(0); 
@@ -133,7 +136,7 @@ public class Lv1State implements ICoinBlockViewState {
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			coinBlockView.setState(new Lv2State(coinBlockView));
 
-			setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+			//setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
 			
 		}
  
@@ -364,6 +367,10 @@ public class Lv1State implements ICoinBlockViewState {
 		instance.setContentView(R.layout.main);		
 		
 		
+		//set time
+		TextView time = (TextView)instance.findViewById(R.id.time0);
+		time.setText(Long.toString(instance.second));
+		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
 		a.setBackgroundResource(drawbleid);
@@ -373,6 +380,7 @@ public class Lv1State implements ICoinBlockViewState {
 		statetxt.setText(txt);
 		
     }
+	
 	
 	
 	
