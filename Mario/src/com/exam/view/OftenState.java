@@ -19,12 +19,8 @@ public class OftenState implements ICoinBlockViewState {
 		context = viewContext;
 		oftenAnim = new OftenAnimation();
 		
-		sp1 = sprite;
-	
-		
-		viewContext.addAnimatable(oftenAnim);	 
-			
-		
+		sp1 = sprite;		
+		viewContext.addAnimatable(oftenAnim);	
 	}
 
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
@@ -46,7 +42,6 @@ public class OftenState implements ICoinBlockViewState {
 	} 
 
 	public void OnClick(CoinBlockView viewContext) {
-		
 		// TODO Auto-generated method stub  
 	}
 
@@ -59,7 +54,6 @@ public class OftenState implements ICoinBlockViewState {
 		public OftenWaitState(CoinBlockView viewContext) {
 			mViewContext = viewContext;
 			
-			
 			(new Handler()).postDelayed(new Runnable(){
 				public void run() {
 					if (mViewContext.getState().getClass() == OftenWaitState.class)
@@ -70,18 +64,12 @@ public class OftenState implements ICoinBlockViewState {
 							//mViewContext.removeAnimatable(oftenAnim);
 							mViewContext.setState(new Lv0_1State(mViewContext));
 							
-							
 							Log.v("tag3","Setting.second >= 20 && Setting.second <");
-							
 						}
-						
 						mViewContext.setState(new OftenState(mViewContext, sp1));
-						
 					}
 				}
 			}, 5000);
-			 
-			
 		}
 
 		public void OnClick(CoinBlockView viewContext) {
@@ -121,9 +109,7 @@ public class OftenState implements ICoinBlockViewState {
 				//coinBlockView.setState(new Lv1State(coinBlockView));
 				Log.v("tag2", "waitstate- onevolve");
 			}
-		
-			*/ 
-			
+			*/
 		}
 
 		@Override
@@ -150,13 +136,14 @@ public class OftenState implements ICoinBlockViewState {
 			
 		}
 
-
-
+		@Override
+		public void OnWifi(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	private class OftenAnimation implements IAnimatable {
-		
-		
 		private int flowerRaise = 4;
 		private int flowerRaise2 = 4;
 
@@ -168,37 +155,21 @@ public class OftenState implements ICoinBlockViewState {
 			SpriteHelper.DrawSprite(canvas, sp1, sp1.NextFrame(),
 							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
 			
-	
 			// Draw the flower
-			if (flowerRaise < 8) {
+			if (flowerRaise < 8)
 				flowerRaise++;
-			}
-			
-			
 		}
-		
-		
-	
-		
 	}
-	
-
-	
 
 	@Override
 	public void OnEvolve(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 
 		Log.v("tag2", "often- OnEvolve");
-		if (coinBlockIntroActivity.second >= 20 && coinBlockIntroActivity.second <25)	{
-				// added
-			
+		if (coinBlockIntroActivity.second >= 20 && coinBlockIntroActivity.second <25) {
 			//coinBlockView.setState(new Lv1State(coinBlockView));
 			Log.v("tag2", "lv1");
 		}
-	
-		
-		
 	}
 
 	@Override
@@ -224,9 +195,10 @@ public class OftenState implements ICoinBlockViewState {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
 
-
+	@Override
+	public void OnWifi(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
 }

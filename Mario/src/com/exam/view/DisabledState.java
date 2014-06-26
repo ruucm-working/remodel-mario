@@ -75,5 +75,11 @@ class DisabledState implements ICoinBlockViewState {
 		
 	}
 
+	@Override
+	public void OnWifi(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 

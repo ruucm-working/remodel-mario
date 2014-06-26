@@ -5,6 +5,7 @@ import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
 import android.util.*;
+
 import com.exam.*;
 import com.exam.view.InitState.*;
 import com.exam.view.Lv0_1State.*;
@@ -18,15 +19,35 @@ public class Lv1State implements ICoinBlockViewState {
 	
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	MediaPlayer snd1 = MediaAssets.getInstance().getSoundPlayer(R.raw.notify_sound);
+	MediaPlayer snd3 = MediaAssets.getInstance().getSoundPlayer(R.raw.haha);
 	
 	Lv1OftenAnim lv1ofAnim;// here 
 	Lv1Animation lv1Anim; 
 	Lv1ClickAnim lv1clAnim;
 	Lv1DblClickAnim lv1dblAnim;
+	Lv1WifiAnimation wifiAnim;
 	
 	private int animStage = 0; 
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	
+	private class Lv1WifiAnimation implements IAnimatable {
+		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.wifi_sample4);
+
+		public boolean AnimationFinished() {
+			return false;
+		}
+
+		public void Draw(Bitmap canvas) {
+			Log.v("WIFI", "Entering wifi class");
+			
+			// Draw the brick at bottom
+			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
+			//진동할때의 하단드로블
+
+			SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter, 0, 0);
+		}
+	}
 
 	public Lv1State(CoinBlockView viewContext) {
 		context = viewContext; 
@@ -144,6 +165,12 @@ public class Lv1State implements ICoinBlockViewState {
 
 		@Override
 		public void OnShake(CoinBlockView viewContext) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void OnWifi(CoinBlockView coinBlockView) {
 			// TODO Auto-generated method stub
 			
 		}
@@ -305,5 +332,24 @@ public class Lv1State implements ICoinBlockViewState {
 	public void OnShake(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void OnWifi(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		Log.v("WIFI", "Entering OnWifi");
+		
+		// TODO Auto-generated method stub
+		viewContext.removeAnimatable(wifiAnim);
+
+		wifiAnim = new Lv1WifiAnimation();			
+		viewContext.addAnimatable(wifiAnim);
+
+		snd3.seekTo(0);
+		snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+			public void onSeekComplete(MediaPlayer mp) {
+				snd3.start();
+			}
+		});
 	}
 }

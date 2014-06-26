@@ -21,15 +21,15 @@ public class CoinBlockView {
 	public static String INTENT_INIT_FORMAT = "com.exam.view.INTENT_INIT_FORMAT";
 	
 	private static final int REFRESH_RATE = 40;
-	int cheight;
 	private volatile Set<IAnimatable> Children;
-	int cwidth;
+	private static int mWidgetId;
+	private static ICoinBlockViewState state;
+	private int cheight;
+	private int cwidth;
 	private float density;
 
 	private long lastRedrawMillis = 0;
 	private long last_clicked_time = 0;
-	private static int mWidgetId;
-	private static ICoinBlockViewState state;
 	
 	//for evolve
 	public static long second = 0;
@@ -118,7 +118,7 @@ public class CoinBlockView {
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 				init = false;
 			}
-			else if (second >= 10 && second <= 12 && clicount0 >= 3 && lv0_1) {
+			else if (second >= 10 && clicount0 >= 3 && lv0_1) {
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
 				lv0_1 = false;
 			} 
@@ -178,16 +178,17 @@ public class CoinBlockView {
 		}
 		else
 		{
-			if(System.currentTimeMillis() - last_clicked_time < 500)
+			if(System.currentTimeMillis() - last_clicked_time < 250)
 			{
 				last_clicked_time = 0;		// prevent 3-time-click to 2-double click
 				state.OnDoubleClick(this);
 			}
 			
 			else
+			{
 				state.OnClick(this);
-			
-			last_clicked_time = System.currentTimeMillis();
+				last_clicked_time = System.currentTimeMillis();
+			}
 		}
 	}
 
@@ -204,6 +205,11 @@ public class CoinBlockView {
 	public void OnInit() {
 		state.OnInit(this);
 		Log.d("tag3", "state.OnInit");
+	}
+	
+	public void OnWifi() {
+		state.OnWifi(this);
+		Log.d("WIFI", "state.OnWifi");
 	}
 
 	public void Redraw(Context context) {		// 이 함수는 ㅈ나 많이 루프된다. 입력 안하고 가만있어도 계속 반복되는 듯
@@ -288,7 +294,7 @@ public class CoinBlockView {
 		Intent intent = new Intent(String.format(INTENT_INIT_FORMAT, mWidgetId));
 		intent.putExtra("widgetId11", mWidgetId);		
 
-		context.sendBroadcast(intent);	
+		context.sendBroadcast(intent);
 	
 		Intent intent2 = new Intent(String.format(INTENT_EVOLVE_FORMAT, mWidgetId));
 		intent2.putExtra("widgetId10", mWidgetId);				

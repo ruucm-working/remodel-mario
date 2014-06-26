@@ -206,7 +206,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f020013;
         public static final int com_facebook_loginbutton_silver=0x7f020014;
         public static final int com_facebook_logo=0x7f020015;
-        public static final int com_facebook_picker_default_separator_color=0x7f02005b;
+        public static final int com_facebook_picker_default_separator_color=0x7f02005c;
         public static final int com_facebook_picker_item_background=0x7f020016;
         public static final int com_facebook_picker_list_focused=0x7f020017;
         public static final int com_facebook_picker_list_longpressed=0x7f020018;
@@ -276,6 +276,7 @@ containing a value of this type.
         public static final int test6=0x7f020058;
         public static final int test7=0x7f020059;
         public static final int test8=0x7f02005a;
+        public static final int wifi_sample4=0x7f02005b;
     }
     public static final class id {
         public static final int block=0x7f060004;
@@ -385,13 +386,14 @@ containing a value of this type.
     }
     public static final class raw {
         public static final int beep=0x7f050000;
-        public static final int notify_sound=0x7f050001;
-        public static final int smb_1_up=0x7f050002;
-        public static final int smb_breakblock=0x7f050003;
-        public static final int smb_bump=0x7f050004;
-        public static final int smb_coin=0x7f050005;
-        public static final int smb_powerup=0x7f050006;
-        public static final int smb_powerup_appears=0x7f050007;
+        public static final int haha=0x7f050001;
+        public static final int notify_sound=0x7f050002;
+        public static final int smb_1_up=0x7f050003;
+        public static final int smb_breakblock=0x7f050004;
+        public static final int smb_bump=0x7f050005;
+        public static final int smb_coin=0x7f050006;
+        public static final int smb_powerup=0x7f050007;
+        public static final int smb_powerup_appears=0x7f050008;
     }
     public static final class string {
         public static final int app_id=0x7f09001d;

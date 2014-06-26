@@ -1,5 +1,6 @@
 package com.exam;
 
+import com.exam.view.CoinBlockView;
 
 import android.bluetooth.BluetoothAdapter;
 import android.net.NetworkInfo;
@@ -10,6 +11,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,6 +20,8 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 
 	public static final String TAG = "block";
 	public static final String TAG2 = "anim";
+	
+	private Context context;
 
 	// phone status variables
 	private static boolean isDown = false;
@@ -35,6 +39,8 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
+		this.context = context;
+		
 		super.onDeleted(context, appWidgetIds);
 		for (int x : appWidgetIds) {
 			((CoinBlockWidgetApp) context.getApplicationContext()).DeleteWidget(x);
@@ -43,6 +49,8 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+		this.context = context;
+		
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 		
 		if(!isAdditionalListenerCreated)
@@ -62,6 +70,8 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		this.context = context;
+		
 		super.onReceive(context, intent);
 
 		Log.d(TAG,"onReceive");
@@ -124,13 +134,16 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		// WiFi
 		else if (intent.getAction().startsWith("android.net.wifi.STATE_CHANGE"))
 		{
-			Log.v(TAG, "Wifi Connect state changed");
+			Log.v("WIFI", "Wifi Connect state changed");
 			NetworkInfo netInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
 			isWifiConnected = netInfo.isConnected();
 			Toast.makeText(context, "Wifi status changed", Toast.LENGTH_SHORT).show();
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
 			this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, getClass())));
+			
+			int id = intent.getIntExtra("widgetId11", 0);
+			((CoinBlockWidgetApp) context.getApplicationContext()).GetView(id).OnWifi();
 		}
 
 		// Plane mode

@@ -202,6 +202,12 @@ public class Lv0_1State implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 
 		}
+
+		@Override
+		public void OnWifi(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	private class Lv0OftenAnim implements IAnimatable {
@@ -261,13 +267,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 	}
 
 	private class Lv0DblClickAnim implements IAnimatable {
-		private int blockVib = 0;	
-		private int[] widthModifier = { 16, -16, 8, -8, 4, -4, 0, 0 };	// here
-
-		public Lv0DblClickAnim()
-		{
-			Log.v("DOUBLECLICK","butcher & sum");
-		}
+		private int blockVib = 0;
 
 		public boolean AnimationFinished() {
 			return false;
@@ -321,5 +321,11 @@ public class Lv0_1State implements ICoinBlockViewState {
 	public void OnShake(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void OnWifi(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
 	}
 }

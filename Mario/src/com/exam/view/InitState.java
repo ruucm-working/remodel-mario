@@ -81,6 +81,25 @@ public class InitState implements ICoinBlockViewState {
 	public void OnInit(CoinBlockView coinBlockView) {
 		coinBlockView.removeAnimatable(initAnim);
 	}
+	
+	
+	@Override
+	public void OnShake(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnDoubleClick(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnWifi(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	class InitWaitState implements ICoinBlockViewState {
 		Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
@@ -223,6 +242,12 @@ public class InitState implements ICoinBlockViewState {
 
 			Log.d("tag3","OnInit");
 		}
+
+		@Override
+		public void OnWifi(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	private class initAnimation implements IAnimatable {
@@ -328,17 +353,5 @@ public class InitState implements ICoinBlockViewState {
 			}
 			 */
 		}
-	}
-
-	@Override
-	public void OnShake(CoinBlockView viewContext) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnDoubleClick(CoinBlockView viewContext) {
-		// TODO Auto-generated method stub
-		
 	}
 }

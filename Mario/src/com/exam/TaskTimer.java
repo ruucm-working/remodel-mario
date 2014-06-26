@@ -21,7 +21,7 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     private static final int TEXT_COLOR_FINISHED = 0xFFFF0000;
     
     TextView timer = null;
-    private static int time       = 0;
+    private static int time = 0;
     
     public void setTextView1(int textViewId) {
         timer = (TextView)coinBlockIntroActivity.getInstance()

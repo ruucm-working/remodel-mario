@@ -1,7 +1,5 @@
 package com.exam;
 
-
-
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -29,43 +27,22 @@ import com.facebook.SessionState;
 import com.facebook.Settings;
 import com.facebook.model.GraphUser;
 
-
 public class coinBlockLoginActivity extends Activity
 {
 	/** Called when the activity is first created. */
-
-
-
-
-
 	//facebook	
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
 	private Button buttonLoginLogout;
 
-
-
-
 	//facebook login profile
-
 	String userId ;
 	String userFirstName ;
 	String userLastName ;
 
-
-
-
 	//프레퍼런스 
-	public static TextPref mPref;	
-	public static TextPref fbPref;	
-
-	boolean DialogOn ;
-
-
-
-
-
-
-
+	public static TextPref mPref;
+	public static TextPref fbPref;
+	boolean DialogOn;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -73,9 +50,7 @@ public class coinBlockLoginActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		try {
-			Log.d("KeyHash:", "Entering completely darkness");
-			
+		try {			
 			PackageInfo info = getPackageManager().getPackageInfo(
 					"com.facebook.samples.hellofacebook", 
 					PackageManager.GET_SIGNATURES);
@@ -91,23 +66,17 @@ public class coinBlockLoginActivity extends Activity
 			Log.d("KeyHash:", "NoAlgorithm");
 		}
 
-
 		init();
 		dataInit();
 		facebookInit(savedInstanceState);
 
-
 		//Ready next activity intent
-
-
-
 		//프레퍼런스 읽어오기   
 		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
 		if(!saveDir.exists()) 
 		{
 			saveDir.mkdirs();
 		}
-
 
 		try {
 			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
@@ -117,12 +86,8 @@ public class coinBlockLoginActivity extends Activity
 			e.printStackTrace();
 		}       
 
-
 		mPref.Ready();
 		fbPref.Ready();
-
-
-
 
 		DialogOn = mPref.ReadBoolean("dialogon", true);
 
@@ -130,21 +95,11 @@ public class coinBlockLoginActivity extends Activity
 		userFirstName = fbPref.ReadString("userFirstName", "");
 		userLastName = fbPref.ReadString("userLastName", "");
 
-
 		mPref.EndReady();
 		fbPref.EndReady();
-
-
-
-
-	} 
-
-
-
-
-
+	}
+	
 	//Facebook Login
-
 	private void init() {
 		buttonLoginLogout = (Button)findViewById(R.id.buttonLoginLogout1);
 	}
@@ -172,7 +127,6 @@ public class coinBlockLoginActivity extends Activity
 				session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
 			}
 		}
-
 		updateView();
 	}
 
@@ -208,37 +162,33 @@ public class coinBlockLoginActivity extends Activity
 			buttonLoginLogout.setOnClickListener(new OnClickListener() {
 				public void onClick(View view) { onClickLogout(); }
 			});
+			/*
+            Intent intent = new Intent(this, coinBlockIntroActivity.class);
+            //intent.putExtra("userId", userId);
+            //intent.putExtra("userFirstName", userFirstName);
+            //intent.putExtra("userLastName", userLastName);
+			startActivity(intent); 
 
 			/*
-
-	                Intent intent = new Intent(this, coinBlockIntroActivity.class);
-		            //intent.putExtra("userId", userId);
-		            //intent.putExtra("userFirstName", userFirstName);
-		            //intent.putExtra("userLastName", userLastName);
-					startActivity(intent); 
-
-					/*
-	                if(DialogOn){
+            if(DialogOn){
 
 
-		            Intent intent = new Intent(this, coinBlockIntroActivity.class);
-		            //intent.putExtra("userId", userId);
-		            //intent.putExtra("userFirstName", userFirstName);
-		            //intent.putExtra("userLastName", userLastName);
-					startActivity(intent); 
-	                }
+            Intent intent = new Intent(this, coinBlockIntroActivity.class);
+            //intent.putExtra("userId", userId);
+            //intent.putExtra("userFirstName", userFirstName);
+            //intent.putExtra("userLastName", userLastName);
+			startActivity(intent); 
+            }
 
-	                else {
-	                	Intent intent = new Intent(this, coinBlockIntroActivity2.class);
-						startActivity(intent);
-	                }
-
+            else {
+            	Intent intent = new Intent(this, coinBlockIntroActivity2.class);
+				startActivity(intent);
+            }
 			 */
 			Log.d("tag02","userFirstName"+ userFirstName );
-
-
-
-		} else {
+		}
+		else
+		{
 			buttonLoginLogout.setText("로그인");
 			buttonLoginLogout.setOnClickListener(new OnClickListener() {
 				public void onClick(View view) { onClickLogin(); }
@@ -253,7 +203,6 @@ public class coinBlockLoginActivity extends Activity
 		} else {
 			Session.openActiveSession(this, true, statusCallback);
 		}
-
 	}
 
 	private void onClickLogout() {
@@ -263,17 +212,13 @@ public class coinBlockLoginActivity extends Activity
 		}
 	}
 
-
 	private void toIntro() {
-
 		Intent intent = new Intent(this, coinBlockIntroActivity.class);
 		//intent.putExtra("userId", userId);
 		//intent.putExtra("userFirstName", userFirstName);
 		//intent.putExtra("userLastName", userLastName);
 		startActivity(intent);
-
 	}
-
 
 	private class SessionStatusCallback implements Session.StatusCallback {
 		@Override
@@ -283,37 +228,33 @@ public class coinBlockLoginActivity extends Activity
 		}
 	}
 
-
 	private void getFaceBookMe(Session session){
-
 		if(session.isOpened()){
 			Request.newMeRequest(session, new Request.GraphUserCallback() {
 
 				@Override
 				public void onCompleted(GraphUser user, Response response) {
 					response.getError();
-
 					/*
-	                        System.err.println(" getId  :  " + user.getId());
-	                        System.err.println(" getFirstName  :  " + user.getFirstName());
-	                        System.err.println(" getLastName  :  " + user.getLastName());
-	                        System.err.println(" getMiddleName  :  " + user.getMiddleName());
-	                        System.err.println(" getBirthday  :  " + user.getBirthday());
-	                        //System.err.println(" getLink  :  " + user.getLink());
-	                        //System.err.println(" getName  :  " + user.getName());
-	                        //System.err.println(" getUsername :  " + user.getUsername());
-	                        //System.err.println(" getLocation :  " + user.getLocation());
-	                        //System.err.println("getRawResponse  :  " + response.getRawResponse());
+                    System.err.println(" getId  :  " + user.getId());
+                    System.err.println(" getFirstName  :  " + user.getFirstName());
+                    System.err.println(" getLastName  :  " + user.getLastName());
+                    System.err.println(" getMiddleName  :  " + user.getMiddleName());
+                    System.err.println(" getBirthday  :  " + user.getBirthday());
+                    //System.err.println(" getLink  :  " + user.getLink());
+                    //System.err.println(" getName  :  " + user.getName());
+                    //System.err.println(" getUsername :  " + user.getUsername());
+                    //System.err.println(" getLocation :  " + user.getLocation());
+                    //System.err.println("getRawResponse  :  " + response.getRawResponse());
 					 */
 
 					/* 
-	                        Log.d("tag01"," getId  :  " + user.getId() );
-	                        Log.d("tag01"," getFirstName  :  " + user.getFirstName() );
-	                        Log.d("tag01"," getLastName  :  " + user.getLastName() );
-	                        Log.d("tag01"," getMiddleName  :  " + user.getMiddleName() );
-	                        Log.d("tag01"," getBirthday  :  " + user.getBirthday() );
+                    Log.d("tag01"," getId  :  " + user.getId() );
+                    Log.d("tag01"," getFirstName  :  " + user.getFirstName() );
+                    Log.d("tag01"," getLastName  :  " + user.getLastName() );
+                    Log.d("tag01"," getMiddleName  :  " + user.getMiddleName() );
+                    Log.d("tag01"," getBirthday  :  " + user.getBirthday() );
 					 */
-
 
 					userId = user.getId() ;
 					userFirstName = user.getFirstName() ;
@@ -321,38 +262,20 @@ public class coinBlockLoginActivity extends Activity
 
 					Log.d("tag02","userFirstName2"+userFirstName);
 
-
 					fbPref.Ready();
 
 					fbPref.WriteString("userId", userId);
 					fbPref.WriteString("userFirstName", userFirstName);
 					fbPref.WriteString("userLastName", userLastName);
 
-
 					Log.d("tag03", "WriteString;");
-
 
 					fbPref.CommitWrite();
 
 					toIntro();
 					finish();
-
-
-
-
-
-
-
 				}
 			}).executeAsync();
 		}
 	}
-
-
-
-
-
-
-
-
 }

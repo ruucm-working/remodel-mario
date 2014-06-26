@@ -216,6 +216,12 @@ public class Lv0_2State implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 
 		}
+
+		@Override
+		public void OnWifi(CoinBlockView coinBlockView) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	/*
@@ -355,5 +361,11 @@ public class Lv0_2State implements ICoinBlockViewState {
 	public void OnShake(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void OnWifi(CoinBlockView coinBlockView) {
+		// TODO Auto-generated method stub
+		
 	}
 }

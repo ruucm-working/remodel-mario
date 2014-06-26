@@ -3,9 +3,7 @@ package com.exam.view;
 import android.graphics.*;
 import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
-
 import com.exam.*;
-
 
 class MushroomState implements ICoinBlockViewState{
 	Sprite sp = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
@@ -66,6 +64,12 @@ class MushroomState implements ICoinBlockViewState{
 
 	@Override
 	public void OnShake(CoinBlockView viewContext) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnWifi(CoinBlockView coinBlockView) {
 		// TODO Auto-generated method stub
 		
 	}
