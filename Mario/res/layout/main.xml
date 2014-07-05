@@ -6,21 +6,27 @@
     android:background="@drawable/install"
     android:id="@+id/mainlinear"
     >
-    <TextView
-    	android:typeface="monospace"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_marginLeft="120dip"
-    	android:layout_marginTop="70dip"
-    	android:paddingRight="10dip"
-    	android:text="This is a home-screen widget. To Install, press Menu -> Add -> Widget in Home Screen"
-    	android:textColor="#000"
-    	android:textSize="18dip"
-    	android:id="@+id/welcome"
-    	/>
-    
-    
 
+    <ImageView
+        android:id="@+id/profilepic"
+        android:layout_width="56dip"
+        android:layout_height="56dip"
+        android:layout_marginLeft="8dp"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:onClick="mOnClick" />
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dip"
+        android:layout_marginTop="70dip"
+        android:paddingRight="10dip"
+        android:text="This is a home-screen widget. To Install, press Menu -> Add -> Widget in Home Screen"
+        android:textColor="#000"
+        android:textSize="18dip"
+        android:typeface="monospace" />
    	
 	<Button android:text="Set-up" 
 		android:layout_marginLeft="120dip"

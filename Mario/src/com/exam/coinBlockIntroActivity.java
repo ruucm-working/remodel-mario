@@ -4,10 +4,16 @@ package com.exam;
 
 import java.io.*;
 
-import android.annotation.SuppressLint;
+import org.apache.http.*;
+import org.apache.http.client.*;
+import org.apache.http.client.methods.*;
+import org.apache.http.entity.*;
+import org.apache.http.impl.client.*;
+
+import android.annotation.*;
 import android.app.*;
 import android.content.*;
-import android.graphics.drawable.*;
+import android.graphics.*;
 import android.os.*;
 import android.util.*;
 import android.view.*;
@@ -139,7 +145,139 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     			InitStateText = (TextView)findViewById(R.id.initstatetxt);
     			InitStateText.setText("상자를 열어라");
     		}
+        	
+        	
+        	
+        	// get product data from server
+        				//HttpPost request = makeHttpPost( name, sex, null, null, null, null, null, url[position] ) ;       	
 	
+        	
+        	ImageView Profile = (ImageView)findViewById(R.id.profilepic);   
+        	Log.d("tag02","Profile");
+        	String imageurl = "http://graph.facebook.com/"+userId+"/picture?type=large";
+        	Log.d("tag02","imageurl");
+        	
+
+        	
+        	// get product data from server
+        				//HttpPost request = makeHttpPost( name, sex, null, null, null, null, null, url[position] ) ;
+        				//URL bitmapUrl = new URL(imageurl); 
+        	
+        				HttpPost request = new HttpPost( imageurl ) ;  
+        				Log.d("tag02","request");
+        				HttpClient client = new DefaultHttpClient() ;
+        				HttpResponse response;
+        				Log.d("tag02","HttpResponse");
+        				
+						try {
+							response = (HttpResponse) client.execute(request);
+							Log.d("tag02","response");
+							HttpEntity entity = response.getEntity(); 
+							
+							BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity); 
+							
+							InputStream is2 = response.getEntity().getContent();
+        					Bitmap bit = BitmapFactory.decodeStream(is2);        			
+        					Profile.setImageBitmap(bit);        			
+        					is2.close(); 
+
+						} catch (ClientProtocolException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}      				
+
+     				
+/*
+
+        				try {
+        					response = client.execute( request);
+        					Log.d("tag02","execute");
+        					InputStream is2 = response.getEntity().getContent();
+        					Bitmap bit = BitmapFactory.decodeStream(is2);        			
+        					Profile.setImageBitmap(bit);        			
+        					is2.close(); 
+
+        				} catch (ClientProtocolException e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				} catch (IOException e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				}
+        	
+        	
+        	
+        	
+        	
+        	
+        	/*
+        	
+        	HttpGet httpRequest;
+			try {
+				
+				
+				URL bitmapUrl = new URL(imageurl); 
+				httpRequest = new HttpGet(bitmapUrl.toURI());
+				
+				Log.d("tag02","httpRequest"); 
+				
+				HttpClient httpclient = new DefaultHttpClient(); 
+	        	HttpResponse response = (HttpResponse) httpclient.execute(httpRequest); 
+	        	HttpEntity entity = response.getEntity(); 
+	        	Log.d("tag02","getEntity"); 
+	        	
+	        	BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity); 
+	        	InputStream is = bufHttpEntity.getContent(); 
+	        	Bitmap bm = BitmapFactory.decodeStream(is);
+	        	
+	        	Log.d("tag02","Bitmap"); 
+	        	
+	        	
+	        	Profile.setImageBitmap(bm);
+				
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+        	 
+/*
+        	try {
+        	
+        	//InputStream is = new URL(imageurl).openStream();  
+        		
+        		URL t_url = new URL(imageurl);
+
+
+        		URLConnection t_connection = t_url.openConnection(); 
+        		t_connection.setReadTimeout(5000); 
+        		InputStream t_inputStrem = t_connection.getInputStream(); 
+        		
+
+
+        	Bitmap bit = BitmapFactory.decodeStream(t_inputStrem);      
+        	Log.d("tag02","Bitmap");
+        	Profile.setImageBitmap(bit);
+        	Log.d("tag02","setImageBitmap"); 
+        	
+        	t_inputStrem.close();
+        	
+        	} catch (Exception e)
+        
+        	{
+        	
+        	e.printStackTrace();
+        	
+        	}
+        	
         	/*
         	
     		else if (initstate && !lv0state) {
