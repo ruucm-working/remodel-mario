@@ -6,6 +6,7 @@ import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
 import android.util.*;
 import android.widget.*;
+
 import com.exam.*;
 
 public class Lv0_2State implements ICoinBlockViewState {
@@ -18,11 +19,13 @@ public class Lv0_2State implements ICoinBlockViewState {
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	MediaPlayer snd1 = MediaAssets.getInstance().getSoundPlayer(R.raw.notify_sound);
+	MediaPlayer snd3 = MediaAssets.getInstance().getSoundPlayer(R.raw.haha);
 
 	//Lv0Animation lv0Anim;  
 	Lv0_2OftenAnim lv0_2ofAnim; 
 	Lv0_2ClickAnim lv0_2clAnim;
 	Lv0_2DblClickAnim lv0_2dblAnim;
+	WifiAnimation wifiAnim;
 
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
@@ -218,38 +221,24 @@ public class Lv0_2State implements ICoinBlockViewState {
 		}
 
 		@Override
-		public void OnWifi(CoinBlockView coinBlockView) {
+		public void OnWifi(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
+			Log.v("WIFI", "Entering Wifi0-2");
 			
+			// TODO Auto-generated method stub
+			viewContext.removeAnimatable(wifiAnim);
+
+			wifiAnim = new WifiAnimation();			
+			viewContext.addAnimatable(wifiAnim);
+
+			snd3.seekTo(0);
+			snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+				public void onSeekComplete(MediaPlayer mp) {
+					snd3.start();
+				}
+			});
 		}
 	}
-
-	/*
-
-	private class Lv0Animation implements IAnimatable {
-
-		//진동할때 올라오고, 상단에 남는 드로블
-
-		private int flowerRaise = 4;
-
-
-		public boolean AnimationFinished() {
-			return false;
-		}
-
-		public void Draw(Bitmap canvas) {
-			SpriteHelper.DrawSprite(canvas, flowerSprite, flowerSprite.NextFrame(),
-							SpriteHelper.DrawPosition.BottomCenter, 0, -(int) (flowerRaise * 4 * context.getDensity()));
-
-			// Draw the flower
-			if (flowerRaise < 8) {
-				flowerRaise++;
-			}
-
-			Log.v("tag4", "flowerRaise "+Integer.toString(flowerRaise));
-		}
-	}
-	 */
 
 	private class Lv0_2OftenAnim implements IAnimatable {
 		private int blockVib = 0;

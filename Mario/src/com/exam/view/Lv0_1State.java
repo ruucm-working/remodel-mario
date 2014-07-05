@@ -5,6 +5,7 @@ import android.media.*;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.*;
 import android.util.*;
+
 import com.exam.*;
 
 public class Lv0_1State implements ICoinBlockViewState {
@@ -17,11 +18,13 @@ public class Lv0_1State implements ICoinBlockViewState {
 	//진동할때 올라오고, 상단에 남는 드로블
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	MediaPlayer snd1 = MediaAssets.getInstance().getSoundPlayer(R.raw.notify_sound);
+	MediaPlayer snd3 = MediaAssets.getInstance().getSoundPlayer(R.raw.haha);
 
 	//Lv0Animation lv0Anim;  
 	Lv0OftenAnim lv0ofAnim; 
 	Lv0ClickAnim lv0clAnim;
 	Lv0DblClickAnim lv0dblAnim;
+	WifiAnimation wifiAnim;
 
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
@@ -204,9 +207,22 @@ public class Lv0_1State implements ICoinBlockViewState {
 		}
 
 		@Override
-		public void OnWifi(CoinBlockView coinBlockView) {
+		public void OnWifi(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
+			Log.v("WIFI", "Entering Wifi0-1");
 			
+			// TODO Auto-generated method stub
+			viewContext.removeAnimatable(wifiAnim);
+
+			wifiAnim = new WifiAnimation();			
+			viewContext.addAnimatable(wifiAnim);
+
+			snd3.seekTo(0);
+			snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+				public void onSeekComplete(MediaPlayer mp) {
+					snd3.start();
+				}
+			});
 		}
 	}
 
