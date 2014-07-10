@@ -45,6 +45,16 @@ public class CoinBlockView {
 	
 	//Async Task
 	ViewAsyncTask asynctask = new ViewAsyncTask();
+	
+	
+	private static CoinBlockView instance;
+ 
+	
+	public static CoinBlockView getInstance() {
+        return instance;
+    }
+
+	
 
 	public CoinBlockView(Context context, int widgetId) {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

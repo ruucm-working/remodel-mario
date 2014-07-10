@@ -25,6 +25,16 @@ public class InitState implements ICoinBlockViewState {
 	InitDblClickAnim initdblAnim;
 	
 	CoinBlockView context; 
+	
+	
+	
+	private static InitState instance;
+ 
+	
+	public static InitState getInstance() {
+        return instance;
+    }
+	
 
 	public InitState(CoinBlockView viewContext) {
 		context = viewContext;

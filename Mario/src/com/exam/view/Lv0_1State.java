@@ -31,6 +31,14 @@ public class Lv0_1State implements ICoinBlockViewState {
 	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, -0 };		// here
 	boolean fuck = false;		
 
+	
+	private static Lv0_1State instance;
+ 
+	
+	public static Lv0_1State getInstance() {
+        return instance;
+    }
+	
 	public Lv0_1State(CoinBlockView viewContext) {
 		context = viewContext;
 		//lv0Anim = new Lv0Animation();
