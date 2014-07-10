@@ -290,7 +290,7 @@ public class coinBlockLoginActivity extends Activity
 	                        userFirstName = user.getFirstName() ;
 	                        userLastName = user.getLastName() ;
 	                        
-	                        Log.d("tag02","userFirstName2"+userFirstName);
+	                        Log.d("tag03","userFirstName2"+userFirstName);
 	                        
 	                        
 	                        fbPref.Ready();

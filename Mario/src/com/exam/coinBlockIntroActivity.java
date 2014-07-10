@@ -3,12 +3,7 @@ package com.exam;
 
 
 import java.io.*;
-
-import org.apache.http.*;
-import org.apache.http.client.*;
-import org.apache.http.client.methods.*;
-import org.apache.http.entity.*;
-import org.apache.http.impl.client.*;
+import java.net.*;
 
 import android.annotation.*;
 import android.app.*;
@@ -19,6 +14,8 @@ import android.util.*;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
+
+import com.facebook.widget.*;
 
 
 public class coinBlockIntroActivity extends Activity implements OnClickListener
@@ -82,6 +79,16 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	//Async Task
 	private static coinBlockIntroActivity instance;
 	public static  TaskTimer taskTimer1 = new TaskTimer();
+	//private Get getAsyncTask;
+	back task;
+	Bitmap bmImg;
+	ImageView Profile;
+	
+	
+	String userId ;
+	
+	
+	private ProfilePictureView profilePic;
 	 
 	
 	public static coinBlockIntroActivity getInstance() {
@@ -123,7 +130,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		//set Main Background Image & Text
 		
 		
-		String userId = fbPref.ReadString("userId", "");
+		userId = fbPref.ReadString("userId", "");
   		String userFirstName = fbPref.ReadString("userFirstName", "");
   		String userLastName = fbPref.ReadString("userLastName", "");
 		
@@ -148,9 +155,42 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
         	
         	
         	
+        	
+        	
+        	//getAsyncTask = new Get();
+        	//getAsyncTask.execute();
+        	
+
+        	//Profile = (ImageView)findViewById(R.id.profilepic); 
+       	  
+        	
+        	profilePic = (ProfilePictureView)findViewById(R.id.profilepic);
+        	
+        	
+        //	profilePic.setCropped(true);
+        	profilePic.setPresetSize(ProfilePictureView.LARGE);
+        	
+        	profilePic.setProfileId(userId);
+        	
+        	
+       	 /*
+        	 task = new back();        	 
+        	 task.execute("http://graph.facebook.com/"+userId+"/picture?type=large");
+        	 
+        	 
+        	 
+        	   
+        	 
+        	 Log.d("tag1-1","execute(ttp://www");
+        	 
+         	//String imageurl = "http://graph.facebook.com/"+userId+"/picture?type=small";
+        	
+        	
+        	
+        	/*
         	// get product data from server
         				//HttpPost request = makeHttpPost( name, sex, null, null, null, null, null, url[position] ) ;       	
-	
+	 
         	
         	ImageView Profile = (ImageView)findViewById(R.id.profilepic);   
         	Log.d("tag02","Profile");
@@ -765,6 +805,46 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 			
 			
 		}
+		
+
+    	//AsyncTask for Http request
+    	
+    	
+    	
+    	 private class back extends AsyncTask<String, Integer,Bitmap>{
+    	        
+    		 
+    		 
+    	        @Override
+    	        protected Bitmap doInBackground(String... urls) {
+    	            // TODO Auto-generated method stub
+    	            try{
+    	                URL myFileUrl = new URL(urls[0]);
+    	                HttpURLConnection conn = (HttpURLConnection)myFileUrl.openConnection();
+    	                conn.setDoInput(true);
+    	                conn.connect();
+    	                Log.d("tag1-1","connect"+urls[0]);
+    	                /*
+    	                InputStream is = conn.getInputStream();
+    	                
+    	                bmImg = BitmapFactory.decodeStream(is);
+    	                */
+    	                bmImg = BitmapFactory.decodeStream(myFileUrl.openConnection().getInputStream());
+    	                Log.d("tag1-1","BitmapFactory"+bmImg);
+    	                
+    	            }catch(IOException e){
+    	                e.printStackTrace();
+    	            }
+    	            return bmImg;
+    	        }
+    	        
+    	        protected void onPostExecute(Bitmap img){
+    	        	Profile.setImageBitmap(bmImg);
+    	        	Log.d("tag1-1","setImageBitmap"+bmImg);
+    	        }
+    	        
+    	    }
+    	
 		
 		
 	

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   
+            xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -7,14 +9,13 @@
     android:id="@+id/mainlinear"
     >
 
-    <ImageView
-        android:id="@+id/profilepic"
-        android:layout_width="56dip"
-        android:layout_height="56dip"
-        android:layout_marginLeft="8dp"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        android:onClick="mOnClick" />
+    <com.facebook.widget.ProfilePictureView
+                android:id="@+id/profilepic"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:preset_size="large"
+                app:is_cropped="true"
+                />
 
     <TextView
         android:id="@+id/welcome"
