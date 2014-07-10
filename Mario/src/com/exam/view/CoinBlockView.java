@@ -33,10 +33,10 @@ public class CoinBlockView {
 	public static long second = 0;
 	
 	static boolean init = true;
-	static boolean lv0_1 = true;
+	public static boolean lv0_1 = true;
 	static boolean lv0_2 = true;
-	static boolean lv1 = true;
-	static boolean lv2 = true;
+	public static boolean lv1 = true;
+	public static boolean lv2 = true;
 
 
 
