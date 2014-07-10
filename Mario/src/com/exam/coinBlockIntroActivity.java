@@ -104,6 +104,17 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		//setContentView(R.layout.main);
 		
 		
+		
+		// Run service
+				Intent intent = new Intent(this, Notify.class);
+				startService(intent);
+				
+				 
+				
+				Log.d("tag1-1", "startService(intent)fbPref.Ready();");
+				
+				
+		
 		instance = this;
 		
 		//프레퍼런스 읽어오기   

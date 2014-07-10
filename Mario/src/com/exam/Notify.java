@@ -1,5 +1,7 @@
 package com.exam;
 
+import com.exam.view.*;
+
 import android.app.*;
 import android.content.*;
 import android.os.*;
@@ -8,8 +10,12 @@ import android.util.*;
 
 public class Notify extends Service
 {
+	
+	
+	NotificationCompat.Builder builder;
+	
 	final int NOTIFY_CNT = 3;
-	protected boolean mRunning;
+	protected boolean mRunning = true;
 	
 	private long notify_time[] = new long[] {10, 20, 30};
 	private boolean notify_activated[] = new boolean[NOTIFY_CNT];
@@ -24,7 +30,9 @@ public class Notify extends Service
 	@Override
 	public void onCreate()
 	{
-		Log.d("service2","onCreate");
+
+		builder = new NotificationCompat.Builder(Notify.this);
+	
 	}
 
 	@Override
@@ -40,20 +48,28 @@ public class Notify extends Service
 		{
 			NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-			NotificationCompat.Builder builder = new NotificationCompat.Builder(Notify.this);
+			
+			Log.d("service2","NotificationManager 실행");
+			
+			
 			builder.setSmallIcon(R.drawable.brick_question);
-			builder.setTicker("Mario");
-			builder.setContentTitle("Hello");
-			builder.setContentText("butcher anthem !!");
+			builder.setTicker("쓰담쓰담위젯");
+			builder.setContentTitle("imyourbabe");
+			
 			builder.setAutoCancel(true); // 알림바에서 자동 삭제
 			builder.setVibrate(new long[] {1000,2000});	// 쉬고, 울리고, 쉬고, 울리고...
 			// 진동이 되려면 AndroidManifest.xml에 진동 권한을 줘야 한다.
+			
+			
+			Log.d("service2","setVibrate 실행");
+			
+			
 
 			// 알람 클릭시 MainActivity를 화면에 띄운다
 			Intent intent = new Intent(getApplicationContext(),coinBlockIntroActivity.class);
 			PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext()
 					, 0
-					, intent
+					, intent 
 					, Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 			builder.setContentIntent(pIntent);
 			manager.notify(1, builder.build());
@@ -74,21 +90,61 @@ public class Notify extends Service
 			{
 				while(mRunning)
 				{
+					
+					
 					try
 					{
 						Thread.sleep(2000);
+						Log.d("service2","mHandler 실행");
 					}
 					catch (InterruptedException e)
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					if(notify_index < NOTIFY_CNT)
-					{
-						int second = coinBlockIntroActivity.taskTimer1.GetTime();
-						if(notify_time[notify_index] < second)
-						mHandler.sendEmptyMessage(0);		// call handleMessage
-					}
+					
+					
+					//mHandler.sendEmptyMessage(0);
+					
+					int second = coinBlockIntroActivity.taskTimer1.GetTime();
+					
+					
+					int clicountinit = Setting.CliCountinit;
+					int clicount0 = Setting.CliCount0;
+					int clicount0_2 = Setting.CliCount0_2;
+					int clicount1 = Setting.CliCount1;
+					int clicount2 = Setting.CliCount2;
+					
+					
+					
+						
+						if (second <= 12 && clicount0 == 2  && CoinBlockView.lv0_1){
+							mHandler.sendEmptyMessage(0);
+							
+							builder.setContentText("drawer : '알이 조금 움직인것 같습니다'");
+							
+						} 
+						
+						
+						if (second <= 22 && clicount1 == 2 && CoinBlockView.lv1){
+							mHandler.sendEmptyMessage(0);
+							
+							builder.setContentText("drawer : '새대가리가 조금 움직인것 같습니다'");
+							
+						} 
+						
+						
+						if (second <= 32 && clicount2 ==2 && CoinBlockView.lv2){
+							mHandler.sendEmptyMessage(0);
+							
+							builder.setContentText("drawer : '새가 약간 부들부들 떱니다'");
+							
+						} 
+						
+						
+						
+					
+					
 				}
 			}
 		}).start();
