@@ -155,8 +155,6 @@ public class Lv1State implements ICoinBlockViewState {
 		public void OnWifi(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
 			Log.v("WIFI", "Entering Wifi1");
-			
-			// TODO Auto-generated method stub
 			viewContext.removeAnimatable(wifiAnim);
 
 			wifiAnim = new WifiAnimation();			

@@ -14,15 +14,19 @@ public class InitState implements ICoinBlockViewState {
 	
 	MediaPlayer snd = MediaAssets.getInstance().getSoundPlayer(R.raw.smb_powerup_appears);
 	MediaPlayer snd2 = MediaAssets.getInstance().getSoundPlayer(R.raw.notify_sound);
+	MediaPlayer snd3 = MediaAssets.getInstance().getSoundPlayer(R.raw.haha);
 	
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	private long wifi_cooltime = 0;
+	
 	
 	initAnimation initAnim;
 	InitOftenAnim initofAnim;
 	InitClickAnim initclAnim;
 	InitDblClickAnim initdblAnim;
+	WifiAnimation wifiAnim;
 	
 	CoinBlockView context; 
 
@@ -244,9 +248,26 @@ public class InitState implements ICoinBlockViewState {
 		}
 
 		@Override
-		public void OnWifi(CoinBlockView coinBlockView) {
-			// TODO Auto-generated method stub
+		public void OnWifi(CoinBlockView viewContext) {
+			long tmp = System.currentTimeMillis();
 			
+			if(tmp - wifi_cooltime >= 5000)
+			{
+				Log.v("WIFI", "Entering Wifi - Init");
+				viewContext.removeAnimatable(wifiAnim);
+	
+				wifiAnim = new WifiAnimation();			
+				viewContext.addAnimatable(wifiAnim);
+	
+				snd3.seekTo(0);
+				snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+					public void onSeekComplete(MediaPlayer mp) {
+						snd3.start();
+					}
+				});
+				
+				wifi_cooltime = System.currentTimeMillis();
+			}
 		}
 	}
 
