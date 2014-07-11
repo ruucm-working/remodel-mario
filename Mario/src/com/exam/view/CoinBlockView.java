@@ -1,5 +1,6 @@
 package com.exam.view;
 
+import java.io.*;
 import java.util.*;
 
 import android.app.*;
@@ -51,6 +52,13 @@ public class CoinBlockView {
 	
 	ViewAsyncTask asynctask = new ViewAsyncTask();
 	
+	
+	//프레퍼런스 
+    public static TextPref mPref;	
+  	public static TextPref fbPref;	
+  	
+  	static boolean initstate;
+	
 
 
 	public CoinBlockView(Context context, int widgetId) {
@@ -64,6 +72,29 @@ public class CoinBlockView {
 
 		Children = new HashSet<IAnimatable>();
 		mWidgetId = widgetId;
+		
+		
+		 //프레퍼런스 읽어오기   
+  		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
+  		if(!saveDir.exists()) 
+  		{
+  			saveDir.mkdirs();
+  		}
+  		try {
+  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+  			//fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+  		} catch (Exception e) { 
+  			e.printStackTrace();
+  		}       
+  		mPref.Ready();  	  		
+  		initstate = mPref.ReadBoolean("initstate", false);		  		
+  		mPref.EndReady();
+  		//fbPref.EndReady();
+  		
+  		
+		
+		
+		if(!initstate)		
 		setState(new InitState(this));
 
 

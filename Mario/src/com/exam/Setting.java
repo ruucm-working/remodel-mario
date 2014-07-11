@@ -74,7 +74,10 @@ public class Setting extends Activity {
 	
 	//액티비티 화면 결정	
 	public static boolean InitState = false;
-	public static boolean Lv0State = false;
+	public static boolean Lv0_1State = false;
+	public static boolean Lv0_2State = false;
+	public static boolean Lv1State = false;
+	public static boolean Lv2State = false;
 	
 	
 	
@@ -116,6 +119,8 @@ public class Setting extends Activity {
 		try {
 			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
 			fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+			
+			Log.d("Setting", "fbPref");
 
 		} catch (Exception e) { 
 			e.printStackTrace();
@@ -124,6 +129,8 @@ public class Setting extends Activity {
 
 		mPref.Ready();
 		fbPref.Ready();
+		Log.d("Setting", "fbPref.Ready();");
+		
 
 		TextView Num1;
 		TextView Num2;
@@ -181,12 +188,17 @@ public class Setting extends Activity {
 
 		
 		userFirstName = fbPref.ReadString("userFirstName", "");
+		Log.d("Setting", "fbPref.ReadString();");
 		userLastName = fbPref.ReadString("userLastName", "");
+		Log.d("Setting", "fbPref.userLastName();");
 		
 		
 		mPref.EndReady();
 		fbPref.EndReady();
 
+		
+		Log.d("Setting", "fbPref.EndReady();");
+		
 		//체크박스 값에 따라 체크해주기
 
 		if(checked[0]){
@@ -254,6 +266,9 @@ public class Setting extends Activity {
 		adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin1.setAdapter(adspin1);
 
+		
+		Log.d("Setting", "setAdapter.EndReady();");
+		
 		spin1.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, 
 					int position, long id) {
@@ -296,6 +311,9 @@ public class Setting extends Activity {
 			public void onNothingSelected(AdapterView<?> parent) {
 			}
 		});
+		
+		Log.d("Setting", "onNothingSelected.EndReady();");
+		
 		//스피너 초기값지정
 		spin2.setSelection(spTag2);
 
@@ -307,29 +325,38 @@ public class Setting extends Activity {
 		adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin3.setAdapter(adspin3);
 
+		Log.d("Setting", "spin3.setAdapter.EndReady();");
+		
 		spin3.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, 
 					int position, long id) {
 				//�ʱ�ȭ���� ���� ���ܽ�
 				if (mInitSpinner == false) {
 					mInitSpinner = true;
-					return;
+					return; 
 				}
 				//프레퍼런스에 기록하기
 				spTag3 = position;
 			}
 			public void onNothingSelected(AdapterView<?> parent) {
 			}
+			
+			
+			
 		});
+		
+		Log.d("Setting", "setOnItemSelectedListener.setAdapter.EndReady();");
 		//스피너 초기값지정
 		spin3.setSelection(spTag3);
+		Log.d("Setting", "spin3.setAdapter.EndReady();");
+		
 
-	}
+	} 
 
 
 	public static long getSecond(long milli){
 		long secondValue = 0;
-		secondValue = milli / 10;
+		secondValue = milli / 10; 
 		return secondValue;
 	}
 	

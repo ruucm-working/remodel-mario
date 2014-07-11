@@ -103,7 +103,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		
 		//setContentView(R.layout.main);
 		
-		
+		Log.d("coinBlockIntroActivity","onCreate.");
 		
 		// Run service
 				Intent intent = new Intent(this, Notify.class);
@@ -111,7 +111,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 				
 				 
 				
-				Log.d("tag1-1", "startService(intent)fbPref.Ready();");
+				Log.d("coinBlockIntroActivity", "startService(intent)fbPref.Ready();");
 				
 				
 		
@@ -119,6 +119,9 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		
 		//프레퍼런스 읽어오기   
   		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
+  		
+  		Log.d("coinBlockIntroActivity", "saveDir(saveDir)fbPref.Ready();");
+  		
   		if(!saveDir.exists()) 
   		{
   			saveDir.mkdirs();
@@ -127,15 +130,18 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 
   		try {
   			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+  			Log.d("coinBlockIntroActivity", "TextPref(intent)fbPref.Ready();");
   			fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+  			Log.d("coinBlockIntroActivity", "fbPref(intent)fbPref.Ready();");
   			
 
   		} catch (Exception e) { 
   			e.printStackTrace();
   		}       
   		mPref.Ready();
+  		Log.d("coinBlockIntroActivity", "mPref.Ready();(intent)fbPref.Ready();");
 		fbPref.Ready();
-		Log.d("tag03", "fbPref.Ready();");
+		Log.d("coinBlockIntroActivity", "fbPref.Ready();(intent)fbPref.Ready();");
 		
 
 		//set Main Background Image & Text
@@ -148,24 +154,31 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		initstate = mPref.ReadBoolean("initstate", false);
 		boolean lv0state = mPref.ReadBoolean("lv0state", false);
 		
-        	if(!initstate){
+		
+		Log.d("coinBlockIntroActivity", "fbPref.Ready();(intent)fbPref.Ready();");
+		
+        	
     			setContentView(R.layout.main); 
     			
+    			Log.d("coinBlockIntroActivity", "(R.layout.main); .Ready();(intent)fbPref.Ready();");
     			
     	  		
     			welcome = (TextView)findViewById(R.id.welcome);		
     			welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
     			
-        	}
+        	
+        	/*
         	
         	else  {
     			setContentView(R.layout.initstate);
+    			
+    			Log.d("coinBlockIntroActivity", "R.layout.initstate);.Ready();(intent)fbPref.Ready();");
     			InitStateText = (TextView)findViewById(R.id.initstatetxt);
     			InitStateText.setText("상자를 열어라");
     		}
         	
         	
-        	
+        	*/
         	
         	
         	//getAsyncTask = new Get();
@@ -177,12 +190,16 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
         	
         	profilePic = (ProfilePictureView)findViewById(R.id.profilepic);
         	
+        	Log.d("coinBlockIntroActivity", "profilePic = (Pr;"+userId);
+        	
         	
         //	profilePic.setCropped(true);
         	profilePic.setPresetSize(ProfilePictureView.LARGE);
         	
         	profilePic.setProfileId(userId);
         	
+        	
+        	Log.d("coinBlockIntroActivity", "profilePic.setProfileId(userPref.Ready();");
         	
        	 /*
         	 task = new back();        	 

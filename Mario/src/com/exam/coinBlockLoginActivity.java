@@ -49,35 +49,34 @@ public class coinBlockLoginActivity extends Activity
   	boolean DialogOn ;
   	
   
-
+ 
 	
 
-	
+	 
 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		
-		Log.d("tag2-2","onCreate.");
+		 
+		Log.d("coinBlockLoginActivity","onCreate.");
 		super.onCreate(savedInstanceState);
 		
-		Log.d("tag2-2","super.onCr.");
-		
+		 
 		setContentView(R.layout.login);
 		
-		Log.d("tag2-2","setContentView.");
-			
-		
+		Log.d("coinBlockLoginActivity","setContentView.");
+			 
+		 
 		init();
-		Log.d("tag2-2","init.");
+		Log.d("coinBlockLoginActivity","init.");
         dataInit();
          
-        Log.d("tag2-2","dataInit.");
+        Log.d("coinBlockLoginActivity","dataInit.");
         
         facebookInit(savedInstanceState);
 		
-        Log.d("tag2-2","facebookInit.");
+        Log.d("coinBlockLoginActivity","facebookInit.");
         
         
         //Ready next activity intent
@@ -104,7 +103,7 @@ public class coinBlockLoginActivity extends Activity
       		mPref.Ready();
       		fbPref.Ready();
         
-      		Log.d("tag2-2","fbPref.Ready();.");
+      		Log.d("coinBlockLoginActivity","fbPref.Ready();.");
         
 		
       		
@@ -117,7 +116,7 @@ public class coinBlockLoginActivity extends Activity
       		
       		mPref.EndReady();
       		fbPref.EndReady();
-      		Log.d("tag2-2","fbPref.");
+      		Log.d("coinBlockLoginActivity","fbPref.");
       		
       		
         
@@ -155,7 +154,7 @@ public class coinBlockLoginActivity extends Activity
 	            if (session.getState().equals(SessionState.CREATED_TOKEN_LOADED)) {
 	                session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
 	            }
-	        }
+	        } 
 	        
 	        updateView();
 	    }
@@ -297,13 +296,13 @@ public class coinBlockLoginActivity extends Activity
 	                        Log.d("tag01"," getMiddleName  :  " + user.getMiddleName() );
 	                        Log.d("tag01"," getBirthday  :  " + user.getBirthday() );
 	                        */
-	                        
+	                         
 	                        
 	                        userId = user.getId() ;
 	                        userFirstName = user.getFirstName() ;
 	                        userLastName = user.getLastName() ;
 	                        
-	                        Log.d("tag03","userFirstName2"+userFirstName);
+	                        Log.d("coinBlockLoginActivity","userFirstName2"+userFirstName);
 	                        
 	                        
 	                        fbPref.Ready();
@@ -313,7 +312,7 @@ public class coinBlockLoginActivity extends Activity
 	            			fbPref.WriteString("userLastName", userLastName);
 	                  		
 	                    
-	            			Log.d("tag03", "WriteString;");
+	            			Log.d("coinBlockLoginActivity", "WriteString;");
 	                    
 	            			
 	            			fbPref.CommitWrite();
