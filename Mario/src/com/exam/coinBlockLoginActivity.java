@@ -27,6 +27,7 @@ public class coinBlockLoginActivity extends Activity
 	
 	//facebook	
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
+	
     private Button buttonLoginLogout;
     
     
@@ -57,21 +58,32 @@ public class coinBlockLoginActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+		
+		Log.d("tag2-2","onCreate.");
 		super.onCreate(savedInstanceState);
+		
+		Log.d("tag2-2","super.onCr.");
+		
 		setContentView(R.layout.login);
 		
-		
+		Log.d("tag2-2","setContentView.");
 			
 		
 		init();
+		Log.d("tag2-2","init.");
         dataInit();
+         
+        Log.d("tag2-2","dataInit.");
+        
         facebookInit(savedInstanceState);
 		
+        Log.d("tag2-2","facebookInit.");
+        
         
         //Ready next activity intent
         
         
-        
+         
         //프레퍼런스 읽어오기   
       		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
       		if(!saveDir.exists()) 
@@ -92,6 +104,7 @@ public class coinBlockLoginActivity extends Activity
       		mPref.Ready();
       		fbPref.Ready();
         
+      		Log.d("tag2-2","fbPref.Ready();.");
         
 		
       		
@@ -100,11 +113,11 @@ public class coinBlockLoginActivity extends Activity
       		userId = fbPref.ReadString("userId", "");
       		userFirstName = fbPref.ReadString("userFirstName", "");
       		userLastName = fbPref.ReadString("userLastName", "");
-      		
+      		 
       		
       		mPref.EndReady();
       		fbPref.EndReady();
-      		
+      		Log.d("tag2-2","fbPref.");
       		
       		
         

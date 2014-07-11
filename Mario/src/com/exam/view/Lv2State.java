@@ -133,6 +133,7 @@ public class Lv2State implements ICoinBlockViewState {
 		}
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
+			viewContext.removeAnimatable(lv2clAnim);
 			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter);
 		}
 
@@ -299,7 +300,7 @@ public class Lv2State implements ICoinBlockViewState {
 	private class Lv2ClickAnim implements IAnimatable {
 		
 
-		private int spriteVib = 0;
+		private int spriteVib = 0; 
 		
 		
 		
@@ -321,6 +322,7 @@ public class Lv2State implements ICoinBlockViewState {
 						
 		
 			*/
+			/*
 			
 			SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
 					-(int)(heightModifier[spriteVib] * context.getDensity()));
@@ -330,7 +332,7 @@ public class Lv2State implements ICoinBlockViewState {
 				spriteVib++;
 			}
 			
-			
+			*/
 		}
 
 		
