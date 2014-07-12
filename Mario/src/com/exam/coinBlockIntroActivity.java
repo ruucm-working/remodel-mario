@@ -194,76 +194,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     			UpdateIntroView();
     			
     			
-    			/*
-    			
-    			if (init)
-					CoinBlockView.state = new InitState(CoinBlockView.getInstance());
-    			else if (lv0_1){
-					CoinBlockView.state = new Lv0_1State(CoinBlockView.getInstance());
-					
-					//CoinBlockView.scheduleRedraw();
-					
-					TaskTimer taskTimer2 = new TaskTimer();
-					taskTimer2.setTextView1(R.id.time0);
-					taskTimer2.execute("");
-    			}else if (lv0_2){
-					CoinBlockView.state = new Lv0_2State(CoinBlockView.getInstance());
-					TaskTimer taskTimer2 = new TaskTimer();
-					taskTimer2.setTextView1(R.id.time0);
-					//taskTimer2.execute("");
-    			}else if (lv1){
-					CoinBlockView.state = new Lv1State(CoinBlockView.getInstance());
-					TaskTimer taskTimer2 = new TaskTimer();
-					taskTimer2.setTextView1(R.id.time0);
-					taskTimer2.execute("");
-    			}
-    			else if (lv2){
-    				//CoinBlockView a = new CoinBlockView();
-    				//((CoinBlockWidgetApp) this.getApplicationContext()).GetView(0);
-    				
-					//CoinBlockView.state = new Lv2State(CoinBlockView.getInstance());
-    				
-    				CoinBlockView.setState2(new Lv2State(CoinBlockView.getInstance());
-    				
-					TaskTimer taskTimer2 = new TaskTimer();
-					taskTimer2.setTextView1(R.id.time0);
-					taskTimer2.execute("");
-    			}
-    			
-    			*/
-    			
-    			
-    			
-    			
-    			/*
-    			if(CoinBlockView.getInstance() != null){    			
-    				if (init)
-    					CoinBlockView.state = new InitState(CoinBlockView.getInstance());
-    			}
-    			
-    			*/
-    			
-        	
-        	/*
-        	
-        	else  {
-    			setContentView(R.layout.initstate);
-    			
-    			Log.d("coinBlockIntroActivity", "R.layout.initstate);.Ready();(intent)fbPref.Ready();");
-    			InitStateText = (TextView)findViewById(R.id.initstatetxt);
-    			InitStateText.setText("상자를 열어라");
-    		}
-        	
-        	
-        	*/
-        	
-        	
-        	//getAsyncTask = new Get();
-        	//getAsyncTask.execute();
-        	
-
-        	//Profile = (ImageView)findViewById(R.id.profilepic); 
-       	  
+    		
         	
         	profilePic = (ProfilePictureView)findViewById(R.id.profilepic);
         	
@@ -278,184 +209,19 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
         	
         	Log.d("coinBlockIntroActivity", "profilePic.setProfileId(userPref.Ready();");
         	
-       	 /*
-        	 task = new back();        	 
-        	 task.execute("http://graph.facebook.com/"+userId+"/picture?type=large");
-        	 
-        	 
-        	 
-        	   
-        	 
-        	 Log.d("tag1-1","execute(ttp://www");
-        	 
-         	//String imageurl = "http://graph.facebook.com/"+userId+"/picture?type=small";
-        	
-        	
-        	
-        	/*
-        	// get product data from server
-        				//HttpPost request = makeHttpPost( name, sex, null, null, null, null, null, url[position] ) ;       	
-	 
-        	
-        	ImageView Profile = (ImageView)findViewById(R.id.profilepic);   
-        	Log.d("tag02","Profile");
-        	String imageurl = "http://graph.facebook.com/"+userId+"/picture?type=large";
-        	Log.d("tag02","imageurl");
-        	
-
-        	
-        	// get product data from server
-        				//HttpPost request = makeHttpPost( name, sex, null, null, null, null, null, url[position] ) ;
-        				//URL bitmapUrl = new URL(imageurl); 
-        	
-        				HttpPost request = new HttpPost( imageurl ) ;  
-        				Log.d("tag02","request");
-        				HttpClient client = new DefaultHttpClient() ;
-        				HttpResponse response;
-        				Log.d("tag02","HttpResponse");
-        				
-						try {
-							response = (HttpResponse) client.execute(request);
-							Log.d("tag02","response");
-							HttpEntity entity = response.getEntity(); 
-							
-							BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity); 
-							
-							InputStream is2 = response.getEntity().getContent();
-        					Bitmap bit = BitmapFactory.decodeStream(is2);        			
-        					Profile.setImageBitmap(bit);        			
-        					is2.close(); 
-
-						} catch (ClientProtocolException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}      				
-
-     				
-/*
-
-        				try {
-        					response = client.execute( request);
-        					Log.d("tag02","execute");
-        					InputStream is2 = response.getEntity().getContent();
-        					Bitmap bit = BitmapFactory.decodeStream(is2);        			
-        					Profile.setImageBitmap(bit);        			
-        					is2.close(); 
-
-        				} catch (ClientProtocolException e) {
-        					// TODO Auto-generated catch block
-        					e.printStackTrace();
-        				} catch (IOException e) {
-        					// TODO Auto-generated catch block
-        					e.printStackTrace();
-        				}
-        	
-        	
-        	
-        	
-        	
-        	
-        	/*
-        	
-        	HttpGet httpRequest;
-			try {
-				
-				
-				URL bitmapUrl = new URL(imageurl); 
-				httpRequest = new HttpGet(bitmapUrl.toURI());
-				
-				Log.d("tag02","httpRequest"); 
-				
-				HttpClient httpclient = new DefaultHttpClient(); 
-	        	HttpResponse response = (HttpResponse) httpclient.execute(httpRequest); 
-	        	HttpEntity entity = response.getEntity(); 
-	        	Log.d("tag02","getEntity"); 
-	        	
-	        	BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity); 
-	        	InputStream is = bufHttpEntity.getContent(); 
-	        	Bitmap bm = BitmapFactory.decodeStream(is);
-	        	
-	        	Log.d("tag02","Bitmap"); 
-	        	
-	        	
-	        	Profile.setImageBitmap(bm);
-				
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-        	 
-/*
-        	try {
-        	
-        	//InputStream is = new URL(imageurl).openStream();  
-        		
-        		URL t_url = new URL(imageurl);
-
-
-        		URLConnection t_connection = t_url.openConnection(); 
-        		t_connection.setReadTimeout(5000); 
-        		InputStream t_inputStrem = t_connection.getInputStream(); 
-        		
-
-
-        	Bitmap bit = BitmapFactory.decodeStream(t_inputStrem);      
-        	Log.d("tag02","Bitmap");
-        	Profile.setImageBitmap(bit);
-        	Log.d("tag02","setImageBitmap"); 
-        	
-        	t_inputStrem.close();
-        	
-        	} catch (Exception e)
-        
-        	{
-        	
-        	e.printStackTrace();
-        	
-        	}
-        	
-        	/*
-        	
-    		else if (initstate && !lv0state) {
-    			setContentView(R.layout.initstate);
-    			Log.d("tag02","setContentView");
-    			InitStateText = (TextView)findViewById(R.id.initstatetxt);
-    			InitStateText.setText("상자를 열어라");
-    			Log.d("tag02","setText");
-    		}
-        	
-        	
-    		else if (lv0state) {
-    			setContentView(R.layout.lv0state);    			
-    			Lv0StateText = (TextView)findViewById(R.id.lv0statetext);
-    			Lv0StateText.setText("알을 애인처럼 다뤄서 부화시켜라");
-    			
-    		}
-    		    		
-
-        */	 
+      
 		
   		
   		
   		fbPref.EndReady();
   		
   		
-  		Log.d("tag02","EndReady");
+  		Log.d("coinBlockIntroActivity","EndReady");
   		
   		
   		
 		
 
-  		Log.d("tag02","welcome");
 		
         
 		
@@ -967,41 +733,49 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     	  		
     	  		
     			init = mPref.ReadBoolean("initstate", false);	
+    			
     			lv0_1 = mPref.ReadBoolean("lv0_1state", false);
     			lv0_2 = mPref.ReadBoolean("lv0_2state", false);
     			lv1 = mPref.ReadBoolean("lv1state", false);
     			lv2 = mPref.ReadBoolean("lv2state", false);
     	
+    			mPref.EndReady();
+    			
     	    			
     	    			if (init){
     	    				
-    	    				updateview(R.drawable.background0,"lv0-1 임 ㅇㅇ");
+    	    				
     	    			}
     	    			else if (lv0_1){
     	    				
+    	    				updateview(R.drawable.background0,"lv0-1 임 ㅇㅇ", true);
     	    				
-    	    				updateview(R.drawable.background0,"lv0-2 임 ㅇㅇ");
+    	    				
     	    				
     	    			}
     	    			else if (lv0_2){
     	    				
-    	    				updateview(R.drawable.background1, "레벨1s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+    	    				updateview(R.drawable.background0,"lv0-2 임 ㅇㅇ", false);
+    	    				
     	    				
     	    			}else if (lv1){
-    	    				updateview(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
-    	    			}
-    	    			else if (lv2){
+    	    				updateview(R.drawable.background1, "레벨1s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ",true);
     	    				
     	    			}
+    	    			else if (lv2){
+    	    				updateview(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ",true);    	    				
+    	    			}
     		 
-    		 
+    	    			Log.d("coinBlockIntroActivity","else if (lv2)  	 mP");
     		 
     		 
     	 }
     	 
-    	 public static void updateview (int drawbleid, String txt){
+    	 public static void updateview (int drawbleid, String txt, boolean notstopped){
     		 
     		 
+    		 
+    		 Log.d("coinBlockIntroActivity","updateview"+drawbleid+txt);
     		 
     			//set newstate's background img
     			LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
@@ -1011,6 +785,13 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     			//set new state's text
     			TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
     			statetxt.setText(txt);
+    			
+    			
+    			if(notstopped){
+    			TaskTimer taskTimer1 = new TaskTimer();
+				taskTimer1.setTextView1(R.id.time0);
+		        taskTimer1.execute("");
+    			}
     			
     			
     		 

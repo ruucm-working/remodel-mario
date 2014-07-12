@@ -52,14 +52,7 @@ public class Setting extends Activity {
 	int spTag3;
 	Boolean checked[] = new Boolean[20];
 	
-	public static int CliCountinit;
-	public static int CliCount0_1;
-	public static int CliCount0_2;
-	public static int CliCount1;
-	public static int CliCount2;
 	
-	
-	float CliSp0;
 	
 	
 	
@@ -72,12 +65,22 @@ public class Setting extends Activity {
 	
 	
 	
-	//액티비티 화면 결정	
+	//static variables	
 	public static boolean init = false;
 	public static boolean lv0_1 = false;
 	public static boolean lv0_2 = false;
 	public static boolean lv1 = false;
 	public static boolean lv2 = false;
+
+	
+	public static int CliCountinit;
+	public static int CliCount0_1;
+	public static int CliCount0_2;
+	public static int CliCount1;
+	public static int CliCount2;
+	
+	
+	float CliSp0;
 	
 	
 	

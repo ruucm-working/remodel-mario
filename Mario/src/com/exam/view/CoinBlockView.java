@@ -71,11 +71,11 @@ public class CoinBlockView {
 	public static  boolean lv1 ;
 	public static  boolean lv2 ;
 	
-	public static int CliCountInit ;
-	public static int CliCount0_1 ;
-	public static int CliCount0_2 ;
-	public static int CliCount1 ;
-	public static int CliCount2 ;
+	public static int CliCountInit = 0 ;
+	public static int CliCount0_1 = 0 ;
+	public static int CliCount0_2 = 0;
+	public static int CliCount1 = 0;
+	public static int CliCount2 = 0;
 
 	
 	
@@ -142,6 +142,8 @@ public class CoinBlockView {
   		mPref.Ready();  
   
   		
+  		Log.d("CoinBlockView", "Ready"+init);
+  		
   		
   		init = mPref.ReadBoolean("initstate", false);	
   		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
@@ -150,7 +152,7 @@ public class CoinBlockView {
   		lv2 = mPref.ReadBoolean("lv2state", false);
   		
   		
-  		
+  		Log.d("CoinBlockView", "mPref.ReadBoolean"+init);
   		
   		
   		

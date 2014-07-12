@@ -1,56 +1,41 @@
 package com.exam;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
-import android.util.Log;
-
-//?�스???�일???�정 ?�보�???��?�는 ?�래?? ?�드로이?�의 ?�레?�런?��? ?�무 ?�려 ?�로 만듬
-//Ready()�??�출?�여 ?�출??�?��?�고 기록???�는 CommitWrite, ?�기�??�을 ?�는 EndReady�??�출?�다.
+//텍스트 파일에 설정 정보를 저장하는 클래스. 안드로이드의 프레프런스가 너무 느려 새로 만듬
+//Ready()를 호출하여 입출력 준비하고 기록할 때는 CommitWrite, 읽기만 했을 때는 EndReady를 호출한다.
 public class TextPref {
 	String mPath;
 	StringBuilder mBuf;
-	static final String HEADER = "__Text Preference File__\n";
-	private static final String TAG = "TextPref_TAG"; 
+	static final String HEADER = "__Text Preference File__\n"; 
 
-	// ?�성?�로 ?�레?�런?�의 ?�전 경로�??�달?�다. 
+	// 생성자로 프레퍼런스의 완전 경로를 전달한다. 
 	public TextPref(String Path) throws Exception {
 		mPath = Path;
 		File file = new File(mPath);
 		if (file.exists() == false) {
-			Log.d(TAG, "if  ");
 			FileOutputStream fos = new FileOutputStream(file);
-			Log.d(TAG, "new FileOutputStream(  ");
 			fos.write(HEADER.getBytes());
 			fos.close();
 		}
 	}
 
-	// ?�정 ?�일????��?�다.
+	// 설정 파일을 삭제한다.
 	public void Reset() {
 		File file = new File(mPath);
 		file.delete();
 	}
 
-	// 버퍼�?�?��?�여 ?�기 �??�기 �?���??�다.
+	// 버퍼를 준비하여 읽기 및 쓰기 준비를 한다.
 	public boolean Ready() {
 		try {
-			
-			Log.d(TAG, "try {: ");
 			FileInputStream fis = new FileInputStream(mPath);
-			Log.d(TAG, "new FileInputStream(mPath) : ");
 			int avail = fis.available();
 			byte[] data = new byte[avail];
-			Log.d(TAG, "fis.available(); : ");
-			
-			
 			while (fis.read(data) != -1) {;}
 			fis.close();
 			mBuf = new StringBuilder(avail);
 			mBuf.append(new String(data));
-			Log.d(TAG, "while (fis.read(data) != -1) {;} : ");
-			
 		}
 		catch (Exception e) {
 			return false;
@@ -58,7 +43,7 @@ public class TextPref {
 		return true;
 	}
 
-	// 버퍼???�용???�일�?기록?�다.
+	// 버퍼의 내용을 파일로 기록한다.
 	public boolean CommitWrite() {
 		File file = new File(mPath);
 		try {
@@ -73,19 +58,16 @@ public class TextPref {
 		return true;
 	}
 
-	// 버퍼�??�제?�고 ?�기�?종료?�다. �?��???�용??모두 취소?�다.
+	// 버퍼를 해제하고 읽기를 종료한다. 변경한 내용은 모두 취소된다.
 	public void EndReady() {
 		mBuf = null;
 	}
 	
-	// name?�의 ?�치�?�?��?�여 = ?�음 ?�치�?리턴?�다. ?�으�?-1??리턴?�다.
-	// ?�연??중복 방�?�??�해 ???�름?�에 __�?붙인??
+	// name키의 위치를 검색하여 = 다음 위치를 리턴한다. 없으면 -1을 리턴한다.
+	// 우연한 중복 방지를 위해 키 이름앞에 __를 붙인다.
 	int FindIdx(String name) {
-		Log.v("tag5", "FindIdxingtriWriteIntn" + name);
 		String key = "__" + name + "=";
-		Log.v("tag5", "String key = gtriWriteIntn" + key);
 		int idx = mBuf.indexOf(key);
-		Log.v("tag5", "int idx = mBuf.indtriWriteIntn" + idx);
 		if (idx == -1) {
 			return -1;
 		} else {
@@ -93,19 +75,12 @@ public class TextPref {
 		}
 	}
 
-	// 문자???��? 기록?�다. ?��? ?�으�???��?�다.
+	// 문자열 키를 기록한다. 이미 있으면 대체한다.
 	public void WriteString(String name, String value) {
-		
-		Log.v("tag5", "WriteStringtriWriteIntn" + name);
 		int idx = FindIdx(name);
-		 
-		Log.v("tag5", "FindIdx(name);StriWriteIntn");
-		Log.v("tag5", "int idx = FindIdx(ntn");
 		if (idx == -1) {
 			mBuf.append("__");
-			Log.v("tag5", "mBuf.append;Idx(ntn");
 			mBuf.append(name);
-			Log.v("tag5", "mBuf.append(name);Idx(ntn");
 			mBuf.append("=");
 			mBuf.append(value);
 			mBuf.append("\n");
@@ -116,7 +91,7 @@ public class TextPref {
 		}
 	}
 
-	// 문자???��? ?�는?? ?�으�??�폴?��? 리턴?�다.
+	// 문자열 키를 읽는다. 없으면 디폴트를 리턴한다.
 	public String ReadString(String name, String def) {
 		int idx = FindIdx(name);
 		if (idx == -1) {
@@ -127,14 +102,12 @@ public class TextPref {
 		}
 	}
 
-	// ?�수�??�는?? ?�단 문자???�태�??��? ??�?��?�다.
+	// 정수를 읽는다. 일단 문자열 형태로 읽은 후 변환한다.
 	public void WriteInt(String name, int value) {
-		Log.v("tag5", "WriteInt(StriWriteIntn");
 		WriteString(name, Integer.toString(value));
-		
 	}
 
-	// ?�수�?기록?�다. 문자???�태�?�?��?�여 기록?�다.
+	// 정수를 기록한다. 문자열 형태로 변환하여 기록한다.
 	public int ReadInt(String name, int def) {
 		String s = ReadString(name, "__none");
 		if (s.equals("__none")) {
@@ -165,7 +138,7 @@ public class TextPref {
 		}
 	}
 	
-	// 진위값�? true, false�??�닌 1, 0?�로 기록?�다.
+	// 진위값은 true, false가 아닌 1, 0으로 기록한다.
 	public void WriteBoolean(String name, boolean value) {
 		WriteString(name, value ? "1":"0");
 	}
@@ -200,14 +173,14 @@ public class TextPref {
 		}
 	}
 	
-	// ?�꺼번에 값을 ?�입?�기 ?�해 �?��?�다. ?�더 ?�성?�고 충분??버퍼�??�당?�다.
+	// 한꺼번에 값을 삽입하기 위해 준비한다. 헤더 작성하고 충분한 버퍼를 할당한다.
 	void BulkWriteReady(int length) {
 		mBuf = new StringBuilder(length);
 		mBuf.append(HEADER);
 		mBuf.append("\n");
 	}
 
-	// 문자???�태�?받�? 값을 무조�??�에 ?�붙?�다.
+	// 문자열 형태로 받은 값을 무조건 뒤에 덧붙인다.
 	void BulkWrite(String name, String value) {
 		mBuf.append("__");
 		mBuf.append(name);
@@ -216,7 +189,7 @@ public class TextPref {
 		mBuf.append("\n");
 	}
 
-	// ?��? ??��?�다. 
+	// 키를 삭제한다. 
 	void DeleteKey(String name) {
 		int idx = FindIdx(name);
 		if (idx != -1) {
