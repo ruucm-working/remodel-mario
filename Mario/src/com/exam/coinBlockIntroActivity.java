@@ -745,6 +745,8 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     	    			if (init){
     	    				
     	    				
+    	    				updateview(R.drawable.background,"init 임 ㅇㅇ", true);
+    	    				
     	    			}
     	    			else if (lv0_1){
     	    				

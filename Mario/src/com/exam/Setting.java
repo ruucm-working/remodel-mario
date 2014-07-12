@@ -65,7 +65,7 @@ public class Setting extends Activity {
 	
 	//for dialog
 	
-	boolean preinit = true;
+	boolean preinit;
 	
 	//static variables	
 	public static boolean init = false;
@@ -172,7 +172,12 @@ public class Setting extends Activity {
 		
 
 		Log.d("Setting","init1"+init);
+		
+		
+		
+		
 		//state's preference
+		preinit = mPref.ReadBoolean("preinitstate", true);
 		init = mPref.ReadBoolean("initstate", false);
 		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
 		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
@@ -472,6 +477,7 @@ public class Setting extends Activity {
 				preinit = false ;
 				init = true;
 				mPref.Ready();
+				mPref.WriteBoolean("preinitstate", preinit);
 				mPref.WriteBoolean("initstate", init);
 				mPref.CommitWrite();
 			}

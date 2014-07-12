@@ -19,7 +19,7 @@ public class Lv2State implements ICoinBlockViewState {
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };		// here
 	private int[] heightModifier2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	private int[] widthModifier = { 3, -3, 2, -2, 1, -1, 0, 0 };	// here
+	private int[] widthModifier = {4, -4, 4, -4, 3, -3, 2, -2, 1, -1, 0, -0, 0, 0 };	// here
 	Lv2OftenAnim lv2ofAnim;// here
 	Lv2Animation lv2Anim; 
 	Lv2ClickAnim lv2clAnim;
@@ -105,10 +105,17 @@ public class Lv2State implements ICoinBlockViewState {
 
 			//viewContext.removeAnimatable(lv2Anim);
 			//viewContext.removeAnimatable(lv2ofAnim);
+			
+			
+			
+			viewContext.setState(new Lv2WaitState(viewContext));
+			
+			
 			viewContext.removeAnimatable(lv2clAnim);
 			
 			lv2clAnim = new Lv2ClickAnim();			
 			viewContext.addAnimatable(lv2clAnim);
+			
 			
 			
 			snd.seekTo(0);
@@ -131,10 +138,35 @@ public class Lv2State implements ICoinBlockViewState {
 			
 			
 		}
+		
+		private int blockVib = 0;
+		
 
 		public void Draw(CoinBlockView viewContext, Bitmap canvas) {
+			
+			/*
+			
 			viewContext.removeAnimatable(lv2clAnim);
 			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter);
+			
+			
+			*/
+			
+			
+			
+			
+				SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
+						-(int)(widthModifier[blockVib] * context.getDensity()),0);
+				
+
+							if (blockVib < 13) { 
+								blockVib++;
+							}
+							
+			
+			
+			
+			
 		}
 
 		public boolean NeedRedraw() {
@@ -273,7 +305,7 @@ public class Lv2State implements ICoinBlockViewState {
 					-(int)(widthModifier[blockVib] * context.getDensity()),0);
 			
 
-						if (blockVib < 7) { 
+						if (blockVib < 13) { 
 							blockVib++;
 						}
 						
@@ -314,8 +346,8 @@ public class Lv2State implements ICoinBlockViewState {
 			// Draw the brick at bottom
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블
-			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
-					-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
+		//	SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
+				//	-(int)(widthModifier[spriteVib] * context.getDensity()), -32 * (int)context.getDensity() );
 			
 
 						
@@ -326,9 +358,16 @@ public class Lv2State implements ICoinBlockViewState {
 					-(int)(heightModifier[spriteVib] * context.getDensity()));
 			
 		*/
-			if (spriteVib < 7) { 
-				spriteVib++;
-			}
+			
+			
+			SpriteHelper.DrawSprite(canvas, flowerSprite, 0, SpriteHelper.DrawPosition.BottomCenter,
+					-(int)(widthModifier[spriteVib] * context.getDensity()), 0 );
+			
+
+						if (spriteVib < 13) { 
+							spriteVib++;
+						}
+		
 			
 			
 		}
