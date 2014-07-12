@@ -63,7 +63,9 @@ public class Setting extends Activity {
 	boolean mInitSpinner;
 	
 	
+	//for dialog
 	
+	boolean preinit = true;
 	
 	//static variables	
 	public static boolean init = false;
@@ -465,13 +467,13 @@ public class Setting extends Activity {
 			mPref.CommitWrite();
 			 
 			
-			if (!init){
+			if (preinit){
 				DialogSimple();
-				init = true ;
+				preinit = false ;
+				init = true;
 				mPref.Ready();
 				mPref.WriteBoolean("initstate", init);
 				mPref.CommitWrite();
-				Log.d("Setting","init");
 			}
 			else 
 				finish();
