@@ -31,7 +31,7 @@ public class InitState implements ICoinBlockViewState {
 	public InitState(CoinBlockView viewContext) {
 		context = viewContext;
 		
-		setContentView(R.drawable.background,"상자를 열어라");
+		//setContentView(R.drawable.background,"상자를 열어라ㅋㅋ!!!");
 		
 		initAnim = new initAnimation();
 		initofAnim = new InitOftenAnim();
@@ -230,6 +230,15 @@ public class InitState implements ICoinBlockViewState {
 			coinBlockView.setState(new Lv0_1State(coinBlockView));
 			 
 			
+			Setting.init = false;	
+			Setting.lv0_1 = true;	
+			
+			Setting.mPref.Ready();			
+			Setting.mPref.WriteBoolean("initstate", Setting.init);		
+			Setting.mPref.WriteBoolean("lv0_1state", Setting.lv0_1);	
+			Setting.mPref.CommitWrite();
+			
+			
 			
 			coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
 			//coinBlockIntroActivity.taskTimer1.setTime(0);
@@ -399,9 +408,12 @@ public class InitState implements ICoinBlockViewState {
 	
 	public void setContentView(int drawbleid, String txt) {
 		
+
+		Log.d("InitState","setContentView");
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
-		
+
+		Log.d("InitState","coinBlockIntroActivity"+instance);
 		//instance.setContentView(R.layout.main);		
 		
 		
@@ -414,8 +426,14 @@ public class InitState implements ICoinBlockViewState {
 		*/
 		
 		//set newstate's background img
-		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
+		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);
+		
+		Log.d("InitState","LinearLayout");
+		
 		a.setBackgroundResource(drawbleid);
+		
+
+		Log.d("InitState","setBackgroundResource");
 		 
 		//set newstate's text
 		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
