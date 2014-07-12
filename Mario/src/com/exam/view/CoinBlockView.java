@@ -158,8 +158,19 @@ public class CoinBlockView {
   		//fbPref.EndReady();
   		mPref.EndReady();
   	
-  		if(init)
-			setState(new InitState(this));
+  		
+  		if (init)
+  			setState(new InitState(this));
+		else if (lv0_1){
+			setState(new Lv0_1State(this));
+		}else if (lv0_2){
+			setState(new Lv0_2State(this));
+		}else if (lv1){
+			setState(new Lv1State(this));
+		}
+		else if (lv2){
+			setState(new Lv2State(this));
+		}
 		
 		
 		
@@ -453,7 +464,7 @@ public class CoinBlockView {
 
 
 
-	void scheduleRedraw() {
+	 void scheduleRedraw() {
 		long nextRedraw = lastRedrawMillis + REFRESH_RATE;
 		nextRedraw = nextRedraw > SystemClock.uptimeMillis() ? nextRedraw :
 			SystemClock.uptimeMillis() + REFRESH_RATE;
@@ -480,6 +491,9 @@ public class CoinBlockView {
 		
 		Log.v("log1","setstate");
 	}
+	
+	
+
 
 	public ICoinBlockViewState getState(){
 		return state;

@@ -28,7 +28,7 @@ public class Lv1State implements ICoinBlockViewState {
 	public Lv1State(CoinBlockView viewContext) {
 		context = viewContext; 
 		
-		setContentView(R.drawable.background1, "레벨1s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+		//setContentView(R.drawable.background1, "레벨1s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
 		
 		lv1Anim = new Lv1Animation();
 		viewContext.addAnimatable(lv1Anim);
@@ -146,7 +146,7 @@ public class Lv1State implements ICoinBlockViewState {
 				CoinBlockView.mPref.CommitWrite();
 
 				
-				
+				coinBlockIntroActivity.UpdateIntroView();
 				
 
 				//coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
@@ -385,8 +385,8 @@ public class Lv1State implements ICoinBlockViewState {
 		
 		
 		//set time
-		TextView time = (TextView)instance.findViewById(R.id.time0);
-		time.setText(Long.toString(instance.taskTimer1.GetTime()));
+		//TextView time = (TextView)instance.findViewById(R.id.time0);
+		//setText(Long.toString(instance.taskTimer1.GetTime()));
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			

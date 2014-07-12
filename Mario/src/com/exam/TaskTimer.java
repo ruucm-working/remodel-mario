@@ -70,7 +70,9 @@ public class TaskTimer extends AsyncTask<String, String, String> {
   			e.printStackTrace();
   		}      
   		
-  		
+        mPref.Ready();
+  		time = mPref.ReadInt("time", 0);	
+  		mPref.EndReady();
   		 
         Log.d("TaskTimer", "onPreExecute"+Long.toString(time));
         

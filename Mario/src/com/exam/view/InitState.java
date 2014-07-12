@@ -245,6 +245,10 @@ public class InitState implements ICoinBlockViewState {
 			coinBlockIntroActivity.taskTimer1.execute("");
 			
 			
+			
+			coinBlockIntroActivity.UpdateIntroView();
+			
+			
 			//coinBlockIntroActivity.setContentView(R.layout.main);
 			
 			

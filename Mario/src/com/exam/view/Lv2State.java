@@ -29,7 +29,7 @@ public class Lv2State implements ICoinBlockViewState {
 		context = viewContext;
 		
 		
-		setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+		//setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
 		
 		lv2Anim = new Lv2Animation(); 
 		viewContext.addAnimatable(lv2Anim); 
@@ -347,8 +347,8 @@ public class Lv2State implements ICoinBlockViewState {
 		
 		
 		//set time
-		TextView time = (TextView)instance.findViewById(R.id.time0);
-		time.setText(Long.toString(instance.taskTimer1.GetTime()));
+		//TextView time = (TextView)instance.findViewById(R.id.time0);
+		//time.setText(Long.toString(instance.taskTimer1.GetTime()));
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			

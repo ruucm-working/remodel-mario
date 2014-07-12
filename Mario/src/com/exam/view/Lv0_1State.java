@@ -30,7 +30,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 		
 		
 		
-		setContentView(R.drawable.background0,"lv0-1 임 ㅇㅇ");
+		//setContentView(R.drawable.background0,"lv0-1 임 ㅇㅇ");
 		
 		//lv0Anim = new Lv0Animation();
 		lv0clAnim = new Lv0ClickAnim();
@@ -249,7 +249,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 			CoinBlockView.mPref.CommitWrite();
 			
 			
-			
+			coinBlockIntroActivity.UpdateIntroView();
 			
 			
 			

@@ -180,19 +180,60 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
         	
     			setContentView(R.layout.main); 
     			
-    			Log.d("coinBlockIntroActivity", "(R.layout.main); .Ready();(intent)fbPref.Ready();");
+    		
     			
     	  		
     			welcome = (TextView)findViewById(R.id.welcome);		
     			welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
     			
     			
-    			Log.d("coinBlockIntroActivity", "test"+CoinBlockView.state+CoinBlockView.getInstance());
     			
     			
+    			
+    			
+    			UpdateIntroView();
+    			
+    			
+    			/*
     			
     			if (init)
 					CoinBlockView.state = new InitState(CoinBlockView.getInstance());
+    			else if (lv0_1){
+					CoinBlockView.state = new Lv0_1State(CoinBlockView.getInstance());
+					
+					//CoinBlockView.scheduleRedraw();
+					
+					TaskTimer taskTimer2 = new TaskTimer();
+					taskTimer2.setTextView1(R.id.time0);
+					taskTimer2.execute("");
+    			}else if (lv0_2){
+					CoinBlockView.state = new Lv0_2State(CoinBlockView.getInstance());
+					TaskTimer taskTimer2 = new TaskTimer();
+					taskTimer2.setTextView1(R.id.time0);
+					//taskTimer2.execute("");
+    			}else if (lv1){
+					CoinBlockView.state = new Lv1State(CoinBlockView.getInstance());
+					TaskTimer taskTimer2 = new TaskTimer();
+					taskTimer2.setTextView1(R.id.time0);
+					taskTimer2.execute("");
+    			}
+    			else if (lv2){
+    				//CoinBlockView a = new CoinBlockView();
+    				//((CoinBlockWidgetApp) this.getApplicationContext()).GetView(0);
+    				
+					//CoinBlockView.state = new Lv2State(CoinBlockView.getInstance());
+    				
+    				CoinBlockView.setState2(new Lv2State(CoinBlockView.getInstance());
+    				
+					TaskTimer taskTimer2 = new TaskTimer();
+					taskTimer2.setTextView1(R.id.time0);
+					taskTimer2.execute("");
+    			}
+    			
+    			*/
+    			
+    			
+    			
     			
     			/*
     			if(CoinBlockView.getInstance() != null){    			
@@ -908,6 +949,73 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     	        }
     	        
     	    }
+    	 
+    	 
+    	 
+    	 public static void UpdateIntroView() {
+    	    		 
+    		 try {
+    	  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+    	  			
+
+    	  		} catch (Exception e) { 
+    	  			e.printStackTrace();
+    	  		}       
+    	  		mPref.Ready();
+    	  		
+
+    	  		
+    	  		
+    			init = mPref.ReadBoolean("initstate", false);	
+    			lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+    			lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+    			lv1 = mPref.ReadBoolean("lv1state", false);
+    			lv2 = mPref.ReadBoolean("lv2state", false);
+    	
+    	    			
+    	    			if (init){
+    	    				
+    	    				updateview(R.drawable.background0,"lv0-1 임 ㅇㅇ");
+    	    			}
+    	    			else if (lv0_1){
+    	    				
+    	    				
+    	    				updateview(R.drawable.background0,"lv0-2 임 ㅇㅇ");
+    	    				
+    	    			}
+    	    			else if (lv0_2){
+    	    				
+    	    				updateview(R.drawable.background1, "레벨1s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+    	    				
+    	    			}else if (lv1){
+    	    				updateview(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
+    	    			}
+    	    			else if (lv2){
+    	    				
+    	    			}
+    		 
+    		 
+    		 
+    		 
+    	 }
+    	 
+    	 public static void updateview (int drawbleid, String txt){
+    		 
+    		 
+    		 
+    			//set newstate's background img
+    			LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
+    			a.setBackgroundResource(drawbleid);
+    			
+    			 
+    			//set new state's text
+    			TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
+    			statetxt.setText(txt);
+    			
+    			
+    		 
+    	 }
+    	 
     	
 		
 		
