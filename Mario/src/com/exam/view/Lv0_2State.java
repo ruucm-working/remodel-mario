@@ -122,7 +122,7 @@ public class Lv0_2State implements ICoinBlockViewState {
 						Log.v("tag2", "lv0-run");
 						
 						/*
-						if (Setting.second >= 10 && Setting.second <45)	{
+						if (CoinBlockView.second >= 10 && CoinBlockView.second <45)	{
 							
 							mViewContext.removeAnimatable(lv0Anim);							
 							mViewContext.setState(new DisabledState(mViewContext));
@@ -177,15 +177,15 @@ public class Lv0_2State implements ICoinBlockViewState {
 			
 			
 			 
-			Setting.CliCount0_2++;			
+			CoinBlockView.CliCount0_2++;			
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteInt("clicount0", Setting.CliCount0);			
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteInt("clicount0_2", CoinBlockView.CliCount0_2);			
+			CoinBlockView.mPref.CommitWrite();
 		
 			
 			
-			Log.v("tag5", "Setting.mPref.WriteIntn"); 
+			Log.v("tag5", "CoinBlockView.mPref.WriteIntn"); 
 			
 			
 		}
@@ -239,6 +239,7 @@ public class Lv0_2State implements ICoinBlockViewState {
 			
 			
 			
+				//coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
 				coinBlockIntroActivity.taskTimer1.isCanceled = false;
 				TaskTimer taskTimer1 = new TaskTimer();
 				taskTimer1.setTextView1(R.id.time0);
@@ -247,13 +248,13 @@ public class Lv0_2State implements ICoinBlockViewState {
 		        //taskTimer1.execute("");
 		        
 		        
-		        Setting.lv0_2 = false;	
-				Setting.lv1 = true;	
+		        CoinBlockView.lv0_2 = false;	
+				CoinBlockView.lv1 = true;	
 				
-				Setting.mPref.Ready();			
-				Setting.mPref.WriteBoolean("lv0_2state", Setting.lv0_2);		
-				Setting.mPref.WriteBoolean("lv1state", Setting.lv1);	
-				Setting.mPref.CommitWrite();
+				CoinBlockView.mPref.Ready();			
+				CoinBlockView.mPref.WriteBoolean("lv0_2state", CoinBlockView.lv0_2);		
+				CoinBlockView.mPref.WriteBoolean("lv1state", CoinBlockView.lv1);	
+				CoinBlockView.mPref.CommitWrite();
 				
 		        
 		        
@@ -423,12 +424,12 @@ public class Lv0_2State implements ICoinBlockViewState {
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
 		
-		instance.setContentView(R.layout.main);		
+		//instance.setContentView(R.layout.main);		
 		
 		
 		//set time
 		TextView time = (TextView)instance.findViewById(R.id.time0);
-		time.setText(Long.toString(instance.second));
+		time.setText(Long.toString(instance.taskTimer1.GetTime()));
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			

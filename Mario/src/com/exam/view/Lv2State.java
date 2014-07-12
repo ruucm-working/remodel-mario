@@ -123,11 +123,11 @@ public class Lv2State implements ICoinBlockViewState {
 			
 			
 						
-			Setting.CliCount2++;			
+			CoinBlockView.CliCount2++;			
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteInt("clicount2", Setting.CliCount2);			
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteInt("clicount2", CoinBlockView.CliCount2);			
+			CoinBlockView.mPref.CommitWrite();
 			
 			
 		}
@@ -343,12 +343,12 @@ public class Lv2State implements ICoinBlockViewState {
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
 		
-		instance.setContentView(R.layout.main);		
+		//instance.setContentView(R.layout.main);		
 		
 		
 		//set time
 		TextView time = (TextView)instance.findViewById(R.id.time0);
-		time.setText(Long.toString(instance.second));
+		time.setText(Long.toString(instance.taskTimer1.GetTime()));
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			

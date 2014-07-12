@@ -26,7 +26,7 @@ public class Setting extends Activity {
 	//count click
 	
 	TextView clicountinit;
-	TextView clicount0;
+	TextView clicount0_1;
 	TextView clicount0_2;
 	TextView clicount1;
 	TextView clicount2;
@@ -53,7 +53,7 @@ public class Setting extends Activity {
 	Boolean checked[] = new Boolean[20];
 	
 	public static int CliCountinit;
-	public static int CliCount0;
+	public static int CliCount0_1;
 	public static int CliCount0_2;
 	public static int CliCount1;
 	public static int CliCount2;
@@ -105,9 +105,7 @@ public class Setting extends Activity {
 		
 		Log.d(TAG, "time01");
 		Log.d("tag3", "time01");
-/*
- * 
- * 
+
 		//프레퍼런스 읽어오기   
 		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
 		if(!saveDir.exists()) 
@@ -125,35 +123,35 @@ public class Setting extends Activity {
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}       
-*/
 
-		Service_Variable.mPref.Ready();
-		Service_Variable.fbPref.Ready();
+
+		mPref.Ready();
+		fbPref.Ready();
 		
 		
 
 		TextView Num1;
 		TextView Num2;
 		Num1 = (TextView)findViewById(R.id.input01);		
-		stNum1 = Service_Variable.mPref.ReadString("stNum1","0");
+		stNum1 = mPref.ReadString("stNum1","0");
 		Num1.setText(stNum1);
 
-		spTag1 = Service_Variable.mPref.ReadInt("Tag1", 0);
-		spTag2 = Service_Variable.mPref.ReadInt("Tag2", 0);
-		spTag3 = Service_Variable.mPref.ReadInt("Tag3", 0); 
+		spTag1 = mPref.ReadInt("Tag1", 0);
+		spTag2 = mPref.ReadInt("Tag2", 0);
+		spTag3 = mPref.ReadInt("Tag3", 0); 
 		
 		
-		CliCountinit = Service_Variable.mPref.ReadInt("clicountinit", 0);
-		CliCount0 = Service_Variable.mPref.ReadInt("clicount0", 0);
-		CliCount0_2 = Service_Variable.mPref.ReadInt("clicount0_2", 0);
-		CliCount1 = Service_Variable.mPref.ReadInt("clicount1", 0);
-		CliCount2 = Service_Variable.mPref.ReadInt("clicount2", 0);
+		CliCountinit = mPref.ReadInt("clicountinit", 0);
+		CliCount0_1 = mPref.ReadInt("clicount0_1", 0);
+		CliCount0_2 = mPref.ReadInt("clicount0_2", 0);
+		CliCount1 = mPref.ReadInt("clicount1", 0);
+		CliCount2 = mPref.ReadInt("clicount2", 0);
 		
 		
 		clicountinit = (TextView)findViewById(R.id.clicountinit);		
 		clicountinit.setText( CliCountinit + "번 ");
-		clicount0 = (TextView)findViewById(R.id.clicount0);		
-		clicount0.setText( CliCount0 + "번 ");
+		clicount0_1 = (TextView)findViewById(R.id.clicount0);		
+		clicount0_1.setText( clicount0_1 + "번 ");
 		clicount0_2 = (TextView)findViewById(R.id.clicount0_2);		
 		clicount0_2.setText( CliCount0_2 + "번 ");
 		clicount1 = (TextView)findViewById(R.id.clicount1);		
@@ -170,39 +168,39 @@ public class Setting extends Activity {
 
 		Log.d("Setting","init1"+init);
 		//state's preference
-		init = Service_Variable.mPref.ReadBoolean("initstate", false);
-		lv0_1 = Service_Variable.mPref.ReadBoolean("lv0_1state", false);
-		lv0_2 = Service_Variable.mPref.ReadBoolean("lv0_2state", false);
-		lv1 = Service_Variable.mPref.ReadBoolean("lv1state", false);
-		lv2 = Service_Variable.mPref.ReadBoolean("lv2state", false);
+		init = mPref.ReadBoolean("initstate", false);
+		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+		lv1 = mPref.ReadBoolean("lv1state", false);
+		lv2 = mPref.ReadBoolean("lv2state", false);
 		Log.d("Setting","init2"+init);
 		
 		
 		
-		checked[0] = Service_Variable.mPref.ReadBoolean("checked0", false);
-		checked[1] = Service_Variable.mPref.ReadBoolean("checked1", false);
-		checked[2] = Service_Variable.mPref.ReadBoolean("checked2", false);
-		checked[3] = Service_Variable.mPref.ReadBoolean("checked3", false);
-		checked[4] = Service_Variable.mPref.ReadBoolean("checked4", false);
-		checked[5] = Service_Variable.mPref.ReadBoolean("checked5", false);
-		checked[6] = Service_Variable.mPref.ReadBoolean("checked6", false);
-		checked[7] = Service_Variable.mPref.ReadBoolean("checked7", false);
-		checked[8] = Service_Variable.mPref.ReadBoolean("checked8", false);
-		checked[9] = Service_Variable.mPref.ReadBoolean("checked9", false);
-		checked[10] = Service_Variable.mPref.ReadBoolean("checked10", false);
-		checked[11] = Service_Variable.mPref.ReadBoolean("checked11", false);
-		checked[12] = Service_Variable.mPref.ReadBoolean("checked12", false);
-		checked[13] = Service_Variable.mPref.ReadBoolean("checked13", false);
+		checked[0] = mPref.ReadBoolean("checked0", false);
+		checked[1] = mPref.ReadBoolean("checked1", false);
+		checked[2] = mPref.ReadBoolean("checked2", false);
+		checked[3] = mPref.ReadBoolean("checked3", false);
+		checked[4] = mPref.ReadBoolean("checked4", false);
+		checked[5] = mPref.ReadBoolean("checked5", false);
+		checked[6] = mPref.ReadBoolean("checked6", false);
+		checked[7] = mPref.ReadBoolean("checked7", false);
+		checked[8] = mPref.ReadBoolean("checked8", false);
+		checked[9] = mPref.ReadBoolean("checked9", false);
+		checked[10] = mPref.ReadBoolean("checked10", false);
+		checked[11] = mPref.ReadBoolean("checked11", false);
+		checked[12] = mPref.ReadBoolean("checked12", false);
+		checked[13] = mPref.ReadBoolean("checked13", false);
 
 		
-		userFirstName = Service_Variable.fbPref.ReadString("userFirstName", "");
-		Log.d("Setting", "Service_Variable.fbPref.ReadString();");
-		userLastName = Service_Variable.fbPref.ReadString("userLastName", "");
-		Log.d("Setting", "Service_Variable.fbPref.userLastName();");
+		userFirstName = fbPref.ReadString("userFirstName", "");
+		Log.d("Setting", "fbPref.ReadString();");
+		userLastName = fbPref.ReadString("userLastName", "");
+		Log.d("Setting", "fbPref.userLastName();");
 		
 		
-		Service_Variable.mPref.EndReady();
-		Service_Variable.fbPref.EndReady();
+		mPref.EndReady();
+		fbPref.EndReady();
 
 		
 		Log.d("Setting", "init"+init);
@@ -403,10 +401,10 @@ public class Setting extends Activity {
 	public void onPause() {
 		super.onPause();
 		/* 
-		Service_Variable.mPref.BulkWriteReady(1000);
-		Service_Variable.mPref.BulkWrite("Name", Name);
-		Service_Variable.mPref.BulkWrite("StNum", Integer.toString(StNum));
-		Service_Variable.mPref.CommitWrite();
+		mPref.BulkWriteReady(1000);
+		mPref.BulkWrite("Name", Name);
+		mPref.BulkWrite("StNum", Integer.toString(StNum));
+		mPref.CommitWrite();
 		//*/
 	}
 
@@ -420,56 +418,56 @@ public class Setting extends Activity {
 			setResult(RESULT_OK,intent)	;
 			Log.d(TAG,"setOK");
 
-			Service_Variable.mPref.Ready();
+			mPref.Ready();
 
 			TextView txtname1 = (TextView)findViewById(R.id.input01);
 			stNum1 = txtname1.getText().toString();
 
-			Service_Variable.mPref.WriteString("stNum1", stNum1);
-			Service_Variable.mPref.WriteString("stNum2", stNum2);
+			mPref.WriteString("stNum1", stNum1);
+			mPref.WriteString("stNum2", stNum2);
 
-			Service_Variable.mPref.WriteInt("Tag1", spTag1);
-			Service_Variable.mPref.WriteInt("Tag2", spTag2);
-			Service_Variable.mPref.WriteInt("Tag3", spTag3);
-			Service_Variable.mPref.WriteInt("clicountinit", CliCountinit);
-			Service_Variable.mPref.WriteInt("clicount0", CliCount0);
-			Service_Variable.mPref.WriteInt("clicount0_2", CliCount0_2);
-			Service_Variable.mPref.WriteInt("clicount1", CliCount1); 
-			Service_Variable.mPref.WriteInt("clicount2", CliCount2);
+			mPref.WriteInt("Tag1", spTag1);
+			mPref.WriteInt("Tag2", spTag2);
+			mPref.WriteInt("Tag3", spTag3);
+			mPref.WriteInt("clicountinit", CliCountinit);
+			mPref.WriteInt("clicount0_1", CliCount0_1);
+			mPref.WriteInt("clicount0_2", CliCount0_2);
+			mPref.WriteInt("clicount1", CliCount1); 
+			mPref.WriteInt("clicount2", CliCount2);
 
 			
-			Service_Variable.mPref.WriteBoolean("checked0", checked[0]);
-			Service_Variable.mPref.WriteBoolean("checked1", checked[1]);
-			Service_Variable.mPref.WriteBoolean("checked2", checked[2]);
-			Service_Variable.mPref.WriteBoolean("checked3", checked[3]);
-			Service_Variable.mPref.WriteBoolean("checked4", checked[4]);
-			Service_Variable.mPref.WriteBoolean("checked5", checked[5]);
-			Service_Variable.mPref.WriteBoolean("checked6", checked[6]);
-			Service_Variable.mPref.WriteBoolean("checked7", checked[7]);
-			Service_Variable.mPref.WriteBoolean("checked8", checked[8]);
-			Service_Variable.mPref.WriteBoolean("checked9", checked[9]);
-			Service_Variable.mPref.WriteBoolean("checked10", checked[10]);
-			Service_Variable.mPref.WriteBoolean("checked11", checked[11]);
-			Service_Variable.mPref.WriteBoolean("checked12", checked[12]);
-			Service_Variable.mPref.WriteBoolean("checked13", checked[13]);
+			mPref.WriteBoolean("checked0", checked[0]);
+			mPref.WriteBoolean("checked1", checked[1]);
+			mPref.WriteBoolean("checked2", checked[2]);
+			mPref.WriteBoolean("checked3", checked[3]);
+			mPref.WriteBoolean("checked4", checked[4]);
+			mPref.WriteBoolean("checked5", checked[5]);
+			mPref.WriteBoolean("checked6", checked[6]);
+			mPref.WriteBoolean("checked7", checked[7]);
+			mPref.WriteBoolean("checked8", checked[8]);
+			mPref.WriteBoolean("checked9", checked[9]);
+			mPref.WriteBoolean("checked10", checked[10]);
+			mPref.WriteBoolean("checked11", checked[11]);
+			mPref.WriteBoolean("checked12", checked[12]);
+			mPref.WriteBoolean("checked13", checked[13]);
 			
 			
-			Service_Variable.mPref.WriteBoolean("lv0_1state", lv0_1);
-			Service_Variable.mPref.WriteBoolean("lv0_2state", lv0_2);
-			Service_Variable.mPref.WriteBoolean("lv1state", lv1);
-			Service_Variable.mPref.WriteBoolean("lv2state", lv2);
+			mPref.WriteBoolean("lv0_1state", lv0_1);
+			mPref.WriteBoolean("lv0_2state", lv0_2);
+			mPref.WriteBoolean("lv1state", lv1);
+			mPref.WriteBoolean("lv2state", lv2);
 			
 			
 
-			Service_Variable.mPref.CommitWrite();
+			mPref.CommitWrite();
 			 
 			
 			if (!init){
 				DialogSimple();
 				init = true ;
-				Service_Variable.mPref.Ready();
-				Service_Variable.mPref.WriteBoolean("initstate", init);
-				Service_Variable.mPref.CommitWrite();
+				mPref.Ready();
+				mPref.WriteBoolean("initstate", init);
+				mPref.CommitWrite();
 				Log.d("Setting","init");
 			}
 			else 
@@ -498,13 +496,13 @@ public class Setting extends Activity {
 		case R.id.reset4:
 			 
 			CliCountinit = 0;
-			CliCount0 = 0;
+			CliCount0_1 = 0;
 			CliCount0_2 = 0;
 			CliCount1 = 0;
 			CliCount2 = 0;
 			
 			clicountinit.setText( CliCountinit + "번 ");
-			clicount0.setText( CliCount0 + "번 ");
+			clicount0_1.setText( clicount0_1 + "번 ");
 			clicount0_2.setText( CliCount0_2 + "번 ");
 			clicount1.setText( CliCount1 + "번 ");
 			clicount2.setText( CliCount2 + "번 ");

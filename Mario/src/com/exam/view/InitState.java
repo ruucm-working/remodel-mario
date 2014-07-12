@@ -123,7 +123,7 @@ public class InitState implements ICoinBlockViewState {
 						Log.v("tag2", "lv0-run");
 						
 						/*
-						if (Setting.second >= 10 && Setting.second <45)	{
+						if (CoinBlockView.second >= 10 && CoinBlockView.second <45)	{
 							
 							mViewContext.removeAnimatable(initAnim);							
 							mViewContext.setState(new DisabledState(mViewContext));
@@ -169,15 +169,15 @@ public class InitState implements ICoinBlockViewState {
 			
 			
 			 
-			Setting.CliCountinit++;			
+			CoinBlockView.CliCountInit++;			
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteInt("clicountinit", Setting.CliCountinit);			
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteInt("clicountinit", CoinBlockView.CliCountInit);			
+			CoinBlockView.mPref.CommitWrite();
 		
 			
 			
-			Log.v("tag5", "Setting.mPref.WriteIntn"); 
+			Log.v("tag5", "CoinBlockView.mPref.WriteIntn"); 
 			
 			
 		}
@@ -230,13 +230,13 @@ public class InitState implements ICoinBlockViewState {
 			coinBlockView.setState(new Lv0_1State(coinBlockView));
 			 
 			
-			Setting.init = false;	
-			Setting.lv0_1 = true;	
+			CoinBlockView.init = false;	
+			CoinBlockView.lv0_1 = true;	
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteBoolean("initstate", Setting.init);		
-			Setting.mPref.WriteBoolean("lv0_1state", Setting.lv0_1);	
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteBoolean("initstate", CoinBlockView.init);		
+			CoinBlockView.mPref.WriteBoolean("lv0_1state", CoinBlockView.lv0_1);	
+			CoinBlockView.mPref.CommitWrite();
 			
 			
 			
@@ -251,13 +251,13 @@ public class InitState implements ICoinBlockViewState {
 			/*
 			 
 			
-			//Setting.InitState = false;	
-			Setting.Lv0State = true;	
+			//CoinBlockView.InitState = false;	
+			CoinBlockView.Lv0State = true;	
 			
-			Setting.mPref.Ready();			
-			//Setting.mPref.WriteBoolean("initstate", Setting.InitState);	
-			Setting.mPref.WriteBoolean("lv0state", Setting.Lv0State);
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			//CoinBlockView.mPref.WriteBoolean("initstate", CoinBlockView.InitState);	
+			CoinBlockView.mPref.WriteBoolean("lv0state", CoinBlockView.Lv0State);
+			CoinBlockView.mPref.CommitWrite();
 			*/
 			
 			

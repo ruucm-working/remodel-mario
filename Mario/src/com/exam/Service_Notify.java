@@ -109,11 +109,11 @@ public class Service_Notify extends Service
 					int second = coinBlockIntroActivity.taskTimer1.GetTime();
 					
 					
-					int clicountinit = Setting.CliCountinit;
-					int clicount0 = Setting.CliCount0;
-					int clicount0_2 = Setting.CliCount0_2;
-					int clicount1 = Setting.CliCount1;
-					int clicount2 = Setting.CliCount2;
+					int clicountinit = CoinBlockView.CliCountInit;
+					int clicount0 = CoinBlockView.CliCount0_1;
+					int clicount0_2 = CoinBlockView.CliCount0_2;
+					int clicount1 = CoinBlockView.CliCount1;
+					int clicount2 = CoinBlockView.CliCount2;
 					
 					
 					

@@ -111,11 +111,11 @@ public class Lv1State implements ICoinBlockViewState {
 			
 			
 			
-			Setting.CliCount1++;			
+			CoinBlockView.CliCount1++;			
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteInt("clicount1", Setting.CliCount1);			
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteInt("clicount1", CoinBlockView.CliCount1);			
+			CoinBlockView.mPref.CommitWrite();
 			
 			
 						
@@ -137,14 +137,22 @@ public class Lv1State implements ICoinBlockViewState {
 			coinBlockView.setState(new Lv2State(coinBlockView));
 			
 			
-				Setting.lv1 = false;	
-				Setting.lv2 = true;	
+				CoinBlockView.lv1 = false;	
+				CoinBlockView.lv2 = true;	
 				
-				Setting.mPref.Ready();			
-				Setting.mPref.WriteBoolean("lv1state", Setting.lv1);		
-				Setting.mPref.WriteBoolean("lv2state", Setting.lv2);	
-				Setting.mPref.CommitWrite();
+				CoinBlockView.mPref.Ready();			
+				CoinBlockView.mPref.WriteBoolean("lv1state", CoinBlockView.lv1);		
+				CoinBlockView.mPref.WriteBoolean("lv2state", CoinBlockView.lv2);	
+				CoinBlockView.mPref.CommitWrite();
 
+				
+				
+				
+
+				//coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
+			
+			
+				
 			//setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
 			
 		}
@@ -373,12 +381,12 @@ public class Lv1State implements ICoinBlockViewState {
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
 		
-		instance.setContentView(R.layout.main);		
+		//instance.setContentView(R.layout.main);		
 		
 		
 		//set time
 		TextView time = (TextView)instance.findViewById(R.id.time0);
-		time.setText(Long.toString(instance.second));
+		time.setText(Long.toString(instance.taskTimer1.GetTime()));
 		
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			

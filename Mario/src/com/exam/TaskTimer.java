@@ -1,5 +1,7 @@
 package com.exam;
 
+import com.exam.view.*;
+
 import android.os.*;
 import android.util.*;
 import android.widget.*;
@@ -47,15 +49,30 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     	return time;
     }
     
+    
+  //프레퍼런스 
+    public static TextPref mPref;	
+    
     /** this method is executed right BEFORE doInBackground()
      *  on the main thread (UI thread) */
     @Override
     protected void onPreExecute() { 
-    	Log.v("tag9", "onPreExecute");
+    	Log.d("TaskTimer", "onPreExecute");
         timer.setText("" + time);
         timer.setTextColor(TEXT_COLOR_NORMAL);
-        Log.v("tag9", "setTextColor");
+        Log.d("TaskTimer", "setTextColor");
         
+        
+        try {
+  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+  			//fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+  		} catch (Exception e) { 
+  			e.printStackTrace();
+  		}      
+  		
+  		
+  		 
+        Log.d("TaskTimer", "onPreExecute"+Long.toString(time));
         
          
     }
@@ -67,13 +84,22 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
     	
-    	 Log.v("tag9", "doInBackground");
+    	 Log.d("TaskTimer", "doInBackground");
     	
         while(time >= 0 && !isCanceled) { 
             try {
                 Thread.sleep(1000);         // one second sleep
                 time++;                     // decrement time
-                Log.d("tag9", Long.toString(time));
+                Log.d("TaskTimer", Long.toString(time));
+                
+                
+                mPref.Ready(); 
+                mPref.WriteInt("time", time);			
+    			mPref.CommitWrite();
+    			
+    			Log.d("TaskTimer", "CommitWrite"+Long.toString(time));
+                
+                
                 publishProgress();          // trigger onProgressUpdate()
                 
                 
@@ -101,6 +127,9 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     protected void onProgressUpdate(String... value) {
         // modify timer's text (remained time)
         timer.setText("" + time);
+        
+        Log.d("TaskTimer", "onProgressUpdate"+Long.toString(time));
+        
         // play beep sound
         //MediaPlayer.create(coinBlockIntroActivity.getInstance(), R.raw.beep).start();
     }
@@ -111,6 +140,10 @@ public class TaskTimer extends AsyncTask<String, String, String> {
     protected void onPostExecute(String result) {
         if(RESULT_SUCCESS.equals(result))
             timer.setTextColor(TEXT_COLOR_FINISHED);
+        
+        Log.d("TaskTimer", "onPostExecute"+Long.toString(time));
+        
+        
     }
 
 }

@@ -71,12 +71,15 @@ public class CoinBlockView {
 	public static  boolean lv1 ;
 	public static  boolean lv2 ;
 	
-	static int clicountinit ;
-	static int clicount0 ;
-	static int clicount0_2 ;
-	static int clicount1 ;
-	static int clicount2 ;
+	public static int CliCountInit ;
+	public static int CliCount0_1 ;
+	public static int CliCount0_2 ;
+	public static int CliCount1 ;
+	public static int CliCount2 ;
 
+	
+	
+	
 	
 
 
@@ -145,6 +148,9 @@ public class CoinBlockView {
   		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
   		lv1 = mPref.ReadBoolean("lv1state", false);
   		lv2 = mPref.ReadBoolean("lv2state", false);
+  		
+  		
+  		
   		
   		
   		
@@ -301,11 +307,11 @@ public class CoinBlockView {
 	  		Log.d("CoinBlockView", "init2"+init);
 	  		
 	  		
-	  		clicountinit = mPref.ReadInt("clicountinit", 0);
-	  		clicount0 = mPref.ReadInt("clicount0", 0);
-	  		clicount0_2 = mPref.ReadInt("clicount0_2", 0);
-	  		clicount1 = mPref.ReadInt("clicount1", 0);
-	  		clicount2 = mPref.ReadInt("clicount2", 0);
+	  		CliCountInit = mPref.ReadInt("clicountinit", 0);
+	  		CliCount0_1 = mPref.ReadInt("clicount0_1", 0);
+	  		CliCount0_2 = mPref.ReadInt("clicount0_2", 0);
+	  		CliCount1 = mPref.ReadInt("clicount1", 0);
+	  		CliCount2 = mPref.ReadInt("clicount2", 0);
 	  		
 	  		
 	  		
@@ -322,25 +328,25 @@ public class CoinBlockView {
 			second = coinBlockIntroActivity.taskTimer1.GetTime();
    
    
-			if ( second == 0 && clicountinit >=3 && init){
+			if ( second == 0 && CliCountInit >=3 && init){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-				init = false;
+				//init = false;
 			}
-			else if (second >= 10 && second <= 12 && clicount0 >= 3 && lv0_1){
+			else if (second >= 10 && second <= 12 && CliCount0_1 >= 3 && lv0_1){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-				lv0_1 = false;
+				//lv0_1 = false;
 			} 
-			else if ( clicount0_2 >= 3  && lv0_2){
+			else if ( CliCount0_2 >= 3  && lv0_2){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-				lv0_2 = false;
+				//lv0_2 = false;
 			} 
-			else if (second >= 20 && second <= 22 && clicount1 >= 3 && lv1){
+			else if (second >= 20 && second <= 22 && CliCount1 >= 3 && lv1){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-				lv1 = false;
+				//lv1 = false;
 			} 
-			else if (second >= 30 && second <= 32 && clicount2 >=3 && lv2){
+			else if (second >= 30 && second <= 32 && CliCount2 >=3 && lv2){
 				updateEvolveIntent(rviews, CoinBlockWidgetApp.getApplication());
-				lv2 = false;
+				//lv2 = false;
 			}
 		
 			  

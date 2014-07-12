@@ -121,7 +121,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 						Log.v("tag2", "lv0-run");
 						
 						/*
-						if (Setting.second >= 10 && Setting.second <45)	{
+						if (CoinBlockView.second >= 10 && CoinBlockView.second <45)	{
 							
 							mViewContext.removeAnimatable(lv0Anim);							
 							mViewContext.setState(new DisabledState(mViewContext));
@@ -175,16 +175,16 @@ public class Lv0_1State implements ICoinBlockViewState {
 			
 			
 			
-			 
-			Setting.CliCount0++;			
+			Log.v("Lv0_1State", "CoinBlockView.clicount  1"+CoinBlockView.CliCount0_1); 
+			CoinBlockView.CliCount0_1++;			
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteInt("clicount0", Setting.CliCount0);			
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteInt("clicount0_1", CoinBlockView.CliCount0_1);			
+			CoinBlockView.mPref.CommitWrite();
 		
 			
 			
-			Log.v("tag5", "Setting.mPref.WriteIntn"); 
+			Log.v("Lv0_1State", "CoinBlockView.clicount0_1   2"+CoinBlockView.CliCount0_1); 
 			
 			
 		}
@@ -236,16 +236,17 @@ public class Lv0_1State implements ICoinBlockViewState {
 			// TODO Auto-generated method stub
 			coinBlockView.setState(new Lv0_2State(coinBlockView));
 			
+			//coinBlockIntroActivity.taskTimer1.setTextView1(R.id.time0);
 			coinBlockIntroActivity.taskTimer1.isCanceled = true;
 			
 			
-			Setting.lv0_1 = false;	
-			Setting.lv0_2 = true;	
+			CoinBlockView.lv0_1 = false;	
+			CoinBlockView.lv0_2 = true;	
 			
-			Setting.mPref.Ready();			
-			Setting.mPref.WriteBoolean("lv0_1state", Setting.lv0_1);		
-			Setting.mPref.WriteBoolean("lv0_2state", Setting.lv0_2);	
-			Setting.mPref.CommitWrite();
+			CoinBlockView.mPref.Ready();			
+			CoinBlockView.mPref.WriteBoolean("lv0_1state", CoinBlockView.lv0_1);		
+			CoinBlockView.mPref.WriteBoolean("lv0_2state", CoinBlockView.lv0_2);	
+			CoinBlockView.mPref.CommitWrite();
 			
 			
 			
@@ -401,7 +402,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 		
 		Log.d("Lv0_1State","setBackgroundResource");
 		 
-		//set newstate's text
+		//set new state's text
 		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		
 		statetxt.setText(txt);
 		
