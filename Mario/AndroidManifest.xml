@@ -89,12 +89,18 @@
                 <action android:name="com.exam.updateservice" />
             </intent-filter>
         </service>
+        
+        
         <service
-            android:name="com.exam.Notify"
-             android:enabled="true">
-            
-            
-            </service>
+            android:name="com.exam.Service_Notify"
+            android:enabled="true">        
+        </service>
+        
+        
+        <service
+            android:name="com.exam.Service_Variable"
+            android:enabled="true">        
+        </service>
            
 
         <activity

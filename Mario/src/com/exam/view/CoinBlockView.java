@@ -27,18 +27,19 @@ public class CoinBlockView {
 
 	private long lastRedrawMillis = 0;
 	private static int mWidgetId;
-	private static ICoinBlockViewState state;
+	
+	
+	
+	
+	private static CoinBlockView instance;
+	
+	
 	
 	
 	//for evolve
 	public static long second = 0;
 	
-	static boolean init = true;
-	public static boolean lv0_1 = true;
-	static boolean lv0_2 = true;
-	public static boolean lv1 = true;
-	public static boolean lv2 = true;
-
+	
 
 
 
@@ -57,7 +58,25 @@ public class CoinBlockView {
     public static TextPref mPref;	
   	public static TextPref fbPref;	
   	
-  	static boolean initstate;
+  	
+  	
+  	
+  	//static variables
+  	
+  	public static ICoinBlockViewState state;
+  	
+  	static boolean init = false;
+	public static boolean lv0_1;
+	public static boolean lv0_2;
+	public static  boolean lv1 ;
+	public static  boolean lv2 ;
+	
+	static int clicountinit ;
+	static int clicount0 ;
+	static int clicount0_2 ;
+	static int clicount1 ;
+	static int clicount2 ;
+
 	
 
 
@@ -75,30 +94,112 @@ public class CoinBlockView {
 		
 		
 		 //프레퍼런스 읽어오기   
+		/*
   		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
   		if(!saveDir.exists()) 
   		{
   			saveDir.mkdirs();
   		}
+  		*/  
+		/*
   		try {
   			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
   			//fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
   		} catch (Exception e) { 
   			e.printStackTrace();
-  		}       
-  		mPref.Ready();  	  		
-  		initstate = mPref.ReadBoolean("initstate", false);		  		
-  		mPref.EndReady();
+  		}      
+  		
+  		
+  		mPref.Ready();  
+  
+  		Log.d("CoinBlockView", "init1"+init);
+  		
+  		
+  		init = mPref.ReadBoolean("initstate", false);	
+  		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+  		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+  		lv1 = mPref.ReadBoolean("lv1state", false);
+  		lv2 = mPref.ReadBoolean("lv2state", false);
+  		
+  		Log.d("CoinBlockView", "init2"+init);
+  		
   		//fbPref.EndReady();
-  		
+  		mPref.EndReady();
+  		*/
   		
 		
+		try {
+  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+  			//fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+  		} catch (Exception e) { 
+  			e.printStackTrace();
+  		}      
+  		
+  		
+  		mPref.Ready();  
+  
+  		
+  		
+  		init = mPref.ReadBoolean("initstate", false);	
+  		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+  		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+  		lv1 = mPref.ReadBoolean("lv1state", false);
+  		lv2 = mPref.ReadBoolean("lv2state", false);
+  		
+  		
+  		
+  		
+  		//fbPref.EndReady();
+  		mPref.EndReady();
+  	
+  		if(init)
+			setState(new InitState(this));
 		
-		if(!initstate)		
-		setState(new InitState(this));
+		
+		
+	//	else
+			//setState(new Lv0_1State(this));
+ 
 
 
+  		/*
+  		Log.d("CoinBlockView", "coinBlockIntroActivity"+coinBlockIntroActivity.getInstance());
+  		
+  		if (coinBlockIntroActivity.getInstance() != null){
+  			
+  			if(init){
+  				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+  				setState(new InitState(this));
+  				Log.d("CoinBlockView", "setState");
+  			}
+  			
+  			 
+  		}
+  		
+  		
+  		
+  		Log.d("CoinBlockView", "coinBlockIntroActivity"+coinBlockIntroActivity.getInstance());
 
+  			if(init){
+  				try {
+					Thread.sleep(5000);
+					Log.d("CoinBlockView", "Thread.sleep"+coinBlockIntroActivity.getInstance());
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+  				setState(new InitState(this));
+  				Log.d("CoinBlockView", "setState");
+  			}
+  			
+  		*/
+  		
+  		
 
 		thread2 = new UpdateThread(mHandler2);
 		thread2.start();
@@ -107,11 +208,21 @@ public class CoinBlockView {
 		
 
 		
+		instance = this;
+		
 
 
 
 
 	}
+	
+	
+	public static CoinBlockView getInstance() {
+        return instance;
+    }
+	
+	
+	
 
 
 	class UpdateThread extends Thread{
@@ -128,7 +239,7 @@ public class CoinBlockView {
 					}
 				}
 			}
-		}
+		} 
 
 		//생성자
 		public UpdateThread(Handler handler){
@@ -165,11 +276,45 @@ public class CoinBlockView {
 			 
 			//int second = Integer.parseInt(text);
 			//second = coinBlockIntroActivity.second;	
-			int clicountinit = Setting.CliCountinit;
-			int clicount0 = Setting.CliCount0;
-			int clicount0_2 = Setting.CliCount0_2;
-			int clicount1 = Setting.CliCount1;
-			int clicount2 = Setting.CliCount2;
+			
+			
+			
+			try {
+	  			mPref = new TextPref("mnt/sdcard/SsdamSsdam/textpref.pref");
+	  			//fbPref = new TextPref("mnt/sdcard/SsdamSsdam/facebookprofile.txt");
+	  		} catch (Exception e) { 
+	  			e.printStackTrace();
+	  		}      
+	  		
+	  		
+	  		mPref.Ready();  
+	  
+	  		Log.d("CoinBlockView", "init1"+init);
+	  		
+	  		
+	  		init = mPref.ReadBoolean("initstate", false);	
+	  		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+	  		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+	  		lv1 = mPref.ReadBoolean("lv1state", false);
+	  		lv2 = mPref.ReadBoolean("lv2state", false);
+	  		
+	  		Log.d("CoinBlockView", "init2"+init);
+	  		
+	  		
+	  		clicountinit = mPref.ReadInt("clicountinit", 0);
+	  		clicount0 = mPref.ReadInt("clicount0", 0);
+	  		clicount0_2 = mPref.ReadInt("clicount0_2", 0);
+	  		clicount1 = mPref.ReadInt("clicount1", 0);
+	  		clicount2 = mPref.ReadInt("clicount2", 0);
+	  		
+	  		
+	  		
+	  		
+	  		//fbPref.EndReady();
+	  		mPref.EndReady();
+			
+			
+			
 			
 			Log.d("tag8", Long.toString(second));
 			  

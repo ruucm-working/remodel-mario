@@ -135,6 +135,15 @@ public class Lv1State implements ICoinBlockViewState {
 		@Override
 		public void OnEvolve(CoinBlockView coinBlockView) {
 			coinBlockView.setState(new Lv2State(coinBlockView));
+			
+			
+				Setting.lv1 = false;	
+				Setting.lv2 = true;	
+				
+				Setting.mPref.Ready();			
+				Setting.mPref.WriteBoolean("lv1state", Setting.lv1);		
+				Setting.mPref.WriteBoolean("lv2state", Setting.lv2);	
+				Setting.mPref.CommitWrite();
 
 			//setContentView(R.drawable.background2, "레벨2s냐 아직도 ㅋㅋㅋㅋㅋㅋㅋㅄ");
 			

@@ -73,11 +73,11 @@ public class Setting extends Activity {
 	
 	
 	//액티비티 화면 결정	
-	public static boolean InitState = false;
-	public static boolean Lv0_1State = false;
-	public static boolean Lv0_2State = false;
-	public static boolean Lv1State = false;
-	public static boolean Lv2State = false;
+	public static boolean init = false;
+	public static boolean lv0_1 = false;
+	public static boolean lv0_2 = false;
+	public static boolean lv1 = false;
+	public static boolean lv2 = false;
 	
 	
 	
@@ -102,12 +102,12 @@ public class Setting extends Activity {
 		
 		
 	
-		  
-
 		
 		Log.d(TAG, "time01");
 		Log.d("tag3", "time01");
-
+/*
+ * 
+ * 
 		//프레퍼런스 읽어오기   
 		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
 		if(!saveDir.exists()) 
@@ -125,11 +125,11 @@ public class Setting extends Activity {
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}       
+*/
 
-
-		mPref.Ready();
-		fbPref.Ready();
-		Log.d("Setting", "fbPref.Ready();");
+		Service_Variable.mPref.Ready();
+		Service_Variable.fbPref.Ready();
+		
 		
 
 		TextView Num1;
@@ -168,9 +168,17 @@ public class Setting extends Activity {
 		
 		
 
-
+		Log.d("Setting","init1"+init);
+		//state's preference
+		init = mPref.ReadBoolean("initstate", false);
+		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+		lv1 = mPref.ReadBoolean("lv1state", false);
+		lv2 = mPref.ReadBoolean("lv2state", false);
+		Log.d("Setting","init2"+init);
 		
-		InitState = mPref.ReadBoolean("initstate", false);
+		
+		
 		checked[0] = mPref.ReadBoolean("checked0", false);
 		checked[1] = mPref.ReadBoolean("checked1", false);
 		checked[2] = mPref.ReadBoolean("checked2", false);
@@ -197,7 +205,7 @@ public class Setting extends Activity {
 		fbPref.EndReady();
 
 		
-		Log.d("Setting", "fbPref.EndReady();");
+		Log.d("Setting", "init"+init);
 		
 		//체크박스 값에 따라 체크해주기
 
@@ -444,16 +452,25 @@ public class Setting extends Activity {
 			mPref.WriteBoolean("checked11", checked[11]);
 			mPref.WriteBoolean("checked12", checked[12]);
 			mPref.WriteBoolean("checked13", checked[13]);
+			
+			
+			mPref.WriteBoolean("lv0_1state", lv0_1);
+			mPref.WriteBoolean("lv0_2state", lv0_2);
+			mPref.WriteBoolean("lv1state", lv1);
+			mPref.WriteBoolean("lv2state", lv2);
+			
+			
 
 			mPref.CommitWrite();
+			 
 			
-			
-			if (!InitState){
+			if (!init){
 				DialogSimple();
-				InitState = true ;
+				init = true ;
 				mPref.Ready();
-				mPref.WriteBoolean("initstate", InitState);
+				mPref.WriteBoolean("initstate", init);
 				mPref.CommitWrite();
+				Log.d("Setting","init");
 			}
 			else 
 				finish();

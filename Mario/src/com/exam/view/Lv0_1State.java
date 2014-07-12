@@ -239,6 +239,16 @@ public class Lv0_1State implements ICoinBlockViewState {
 			coinBlockIntroActivity.taskTimer1.isCanceled = true;
 			
 			
+			Setting.lv0_1 = false;	
+			Setting.lv0_2 = true;	
+			
+			Setting.mPref.Ready();			
+			Setting.mPref.WriteBoolean("lv0_1state", Setting.lv0_1);		
+			Setting.mPref.WriteBoolean("lv0_2state", Setting.lv0_2);	
+			Setting.mPref.CommitWrite();
+			
+			
+			
 			
 			
 			
@@ -373,7 +383,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 		
 		
 		coinBlockIntroActivity instance = coinBlockIntroActivity.getInstance();	
-		
+		Log.d("Lv0_1State","instance"+instance);
 		//instance.setContentView(R.layout.main);		
 		
 		
@@ -388,6 +398,8 @@ public class Lv0_1State implements ICoinBlockViewState {
 		//set newstate's background img
 		LinearLayout a = (LinearLayout)instance.findViewById(R.id.mainlinear);			
 		a.setBackgroundResource(drawbleid);
+		
+		Log.d("Lv0_1State","setBackgroundResource");
 		 
 		//set newstate's text
 		TextView statetxt = (TextView)instance.findViewById(R.id.welcome);		

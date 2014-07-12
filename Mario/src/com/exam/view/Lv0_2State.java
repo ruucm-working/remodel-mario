@@ -247,6 +247,16 @@ public class Lv0_2State implements ICoinBlockViewState {
 		        //taskTimer1.execute("");
 		        
 		        
+		        Setting.lv0_2 = false;	
+				Setting.lv1 = true;	
+				
+				Setting.mPref.Ready();			
+				Setting.mPref.WriteBoolean("lv0_2state", Setting.lv0_2);		
+				Setting.mPref.WriteBoolean("lv1state", Setting.lv1);	
+				Setting.mPref.CommitWrite();
+				
+		        
+		        
 		        
 		    //setContentView(R.drawable.background1, "레벨1임이제 ㅋㅋㅋㅋㅄ");
 			

@@ -8,7 +8,7 @@ import android.os.*;
 import android.support.v4.app.*;
 import android.util.*;
 
-public class Notify extends Service
+public class Service_Notify extends Service
 {
 	
 	
@@ -31,7 +31,7 @@ public class Notify extends Service
 	public void onCreate()
 	{
 
-		builder = new NotificationCompat.Builder(Notify.this);
+		builder = new NotificationCompat.Builder(Service_Notify.this);
 	
 	}
 

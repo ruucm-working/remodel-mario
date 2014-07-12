@@ -15,6 +15,7 @@ import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+import com.exam.view.*;
 import com.facebook.widget.*;
 
 
@@ -24,7 +25,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	
 	
 	
-	static boolean initstate;
+	//static boolean initstate;
 	
 	
 	
@@ -45,6 +46,12 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 	public static TextPref mPref;
   	public static TextPref fbPref;
 	 
+  	
+  	static boolean init = true;
+	public static boolean lv0_1 = true;
+	static boolean lv0_2 = true;
+	public static boolean lv1 = true;
+	public static boolean lv2 = true;
 	
   	/*
 	//facebook	
@@ -103,10 +110,15 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		
 		//setContentView(R.layout.main);
 		
+		
+		
+		
+		
+		
 		Log.d("coinBlockIntroActivity","onCreate.");
 		
 		// Run service
-				Intent intent = new Intent(this, Notify.class);
+				Intent intent = new Intent(this, Service_Notify.class);
 				startService(intent);
 				
 				 
@@ -116,6 +128,7 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 				
 		
 		instance = this;
+		Log.d("coinBlockIntroActivity", "instance"+instance);
 		
 		//프레퍼런스 읽어오기   
   		File saveDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "SsdamSsdam"); // dir : 생성하고자 하는 경로
@@ -151,8 +164,15 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
   		String userFirstName = fbPref.ReadString("userFirstName", "");
   		String userLastName = fbPref.ReadString("userLastName", "");
 		
-		initstate = mPref.ReadBoolean("initstate", false);
-		boolean lv0state = mPref.ReadBoolean("lv0state", false);
+  		
+  		
+		init = mPref.ReadBoolean("initstate", false);	
+		lv0_1 = mPref.ReadBoolean("lv0_1state", false);
+		lv0_2 = mPref.ReadBoolean("lv0_2state", false);
+		lv1 = mPref.ReadBoolean("lv1state", false);
+		lv2 = mPref.ReadBoolean("lv2state", false);
+		
+		//boolean lv0state = mPref.ReadBoolean("lv0state", false);
 		
 		
 		Log.d("coinBlockIntroActivity", "fbPref.Ready();(intent)fbPref.Ready();");
@@ -165,6 +185,22 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
     	  		
     			welcome = (TextView)findViewById(R.id.welcome);		
     			welcome.setText(userFirstName+" "+userLastName+" 님 환영합니다 위젯을 시작하려면 Set-up 버튼을 누르세요");
+    			
+    			
+    			Log.d("coinBlockIntroActivity", "test"+CoinBlockView.state+CoinBlockView.getInstance());
+    			
+    			
+    			
+    			if (init)
+					CoinBlockView.state = new InitState(CoinBlockView.getInstance());
+    			
+    			/*
+    			if(CoinBlockView.getInstance() != null){    			
+    				if (init)
+    					CoinBlockView.state = new InitState(CoinBlockView.getInstance());
+    			}
+    			
+    			*/
     			
         	
         	/*
