@@ -19,6 +19,8 @@ public class InitState implements ICoinBlockViewState {
 	private int animStage = 0;
 	private int[] heightModifier = { 8, -8, 6, -6, 4, -4, 2, -2 };	
 	private int[] widthModifier = { 6, -6, 4, -4, 2, -2, 0, 0 };	// here
+	private long wifi_cooltime = 0;
+	
 	
 	initAnimation initAnim;
 	InitOftenAnim initofAnim;
@@ -256,6 +258,7 @@ public class InitState implements ICoinBlockViewState {
 		}
 
 		@Override
+<<<<<<< HEAD
 		public void OnWifi(CoinBlockView viewcontext) {
 
 			// TODO Auto-generated method stub
@@ -278,7 +281,28 @@ public class InitState implements ICoinBlockViewState {
 							}
 						});
 			
+=======
+		public void OnWifi(CoinBlockView viewContext) {
+			long tmp = System.currentTimeMillis();
+>>>>>>> 6cf58fed81cd35ecaf520f341b579e01b5783186
 			
+			if(tmp - wifi_cooltime >= 5000)
+			{
+				Log.v("WIFI", "Entering Wifi - Init");
+				viewContext.removeAnimatable(wifiAnim);
+	
+				wifiAnim = new WifiAnimation();			
+				viewContext.addAnimatable(wifiAnim);
+	
+				snd3.seekTo(0);
+				snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+					public void onSeekComplete(MediaPlayer mp) {
+						snd3.start();
+					}
+				});
+				
+				wifi_cooltime = System.currentTimeMillis();
+			}
 		}
 	}
 

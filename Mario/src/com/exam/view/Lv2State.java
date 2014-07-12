@@ -140,15 +140,33 @@ public class Lv2State implements ICoinBlockViewState {
 
 		@Override
 		public void OnInit(CoinBlockView coinBlockView) {
-			coinBlockView.removeAnimatable(lv2Anim);	
+			coinBlockView.removeAnimatable(lv2Anim);
 			coinBlockView.removeAnimatable(lv2ofAnim);
 			coinBlockView.removeAnimatable(lv2clAnim);
+			coinBlockView.removeAnimatable(wifiAnim);
 		}
 
 		@Override
 		public void OnDoubleClick(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
-			
+			viewContext.removeAnimatable(lv2dblAnim);
+
+			lv2dblAnim = new Lv2DblClickAnim();			
+			viewContext.addAnimatable(lv2dblAnim);
+
+			snd1.seekTo(0);
+			snd1.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+				public void onSeekComplete(MediaPlayer mp) {
+					snd1.start();
+				}
+			});
+
+			Log.v("DOUBLECLICK", "Entering Doubleclick");
+
+			Setting.CliDblClick++;
+			Setting.mPref.Ready();
+			Setting.mPref.WriteInt("dblclick", Setting.CliDblClick);			
+			Setting.mPref.CommitWrite();
 		}
 
 		@Override
@@ -158,9 +176,20 @@ public class Lv2State implements ICoinBlockViewState {
 		}
 
 		@Override
-		public void OnWifi(CoinBlockView coinBlockView) {
+		public void OnWifi(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
-			
+			Log.v("WIFI", "Entering Wifi2");
+			viewContext.removeAnimatable(wifiAnim);
+
+			wifiAnim = new WifiAnimation();			
+			viewContext.addAnimatable(wifiAnim);
+
+			snd3.seekTo(0);
+			snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
+				public void onSeekComplete(MediaPlayer mp) {
+					snd3.start();
+				}
+			});
 		}
 	}
 	
@@ -252,8 +281,6 @@ public class Lv2State implements ICoinBlockViewState {
 	}
 	
 	public void Draw(CoinBlockView viewContext, Bitmap canvas) {
-		// Draw the brick at bottom
-		//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.brick_disabled);
 		//진동할때의 하단드로블
 		SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
 				-(int)(heightModifier2[animStage%8] * viewContext.getDensity()));
@@ -265,8 +292,11 @@ public class Lv2State implements ICoinBlockViewState {
 			viewContext.setState(new Lv2WaitState(viewContext));
 			*/
 		
-		if(animStage > 60)			
+		if(animStage > 60)
+		{
+			Log.v("WIFI", "Entering Lv2WaitState");
 			viewContext.setState(new Lv2WaitState(viewContext));
+		}
 	}
 
 	public boolean NeedRedraw() {
@@ -298,25 +328,7 @@ public class Lv2State implements ICoinBlockViewState {
 
 	@Override
 	public void OnDoubleClick(CoinBlockView viewContext) {
-		// TODO Auto-generated method stub
-		viewContext.removeAnimatable(lv2dblAnim);
-
-		lv2dblAnim = new Lv2DblClickAnim();			
-		viewContext.addAnimatable(lv2dblAnim);
-
-		snd1.seekTo(0);
-		snd1.setOnSeekCompleteListener(new OnSeekCompleteListener() {
-			public void onSeekComplete(MediaPlayer mp) {
-				snd1.start();
-			}
-		});
-
-		Log.v("DOUBLECLICK", "Entering Doubleclick");
-
-		Setting.CliDblClick++;
-		Setting.mPref.Ready();
-		Setting.mPref.WriteInt("dblclick", Setting.CliDblClick);			
-		Setting.mPref.CommitWrite();
+		
 	}
 
 	@Override
@@ -327,19 +339,6 @@ public class Lv2State implements ICoinBlockViewState {
 
 	@Override
 	public void OnWifi(CoinBlockView viewContext) {
-		Log.v("WIFI", "Entering Wifi4");
 		
-		// TODO Auto-generated method stub
-		viewContext.removeAnimatable(wifiAnim);
-
-		wifiAnim = new WifiAnimation();			
-		viewContext.addAnimatable(wifiAnim);
-
-		snd3.seekTo(0);
-		snd3.setOnSeekCompleteListener(new OnSeekCompleteListener() {
-			public void onSeekComplete(MediaPlayer mp) {
-				snd3.start();
-			}
-		});
 	}
 }

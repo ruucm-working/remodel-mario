@@ -16,7 +16,11 @@ public class WifiAnimation implements IAnimatable {
 	
 	public WifiAnimation( ) {
 		Log.v("WIFI", "object created");
+<<<<<<< HEAD
 		//context = context1;
+=======
+		
+>>>>>>> 6cf58fed81cd35ecaf520f341b579e01b5783186
 	}
 	
 	/*
@@ -25,13 +29,7 @@ public class WifiAnimation implements IAnimatable {
 		return false;
 	}
 
-	public void Draw(Bitmap canvas) {
-		Log.v("WIFI", "Entering wifi class");
-		
-		// Draw the brick at bottom
-		//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
-		//진동할때의 하단드로블
-
+	public void Draw(Bitmap canvas) {		
 		SpriteHelper.DrawSprite(canvas, sp, 0, SpriteHelper.DrawPosition.BottomCenter, 0, 0);
 	}
 	

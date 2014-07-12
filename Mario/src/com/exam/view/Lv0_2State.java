@@ -224,8 +224,6 @@ public class Lv0_2State implements ICoinBlockViewState {
 		public void OnWifi(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
 			Log.v("WIFI", "Entering Wifi0-2");
-			
-			// TODO Auto-generated method stub
 			viewContext.removeAnimatable(wifiAnim);
 
 			wifiAnim = new WifiAnimation();			

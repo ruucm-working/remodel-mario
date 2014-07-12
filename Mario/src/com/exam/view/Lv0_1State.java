@@ -218,8 +218,6 @@ public class Lv0_1State implements ICoinBlockViewState {
 		public void OnWifi(CoinBlockView viewContext) {
 			// TODO Auto-generated method stub
 			Log.v("WIFI", "Entering Wifi0-1");
-			
-			// TODO Auto-generated method stub
 			viewContext.removeAnimatable(wifiAnim);
 
 			wifiAnim = new WifiAnimation();			
@@ -348,7 +346,7 @@ public class Lv0_1State implements ICoinBlockViewState {
 	}
 
 	@Override
-	public void OnWifi(CoinBlockView coinBlockView) {
+	public void OnWifi(CoinBlockView viewContext) {
 		// TODO Auto-generated method stub
 		
 	}
