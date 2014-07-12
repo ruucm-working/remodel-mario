@@ -310,7 +310,7 @@ public class Lv2State implements ICoinBlockViewState {
 
 		public void Draw(Bitmap canvas) {
 			
-			/*
+			
 			// Draw the brick at bottom
 			//Sprite sp1 = MediaAssets.getInstance().getSprite(R.drawable.mushroom);
 			//진동할때의 하단드로블
@@ -320,19 +320,17 @@ public class Lv2State implements ICoinBlockViewState {
 
 						
 						
-		
-			*/
-			/*
+		/*
 			
 			SpriteHelper.DrawSprite(canvas, evolve, evolve.NextFrame(), SpriteHelper.DrawPosition.BottomCenter,0,
 					-(int)(heightModifier[spriteVib] * context.getDensity()));
 			
-		
+		*/
 			if (spriteVib < 7) { 
 				spriteVib++;
 			}
 			
-			*/
+			
 		}
 
 		
