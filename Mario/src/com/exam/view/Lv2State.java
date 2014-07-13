@@ -8,7 +8,6 @@ import android.util.*;
 import android.widget.*;
 
 import com.exam.*;
-import com.exam.view.Lv1State.*;
 
 public class Lv2State implements ICoinBlockViewState {
 	
@@ -124,9 +123,56 @@ public class Lv2State implements ICoinBlockViewState {
 					snd.start();
 				}
 			});
-									
-			 
+
+			
 		
+			int textcode = (int)(Math.random()*9);
+			String text = null;
+
+			switch(textcode)
+			{
+			case 0:
+				text = "?";
+				break;
+
+			case 1:
+				text = "....";
+				break;
+
+			case 2:
+				text = "..";
+				break;
+
+			case 3:
+				text = "!!!";
+				break;
+
+			case 4:
+				text = "...!!";
+				break;
+				
+			case 5:
+				text = "뀨으";
+				break;
+				
+			case 6:
+				text = "뀨웅!!";
+				break;
+				
+			case 7:
+				text = "뀨!";
+				break;
+				
+			case 8:
+				text = "뀨우...";
+				break;
+				
+			}
+			
+			
+
+			Toast.makeText(CoinBlockView.Context, text, Toast.LENGTH_SHORT).show();
+			
 			
 			
 						

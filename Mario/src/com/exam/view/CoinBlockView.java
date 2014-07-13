@@ -20,6 +20,7 @@ public class CoinBlockView {
 	public static String INTENT_EVOLVE_FORMAT = "com.exam.view.INTENT_EVOLVE_FORMAT";
 	public static String INTENT_INIT_FORMAT = "com.exam.view.INTENT_INIT_FORMAT";
 	private static final int REFRESH_RATE = 40;
+	public static Context Context = null;
 	int cheight;
 	private volatile Set<IAnimatable> Children;
 	int cwidth;
@@ -94,6 +95,13 @@ public class CoinBlockView {
 
 		Children = new HashSet<IAnimatable>();
 		mWidgetId = widgetId;
+		
+		
+		
+		//context for toast
+		
+		
+		Context = context;
 		
 		
 		 //프레퍼런스 읽어오기   
