@@ -71,7 +71,7 @@ public class Service_BatteryGauge extends Service {
 			
 			Log.d("battersv","onReceive");
 			 
-			
+			 
 			Log.d("battersv","handleMessag2e 실행");
 			NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			
