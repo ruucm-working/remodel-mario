@@ -101,13 +101,6 @@
             android:name="com.exam.Service_Variable"
             android:enabled="true">        
         </service>
-        
-        
-        <service android:name=".Service_BatteryGauge" android:enabled="true">
-        	<intent-filter>
-        		<action android:name=".Service_BatteryGauge" />
-        	</intent-filter>
-        </service>
            
 
         <activity

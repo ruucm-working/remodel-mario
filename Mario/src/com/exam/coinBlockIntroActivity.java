@@ -118,8 +118,8 @@ public class coinBlockIntroActivity extends Activity implements OnClickListener
 		Log.d("coinBlockIntroActivity","onCreate.");
 		
 		// Run service
-				//Intent intent = new Intent(this, Service_Notify.class);
-				//startService(intent);
+				Intent intent = new Intent(this, Service_Notify.class);
+				startService(intent);
 				
 				 
 				
