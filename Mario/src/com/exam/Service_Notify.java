@@ -93,12 +93,14 @@ public class Service_Notify extends Service
 			manager.notify(1, builder.build());
 		};
 	};
-
-	private Handler mConstHandler = new Handler()
+	/*
+	Handler mConstHandler = new Handler()
 	{
 		public void handleMessage(Message msg)
 		{
-			Log.d("Service_Notify","handleMessage 실행");
+			
+			
+			Log.d("Service_Notify","handleMessag2e 실행");
 			NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			
 			try {
@@ -130,14 +132,17 @@ public class Service_Notify extends Service
 					, Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 			const_builder.setContentIntent(pIntent);
 			manager.notify(2, const_builder.build());
+			
+			
+			
 		};
 	};
-
+*/
 	// 서비스 작동내용
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId)
 	{
-		mConstHandler.sendEmptyMessage(0);
+		//mConstHandler.sendEmptyMessage(0);
 		Log.d("Service_Notify","onStartCommand 실행");
 
 		// handler 통한 Thread 이용
