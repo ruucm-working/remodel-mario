@@ -1,18 +1,16 @@
 package com.exam;
 
 
-import android.bluetooth.BluetoothAdapter;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
-import android.content.Context;
-import android.appwidget.AppWidgetManager;
-import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.provider.Settings;
-import android.util.Log;
-import android.widget.Toast;
+import android.app.*;
+import android.appwidget.*;
+import android.bluetooth.*;
+import android.content.*;
+import android.net.*;
+import android.net.wifi.*;
+import android.provider.*;
+import android.support.v4.app.*;
+import android.util.*;
+import android.widget.*;
 
 public class coinBlockWidgetProvider extends AppWidgetProvider {
 
@@ -32,6 +30,12 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 	private static boolean isThreadCreated = false;
 	private int nowBattery;
 	private static boolean isAdditionalListenerCreated = false;
+	
+	
+	NotificationCompat.Builder const_builder;
+	
+	
+	
 
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
@@ -47,7 +51,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		
 		if(!isAdditionalListenerCreated)
 		{
-			context.getApplicationContext().registerReceiver(this, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+			//context.getApplicationContext().registerReceiver(this, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 			context.getApplicationContext().registerReceiver(this, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 			isAdditionalListenerCreated = true;
 		}
@@ -58,6 +62,13 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			Log.d(TAG,"onUpdate"+appWidgetIds);
 		}
 		Log.d(coinBlockWidgetProvider.TAG,"onUpdate;");
+		
+		
+		Intent intent = new Intent(context, Service_BatteryGauge.class);
+		context.startService(intent);
+		
+		const_builder = new NotificationCompat.Builder(context);
+		
 	}
 
 	@Override
@@ -105,10 +116,17 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		}
 
 		// Low battery
+		/*
 		else if (intent.getAction().startsWith("android.intent.action.BATTERY_CHANGED"))
 		{
+			
+			
 			int bLevel = intent.getIntExtra("level", 0);
 			Log.v(TAG, "Battery level changed: " + bLevel);
+			
+			
+			
+			
 			Setting.nowBattery = bLevel;
 
 			if(bLevel < 20)
@@ -116,11 +134,15 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 			else
 				isBatteryLow = false;
 			
+			
+			
+			
 			//Toast.makeText(context, "Battery Changed", Toast.LENGTH_SHORT).show();
 
 			AppWidgetManager manager = AppWidgetManager.getInstance(context);
 			this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, getClass())));
 		}
+		*/
 
 		// WiFi
 		else if (intent.getAction().startsWith("android.net.wifi.STATE_CHANGE"))
