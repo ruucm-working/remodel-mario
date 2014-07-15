@@ -109,6 +109,7 @@ public class coinBlockWidgetProvider extends AppWidgetProvider {
 		{
 			int bLevel = intent.getIntExtra("level", 0);
 			Log.v(TAG, "Battery level changed: " + bLevel);
+			Setting.nowBattery = bLevel;
 
 			if(bLevel < 20)
 				isBatteryLow = true;

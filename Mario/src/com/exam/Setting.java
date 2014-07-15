@@ -81,6 +81,7 @@ public class Setting extends Activity {
 	public static int CliCount1;
 	public static int CliCount2;
 	
+	public static int nowBattery = -1;
 	
 	float CliSp0;
 	
